@@ -24,7 +24,7 @@ module.exports = React.createClass({
 
 var styles = StyleSheet.create({
 	container: {
-		marginTop: 50
+		marginTop: 250
 	}
 
 });

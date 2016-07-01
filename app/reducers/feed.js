@@ -10,7 +10,7 @@ export default function feedreducer(state = initialState, action = {}) {
 			console.log('Update Episode');
 			return {
 				...state,
-				episode: action.episode
+				episode: action.Episode
 			}
 		default:
 			return state;

@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import {
 	TabBarIOS,
+	Text,
 	StyleSheet
 } from 'react-native';
 
@@ -11,6 +12,18 @@ import MsgList from '../components/messages/msgList';
 import Profile from '../components/profile/profile';
 
 import { Router, Scene } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+
+const RouterWithRedux = connect()(Router);
+
+
+class TabIcon extends React.Component {
+	render() {
+      return (
+            <Text style={{color: this.props.selected ? 'red' :'black'}}>{this.props.title}</Text>
+        );
+	}
+}
 
 
 module.exports = React.createClass({
@@ -23,54 +36,15 @@ module.exports = React.createClass({
 
 	render: function() {
 		return (
-			<TabBarIOS
-				tintColor="#0BDD97"
-				barTintColor="#f1f1f1"
-				key="TabBar"
-			>
-
-				<TabBarIOS.Item
-					title="Feed"
-					icon={require('../img/castle-icon.png')}
-					selected={this.state.selectedTab === 'feedTab'}
-					onPress = { () => {
-						this.setState({
-							selectedTab: 'feedTab'
-						});
-					}}
-				>
-					<Feed />
-				</TabBarIOS.Item>
-
-				<TabBarIOS.Item
-					title="Messages"
-					icon={require('../img/castle-icon.png')}
-					selected={this.state.selectedTab === 'msgTab'}
-					onPress = { () => {
-						this.setState({
-							selectedTab: 'msgTab'
-						});
-					}}
-				>
-					<MsgList />
-				</TabBarIOS.Item>
-
-
-				<TabBarIOS.Item
-					title="Profile"
-					icon={require('../img/castle-icon.png')}
-					selected={this.state.selectedTab === 'profileTab'}
-					onPress = { () => {
-						this.setState({
-							selectedTab: 'profileTab'
-						});
-					}}
-
-				>
-					<Profile />
-				</TabBarIOS.Item>
-
-			</TabBarIOS>
+			<RouterWithRedux>
+			<Scene key="roots">
+				<Scene key="maintabs" tabs={true} style={styles.container} >
+					<Scene key="Feed" title="Feed" icon={TabIcon} component={Feed}  initial={true} />
+					<Scene key="MsgList" title="Messages" icon={TabIcon} component={MsgList}  />
+					<Scene key="Profile" title="Profile" icon={TabIcon} component={Profile} />
+				</Scene>
+			</Scene>
+			</RouterWithRedux>
 		);
 	}
 
@@ -78,8 +52,12 @@ module.exports = React.createClass({
 
 
 
+var styles = StyleSheet.create({
+	container: {
+		backgroundColor: 'aliceblue'
+	}
 
-
+});
 
 
 
