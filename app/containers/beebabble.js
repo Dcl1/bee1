@@ -39,7 +39,7 @@ module.exports = React.createClass({
 			<RouterWithRedux>
 			<Scene key="roots">
 				<Scene key="maintabs" tabs={true} style={styles.container} >
-					<Scene key="Feed" title="Feed" icon={TabIcon} component={Feed}  initial={true} />
+					<Scene key="Home" title="Home" icon={TabIcon} component={Feed}  initial={true} />
 					<Scene key="MsgList" title="Messages" icon={TabIcon} component={MsgList}  />
 					<Scene key="Profile" title="Profile" icon={TabIcon} component={Profile} />
 				</Scene>
