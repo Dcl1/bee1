@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 var cusData1 = require('../../data/feedepisode1.json');
-
+import PostButton from './postButton.js';
 
 module.exports = React.createClass({
 
@@ -41,9 +41,7 @@ module.exports = React.createClass({
 	_renderSectionHeader: function(){
 		return (
 			<View style={styles.sectionHeader}>
-				<Text>
-					Apparently this is a section header
-				</Text>
+				<PostButton />
 			</View>
 		);
 	},
@@ -75,7 +73,10 @@ var styles = StyleSheet.create({
 	},
 
 	sectionHeader: {
-		marginBottom: 20
+		marginBottom: 20, 
+		backgroundColor: 'white',
+		paddingTop: 10,
+		paddingBottom: 10
 	},
 
 	postCard: {
