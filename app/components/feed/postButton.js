@@ -18,7 +18,7 @@ var CreateModal = React.createClass({
 	},
 
 
-	setVisibile: function(visible){
+	setVisible: function(visible){
 		this.setState({
 			modalVisible: visible
 		});
@@ -49,7 +49,7 @@ var CreateModal = React.createClass({
 						</View>
 						<View>
 							<TouchableHighlight>
-								<Text>
+								<Text style={styles.quoteText}>
 									Send
 								</Text>
 							</TouchableHighlight>
@@ -57,7 +57,7 @@ var CreateModal = React.createClass({
 
 						<View style={styles.cancelContainer}>
 							<TouchableHighlight
-								onPress={this.setVisibile.bind(this,false)}
+								onPress={this.setVisible.bind(this,false)}
 							>
 								<Image 
 									source={require('image!CancelWhite')} 
@@ -85,7 +85,8 @@ module.exports = React.createClass({
 	getInitialState: function(){
 		return {
 			start: true,
-			selectedQuestion: false
+			selectedQuestion: false,
+			makeModalVis: true
 		};
 	},
 
@@ -109,9 +110,7 @@ module.exports = React.createClass({
 
 	render: function(){
 		return (
-			
-			this.state.start ? this.startState() : <CreateModal ref={(r)=> {r.setVisibile(true)}} />
-			
+			this.state.start ? this.startState() : <CreateModal ref={(r)=> {r.setVisible(true)}}/>	
 		);
 	}
 

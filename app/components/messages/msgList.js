@@ -8,13 +8,15 @@ import {
 	TouchableHighlight
 } from 'react-native';
 
+import { Actions } from 'react-native-router-flux';
+
 
 
 module.exports = React.createClass({
 
 
 	getInitialState: function(){
-		var theData = [{"user" : "fred", "text" : "cmon man"}, {"user" : "helio", "text" : "zoom zoom"}];
+		var theData = [{"user" : "fred", "id" : 1 ,"text" : "cmon man"}, {"user" : "helio", "id" : 2 ,"text" : "zoom zoom"}];
 
 		var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
 		return {
@@ -39,7 +41,7 @@ module.exports = React.createClass({
 
 	_renderRow: function(rowData: string, sectionID: number, rowID: number ) {
 		return (
-			<TouchableHighlight style={styles.postCard}>
+			<TouchableHighlight style={styles.postCard} onPress={Actions.SingleConvo} >
 				<View>
 					<Text> {rowData.user} </Text>
 					<Text> {rowData.text} </Text>
