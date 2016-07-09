@@ -9,11 +9,7 @@ import {
 
 import InvertibleScrollView from 'react-native-invertible-scroll-view';
 
-
-module.exports = React.createClass({
-
-	getInitialState: function(){
-		var msgs =[
+	var msgs =[
 			{"user": 1, "text" : "Hello"},
 			{"user": 1, "text" : "Hello Zooommming Low"},
 			{"user": 2, "text" : "Hi dude"},
@@ -26,11 +22,21 @@ module.exports = React.createClass({
 			{"user": 1, "text" : "Hellfsdfso"},
 			{"user": 2, "text" : "Hefsdfsdllo"},
 			{"user": 1, "text" : "Hello"}
-		];
+	];
+
+
+
+module.exports = React.createClass({
+
+
+	getInitialState: function(){
+
 
 		var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
 		return {
-			dataSource: ds.cloneWithRows(msgs)
+			dataSource: ds.cloneWithRows(msgs),
+			dataArray: msgs,
+			num : 1
 		};
 
 	},
@@ -51,7 +57,7 @@ module.exports = React.createClass({
 	_renderHeader: function(){
 		return (
 			<TouchableHighlight
-				onPress={this._onPress()}
+				onPress={this._onPress}
 				style={styles.button}>
 				<Text>Add a row </Text>
 			</TouchableHighlight>
@@ -64,7 +70,32 @@ module.exports = React.createClass({
 
 
 	_onPress: function(){
+		let ray = this.state.dataArray;
+		//let oldnum = this.state.num;
+		//let newnum = oldnum + 1;
+
+		let addRay = [{"user": 1, "text" : "Hello"}];
 		
+		Array.prototype.unshift.apply(ray, addRay);
+
+		console.log(ray);
+
+
+		//this.setState({
+		//	num : newnum
+		//});
+
+		//console.log("hello there" + this.state.num + "");
+		//msgs.push({"user": 1, "text" : "Hello"});
+	   // var rows = msg;
+	    // It's important to keep row IDs consistent to avoid extra rendering. You
+	    // may need to reverse the list of row IDs so the so that the inversion
+	    // will order the rows correctly.
+	    //var rowIds = rows.map((row, index) => index).reverse();
+	   var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
+	   this.setState({
+	      dataSource: ds.cloneWithRows(ray),
+	 	});
 	}
 
 
