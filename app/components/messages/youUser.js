@@ -13,19 +13,23 @@ const styles = StyleSheet.create({
 		marginTop: 6,
 		marginBottom: 6,
 		marginLeft: 32,
-		marginRight: 16
+		marginRight: 8,
+		justifyContent: 'flex-end'
 	},
 
 	profImg: {
-		flex: 1,
+
 		width: 50,
 		height: 50
 	},
 
 	convoBubble: {
-		flex: 8,
+		
 		backgroundColor: '#87cefa',
-		padding: 6,
+		paddingTop: 6,
+		paddingBottom: 6,
+		paddingLeft: 12,
+		paddingRight: 12,
 		borderRadius: 6,
 		justifyContent: 'center'
 	},

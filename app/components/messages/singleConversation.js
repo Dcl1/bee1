@@ -102,7 +102,7 @@ module.exports = React.createClass({
 	_renderRow: function(rowData: string, sectionID: number, rowID: number){
 		return(
 			<View>
-				{ rowData.user == 1 ? <OtherUser text={rowData.text} /> : <YouUser text={rowData.text} /> }
+				{ rowData.user == 1 ? <OtherUser text={rowData.text} source={require('image!Jeffy')} /> : <YouUser text={rowData.text} /> }
 			</View>
 		);
 	},
@@ -152,7 +152,8 @@ var styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#F5FCFF'
+		backgroundColor: '#F5FCFF',
+		paddingBottom: 90
 	},
 
 	button: {

@@ -4,14 +4,14 @@
 			"user" : {
 				"id" : "001",
 				"name" : "Sammy",
-				"pic" : '../../img/profPics/Sammy'
+				"pic" : {require('image!Sammy')}
 			}
 		}
 		{
 			"user" : {
 				"id" : "002",
 				"name" : "Jeffy",
-				"pic" : '../../img/profPics/Jeffy'
+				"pic" : {require('image!Jeffy')}
 			}
 		}
 	]

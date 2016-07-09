@@ -12,19 +12,22 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		marginTop: 4,
 		marginBottom: 4,
-		marginRight: 32
+		marginRight: 32,
+		marginLeft: 8
 	},
 
 	profImg: {
-		flex: 1,
 		width: 50,
 		height: 50
 	},
 
 	convoBubble: {
-		flex: 8,
+		marginLeft: 8,
 		backgroundColor: '#f5f5f5',
-		padding: 6,
+		paddingTop: 6,
+		paddingBottom: 6,
+		paddingLeft: 12,
+		paddingRight: 12,
 		borderRadius: 6,
 		justifyContent: 'center'
 	}
@@ -37,7 +40,7 @@ module.exports = React.createClass({
 				<Image	
 					resizeMode="contain"
 					style={styles.profImg}
-					source={require('image!Sammy')}
+					source={this.props.source}
 				/>
 				<View style={styles.convoBubble}>
 					<Text>
