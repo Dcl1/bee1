@@ -1,0 +1,17 @@
+{
+	"conversation" : [
+		"convoID" : "001",
+		"messages" : [
+			{
+				"message" : {
+					"text" : "yolo molo",
+					"step" : "1",
+					"user" : {
+						"name" : "Sammy",
+						"userID" : "001"
+					}		
+				}
+			}
+		] // This the end of the 
+	] 
+}

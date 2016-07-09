@@ -7,6 +7,9 @@ import {
 	StyleSheet
 } from 'react-native';
 
+import OtherUser from './otherUser';
+import YouUser from './youUser';
+
 import InvertibleScrollView from 'react-native-invertible-scroll-view';
 
 	var msgs =[
@@ -36,7 +39,9 @@ module.exports = React.createClass({
 		return {
 			dataSource: ds.cloneWithRows(msgs),
 			dataArray: msgs,
-			num : 1
+			num : 1,
+			answerChoice: 1,
+			chosen: false
 		};
 
 	},
@@ -53,32 +58,72 @@ module.exports = React.createClass({
 		);
 	},
 
+	_whichChoice: function(ch){
+		switch(ch) {
+			case 1 :
+				this.setState({
+					answerChoice: 1,
+					chosen: true
+				});
+			case 2 :
+				this.setState({
+					answerChoice: 2,
+					chosen: true
+				});
+			default:
+				this.setState({
+					answerChoice: 2,
+					chosen: false
+				});
+		}
+	},
+
 
 	_renderHeader: function(){
 		return (
-			<TouchableHighlight
-				onPress={this._onPress}
-				style={styles.button}>
-				<Text>Add a row </Text>
-			</TouchableHighlight>
+			<View>
+				<TouchableHighlight
+					onPress={this._onPress}
+					style={styles.button}>
+					<Text>Add a row </Text>
+				</TouchableHighlight>
+				
+					<TouchableHighlight onPress={this._whichChoice.bind(this,1)} >
+						<Text> Option One </Text>
+					</TouchableHighlight>
+					<TouchableHighlight onPress={this._whichChoice.bind(this,2)} >
+						<Text> Option Two </Text>
+					</TouchableHighlight>
+				
+			</View>
 		);
 	},
 
 	_renderRow: function(rowData: string, sectionID: number, rowID: number){
-		return <Text key={rowID} style={styles.row}>{rowData.text} </Text>
+		return(
+			<View>
+				{ rowData.user == 1 ? <OtherUser text={rowData.text} /> : <YouUser text={rowData.text} /> }
+			</View>
+		);
 	},
 
 
+
 	_onPress: function(){
+
+		let firstRay = [{"user": 1, "text" : "Hello this is the first array"}];
+		let secondRay = [{"user": 2, "text" : "Second Hello this is the second array"}];
+
 		let ray = this.state.dataArray;
 		//let oldnum = this.state.num;
 		//let newnum = oldnum + 1;
 
-		let addRay = [{"user": 1, "text" : "Hello"}];
-		
-		Array.prototype.unshift.apply(ray, addRay);
 
-		console.log(ray);
+
+		//console.log(addRay);
+		Array.prototype.unshift.apply(ray, secondRay);
+
+		//console.log(ray);
 
 
 		//this.setState({

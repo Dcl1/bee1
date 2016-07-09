@@ -8,7 +8,7 @@ import {
 	TouchableHighlight
 } from 'react-native';
 
-var cusData1 = require('../../data/feedepisode1.json');
+
 import PostButton from './postButton.js';
 
 module.exports = React.createClass({
@@ -28,7 +28,6 @@ module.exports = React.createClass({
 		return (
 			<View>
 				<ListView
-
 					dataSource={this.state.dataSource}
 					renderRow = {this._renderRow}
 					renderSectionHeader= {this._renderSectionHeader}
