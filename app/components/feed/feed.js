@@ -69,7 +69,7 @@ var styles = StyleSheet.create({
 		padding: 0,
 		margin: 0,
 		height: 8000,
-		marginTop: 80
+		marginTop: 66
 	},
 
 	sectionHeader: {

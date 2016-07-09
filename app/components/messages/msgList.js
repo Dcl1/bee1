@@ -31,6 +31,7 @@ module.exports = React.createClass({
 			<View style={styles.container}>
 				<ListView
 					style={styles.msgList}
+					automaticallyAdjustContentInsets={false}
 					dataSource={this.state.dataSource}
 					renderRow = {this._renderRow}
 					renderSectionHeader={this._renderSectionHeader}
@@ -63,7 +64,7 @@ var styles = StyleSheet.create({
 	},
 
 	msgList: {
-		marginTop: 70
+		marginTop: 66
 	},
 
 	postCard: {
