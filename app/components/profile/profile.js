@@ -14,6 +14,13 @@ import Episodelist from './episodeList';
 
 module.exports = React.createClass({
 
+	getInitialState: function() {
+		return{
+			sampleData: {},
+			sampleName: '',
+			profPic: ''
+		};
+	},
 
 	_border: function(x) {
 		return {
@@ -22,14 +29,40 @@ module.exports = React.createClass({
 		}
 	},
 
+	componentWillMount: function(){
+		var theJSON = require('../../data/users.json');
+		console.log(theJSON);
+		var name = theJSON.users[0].user.name;
+		var pic = theJSON.users[0].user.pic;
+		this.setState({
+			sampleData: theJSON,
+			profPic: pic
+		});
+	},
+
+	_seeData: function(){
+		console.log(this.state.sampleData);
+		console.log(this.state.profPic);
+		var jso = this.state.sampleData;
+		var name = jso.users[0].user.name
+		this.setState({
+			sampleName: name
+		});
+	},
 
 
 	render: function(){
+
+
 		return (
 			<View style={styles.container}>
 				<View style={styles.topSection}>
 					<View style={styles.profileRow}>
 						<View style={styles.profileImg}>
+							<Image 
+								resizeMode="contain"
+								source={require('image!' + this.state.profPic + '')}
+							/>
 						</View>
 						<Text style={styles.profileInfo}>
 							This is the profile information
@@ -37,6 +70,14 @@ module.exports = React.createClass({
 					</View>
 				</View>
 			
+				<View>
+					<Text>
+						{this.state.sampleName}
+					</Text>
+					<TouchableHighlight onPress={this._seeData}>
+						<Text> Press </Text>
+					</TouchableHighlight>
+				</View>
 
 				<View style={styles.episodeSwitcher} >
 					<Episodelist />

@@ -20,3 +20,11 @@ export function updatemessagelist(versionID) {
 		versionID
 	}
 }
+
+
+export function getuserinfo(userID) {
+	return {
+		type: types.GETUSERINFO,
+		userID
+	}
+}

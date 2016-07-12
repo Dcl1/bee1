@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import Feed from '../components/feed/feed';
-import MsgList from '../components/messages/msgList';
+import MsgList from './messages';
 import Profile from '../components/profile/profile';
 import SingleConversation from '../components/messages/singleConversation';
 

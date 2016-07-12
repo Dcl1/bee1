@@ -26,6 +26,8 @@ module.exports = React.createClass({
 	},
 
 
+
+
 	render: function(){
 		return (
 			<View style={styles.container}>
@@ -40,18 +42,21 @@ module.exports = React.createClass({
 		);
 	},
 
+
+
 	_renderRow: function(rowData: string, sectionID: number, rowID: number ) {
 		return (
 			<TouchableHighlight style={styles.postCard} onPress={Actions.SingleConvo} >
 				<View>
+					<Text>
+						{this.state.userName}
+					</Text>
 					<Text> {rowData.user} </Text>
 					<Text> {rowData.text} </Text>
 				</View>
 			</TouchableHighlight>
 		);
 	}
-
-
 
 
 });

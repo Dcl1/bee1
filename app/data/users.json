@@ -4,14 +4,14 @@
 			"user" : {
 				"id" : "001",
 				"name" : "Sammy",
-				"pic" : {require('image!Sammy')}
+				"pic" : "Sammy"
 			}
-		}
+		},
 		{
 			"user" : {
 				"id" : "002",
 				"name" : "Jeffy",
-				"pic" : {require('image!Jeffy')}
+				"pic" : "Sammy"
 			}
 		}
 	]
