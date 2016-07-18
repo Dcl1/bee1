@@ -1,0 +1,18 @@
+{
+	"msgList" : [
+		{
+			"messages" : [
+				{
+					"user" : "Sarah",
+					"id" : 1,
+					"text" : "Sarah is gonna go far far away"
+				},
+				{
+					"user" : "theDude",
+					"id" : 1,
+					"text" : "the dude likes to dance"
+				}
+			]
+		}
+	]
+}

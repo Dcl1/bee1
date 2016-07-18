@@ -3,12 +3,19 @@
 		{
 			"messages" : [
 				{
+					"user" : "Umi",
+					"id" : 1,
 					"text" : "yo lo mo lo from JSON"
 				}
 			]
 		}
 	]
 }
+
+
+
+
+
 
 
 

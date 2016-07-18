@@ -10,14 +10,14 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 
-
 import epiOneMsgList from '../../data/epiOne/messageList.json';
+import epiTwoMsgList from '../../data/epiTwo/messageList.json';
 
 module.exports = React.createClass({
 
 
 	getInitialState: function(){
-		var theData = [{"user" : "fred", "id" : 1 ,"text" : "cmon man"}, {"user" : "helio", "id" : 2 ,"text" : "zoom zoom"}];
+		var theData = [{"user" : "bad", "id" : 0,"text" : "guy"}, {"user" : "", "id" : 0 ,"text" : ""}];
 
 		var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
 		return {
@@ -27,25 +27,53 @@ module.exports = React.createClass({
 	},
 
 
-	componentWillMount: function(){
-		console.log('This is the message list component');
+	increaseEpisode: function(){
+		this.props.updatelist(4);
+		//console.log("Current Current " + this.props.episode);
+		this.checkEpisode(this.props.episode);
+	},
+
+	checkEpisode: function(epi){
+		console.log("X on the hat, this epi is " + epi)
+		switch(epi){
+			case 1:
+				this.setState({dataSource: this.state.dataSource.cloneWithRows(
+					epiOneMsgList.msgList[0].messages
+				)});
+				break;
+			case 2:
+				this.setState({
+					dataSource: this.state.dataSource.cloneWithRows(
+						epiTwoMsgList.msgList[0].messages
+					)
+				});
+				break;
+			default: 
+				this.setState({
+					dataSource: this.state.dataSource.cloneWithRows(
+						[]
+					)
+				});
+		}
 	},
 
 
-
-	increaseEpisode: function(){
-		this.props.updatelist(4);
+	componentWillMount: function(){
+		this.checkEpisode(this.props.episode);
 	},
 
 
 	render: function(){
 
 		console.log(this.props.episode);
+		console.log(this.state.dataSource);
+		
 
 		return (
 			<View style={styles.container}>
 				<ListView
 					style={styles.msgList}
+					enableEmptySections={true}
 					automaticallyAdjustContentInsets={false}
 					dataSource={this.state.dataSource}
 					renderRow = {this._renderRow}

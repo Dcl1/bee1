@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
-	episode: 2
+	episode: 1
 };
 
 export default function messagereducer(state = initialState, action = {}) {
