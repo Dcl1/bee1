@@ -31,7 +31,7 @@ module.exports = React.createClass({
 
 	componentWillMount: function(){
 		var theJSON = require('../../data/users.json');
-		console.log(theJSON);
+		//console.log(theJSON);
 		var name = theJSON.users[0].user.name;
 		var pic = theJSON.users[0].user.pic;
 		this.setState({
@@ -61,7 +61,7 @@ module.exports = React.createClass({
 						<View style={styles.profileImg}>
 							<Image 
 								resizeMode="contain"
-								source={require('image!' + this.state.profPic + '')}
+								source={require('image!Sammy')}
 							/>
 						</View>
 						<Text style={styles.profileInfo}>

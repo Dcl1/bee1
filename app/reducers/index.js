@@ -1,5 +1,5 @@
-import feed from './feed';
+import messages from './messages';
 
 export {
-	feed
+	messages
 };

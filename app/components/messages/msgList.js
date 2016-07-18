@@ -11,6 +11,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 
 
+import epiOneMsgList from '../../data/epiOne/messageList.json';
 
 module.exports = React.createClass({
 
@@ -26,9 +27,21 @@ module.exports = React.createClass({
 	},
 
 
+	componentWillMount: function(){
+		console.log('This is the message list component');
+	},
+
+
+
+	increaseEpisode: function(){
+		this.props.updatelist(4);
+	},
 
 
 	render: function(){
+
+		console.log(this.props.episode);
+
 		return (
 			<View style={styles.container}>
 				<ListView
@@ -39,6 +52,16 @@ module.exports = React.createClass({
 					renderSectionHeader={this._renderSectionHeader}
 				/>
 			</View>
+		);
+	},
+
+
+	_renderSectionHeader: function(){
+
+		return (
+			<TouchableHighlight onPress={this.increaseEpisode}>
+				<Text> Increase Episode  </Text>
+			</TouchableHighlight>
 		);
 	},
 
