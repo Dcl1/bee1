@@ -4,12 +4,15 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import MessageList from '../components/messages/msgList';
 /* import actions */
+import * as AppActions from '../actions/appActions'; 
 import * as MessageActions from '../actions/messageAction';
 /* import actions */
 
 
 
 import { connect } from 'react-redux';
+
+
 
 
 class MessageContainer extends Component {
@@ -26,7 +29,7 @@ class MessageContainer extends Component {
 
 		return (
 			<MessageList
-				episode={state.messages.episode}
+				episode={state.app.episode}
 				{...actions}
 			/>
 		);
@@ -39,7 +42,7 @@ export default connect(state => ({
 		state: state
 	}), 
 	(dispatch) => ({
-		actions: bindActionCreators(MessageActions, dispatch)
+		actions: bindActionCreators(Object.assign({}, AppActions, MessageActions), dispatch)
 	})
 )(MessageContainer);
 

@@ -15,7 +15,6 @@ import InvertibleScrollView from 'react-native-invertible-scroll-view';
 
 
 
-
 module.exports = React.createClass({
 
 
@@ -39,7 +38,7 @@ module.exports = React.createClass({
 	},
 
 
-	componentDidMount: function(){
+	componentWillMount: function(){
 		var Episode = this.props.episode;
 		var Step = this.props.step;
 		var convoID = this.props.convoID;
@@ -49,17 +48,13 @@ module.exports = React.createClass({
 
 		this.setState({
 			currentEpisode: Episode,
-			currentStep: Step
+			currentStep: Step,
+			currentConvo: convoID
 		});
 	},
 	
 
 	render: function(){
-
-		//console.log(this.props.episode);
-		//console.log("LOOK AT OUR STEP " + this.state.currentStep);
-		//var ConvoID = this.props.convoo;
-		//console.log( ConvoID );
 
 		return (
 			<View
@@ -82,6 +77,11 @@ module.exports = React.createClass({
 					>
 						<Text> This is an input </Text>
 					</TouchableHighlight>
+				</View>
+				<View>
+						<Text> This is the episode {this.state.currentEpisode} </Text>
+						<Text> This is the current step {this.state.currentStep} </Text>
+						<Text> This is the current conversation id {this.state.currentConvo} </Text>
 				</View>
 			</View>
 

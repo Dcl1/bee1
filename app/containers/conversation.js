@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import SingleConversation from '../components/messages/singleConversation';
 
 import * as ConversationActions from '../actions/conversationActions';
-
+import * as AppActions from '../actions/appActions';
 
 
 import { connect } from 'react-redux';
@@ -27,7 +27,7 @@ class ConversationContainer extends Component {
 		return (
 			<SingleConversation
 				step={state.conversation.step}
-				episode={state.messages.episode}
+				episode={state.app.episode}
 				convoID={cID}
 				{...actions}
 			/>
@@ -40,6 +40,6 @@ export default connect(state => ({
 		state: state
 	}),
 	(dispatch) => ({
-		actions: bindActionCreators(ConversationActions, dispatch)
+		actions: bindActionCreators(Object.assign({}, AppActions, ConversationActions), dispatch)
 	})
 )(ConversationContainer);

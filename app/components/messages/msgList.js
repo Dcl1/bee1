@@ -28,7 +28,7 @@ module.exports = React.createClass({
 
 
 	increaseEpisode: function(){
-		this.props.updatelist();
+		this.props.updateepisode();
 		//console.log("Current Current " + this.props.episode);
 		this.checkEpisode(this.props.episode);
 	},
@@ -97,7 +97,7 @@ module.exports = React.createClass({
 
 	_renderRow: function(rowData: string, sectionID: number, rowID: number ) {
 		return (
-			<TouchableHighlight style={styles.postCard} onPress={Actions.SingleConvo({convoo: rowData.id})}>
+			<TouchableHighlight style={styles.postCard} onPress={Actions.SingleConvo.bind(this, {convoo: rowData.id})}>
 				<View>
 					<Text>
 						{this.state.userName}
