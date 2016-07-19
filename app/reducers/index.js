@@ -1,5 +1,9 @@
 import messages from './messages';
+import conversation from './conversation';
 
 export {
-	messages
+	messages,
+	conversation
 };
+
+

@@ -10,7 +10,8 @@ import {
 import Feed from '../components/feed/feed';
 import MsgList from './messages';
 import Profile from '../components/profile/profile';
-import SingleConversation from '../components/messages/singleConversation';
+//import SingleConversation from '../components/messages/singleConversation';
+import Conversation from './conversation';
 
 import { Router, Scene } from 'react-native-router-flux';
 
@@ -43,8 +44,8 @@ module.exports = React.createClass({
 				<Scene key="maintabs" tabs={true} style={styles.container} >
 					<Scene key="Home" title="Home" icon={TabIcon} component={Feed}  initial={true} />
 					<Scene key="Messages" title="Messages" icon={TabIcon}  >
-						<Scene key="MsgList" title="Messages" component={MsgList}  />
-						<Scene key="SingleConvo" title="" component={SingleConversation} hideTabBar={true} />
+						<Scene key="MsgList" title="Messages" component={MsgList} passProps={true}  />
+						<Scene key="SingleConvo" title="" component={Conversation} hideTabBar={true} passProps={true} />
 					</Scene>
 					<Scene key="Profile" title="Profile" icon={TabIcon} component={Profile} />
 				</Scene>

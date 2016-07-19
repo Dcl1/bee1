@@ -8,11 +8,6 @@ import * as MessageActions from '../actions/messageAction';
 /* import actions */
 
 
-/* import JSONs*/
-import epiOneMsgList from '../data/epiOne/messageList.json';
-/* import JSOns */
-
-
 
 import { connect } from 'react-redux';
 

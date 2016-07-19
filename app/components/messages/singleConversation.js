@@ -12,20 +12,7 @@ import YouUser from './youUser';
 
 import InvertibleScrollView from 'react-native-invertible-scroll-view';
 
-	var msgs =[
-			{"user": 1, "text" : "Hello"},
-			{"user": 1, "text" : "Hello Zooommming Low"},
-			{"user": 2, "text" : "Hi dude"},
-			{"user": 1, "text" : "Hell sdo"},
-			{"user": 2, "text" : "Hellodsfs 877"},
-			{"user": 1, "text" : "Hxc xello"},
-			{"user": 2, "text" : "45454Hello"},
-			{"user": 2, "text" : "1231Hello"},
-			{"user": 1, "text" : "dsfdscHello"},
-			{"user": 1, "text" : "Hellfsdfso"},
-			{"user": 2, "text" : "Hefsdfsdllo"},
-			{"user": 1, "text" : "Hello"}
-	];
+
 
 
 
@@ -34,70 +21,75 @@ module.exports = React.createClass({
 
 	getInitialState: function(){
 
-
+		var msgs =[];
 		var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
 		return {
 			dataSource: ds.cloneWithRows(msgs),
 			dataArray: msgs,
-			num : 1,
-			answerChoice: 1,
-			chosen: false
+			episodeArray: [],
+			currentEpisode: 0,
+			currentStep: 0,
+			currentConvo: 0
 		};
 
 	},
 
+	grabArray: function(ee, stp){
+		console.log( ee + " " + stp + " ");
+	},
+
+
+	componentDidMount: function(){
+		var Episode = this.props.episode;
+		var Step = this.props.step;
+		var convoID = this.props.convoID;
+		//console.log("This is the conversation ID ID : " + this.props.convoID);
+		console.log("duh dude, wtf " + convoID)
+		var ray = this.grabArray(Episode, Step);
+
+		this.setState({
+			currentEpisode: Episode,
+			currentStep: Step
+		});
+	},
+	
+
 	render: function(){
+
+		//console.log(this.props.episode);
+		//console.log("LOOK AT OUR STEP " + this.state.currentStep);
+		//var ConvoID = this.props.convoo;
+		//console.log( ConvoID );
+
 		return (
-			<ListView
-				renderScrollComponent={props => <InvertibleScrollView {...props} inverted />}
-				dataSource={this.state.dataSource}
-				renderHeader={this._renderHeader}
-				renderRow={this._renderRow}
+			<View
 				style={styles.container}
-			/>
-		);
-	},
-
-	_whichChoice: function(ch){
-		switch(ch) {
-			case 1 :
-				this.setState({
-					answerChoice: 1,
-					chosen: true
-				});
-			case 2 :
-				this.setState({
-					answerChoice: 2,
-					chosen: true
-				});
-			default:
-				this.setState({
-					answerChoice: 2,
-					chosen: false
-				});
-		}
-	},
-
-
-	_renderHeader: function(){
-		return (
-			<View>
-				<TouchableHighlight
-					onPress={this._onPress}
-					style={styles.button}>
-					<Text>Add a row </Text>
-				</TouchableHighlight>
-				
-					<TouchableHighlight onPress={this._whichChoice.bind(this,1)} >
-						<Text> Option One </Text>
+			>
+				<ListView
+					renderScrollComponent={props => <InvertibleScrollView {...props} inverted />}
+					dataSource={this.state.dataSource}
+					renderHeader={this._renderHeader}
+					renderRow={this._renderRow}
+					enableEmptySections={true}
+					style={styles.list}
+				/>
+				<View
+					style={styles.inputArea}
+				>
+					<TouchableHighlight
+						style={styles.inputButton}
+						onPress={this._onPress}
+					>
+						<Text> This is an input </Text>
 					</TouchableHighlight>
-					<TouchableHighlight onPress={this._whichChoice.bind(this,2)} >
-						<Text> Option Two </Text>
-					</TouchableHighlight>
-				
+				</View>
 			</View>
+
 		);
 	},
+
+
+
 
 	_renderRow: function(rowData: string, sectionID: number, rowID: number){
 		return(
@@ -114,29 +106,9 @@ module.exports = React.createClass({
 		let firstRay = [{"user": 1, "text" : "Hello this is the first array"}];
 		let secondRay = [{"user": 2, "text" : "Second Hello this is the second array"}];
 
+
 		let ray = this.state.dataArray;
-		//let oldnum = this.state.num;
-		//let newnum = oldnum + 1;
-
-
-
-		//console.log(addRay);
 		Array.prototype.unshift.apply(ray, secondRay);
-
-		//console.log(ray);
-
-
-		//this.setState({
-		//	num : newnum
-		//});
-
-		//console.log("hello there" + this.state.num + "");
-		//msgs.push({"user": 1, "text" : "Hello"});
-	   // var rows = msg;
-	    // It's important to keep row IDs consistent to avoid extra rendering. You
-	    // may need to reverse the list of row IDs so the so that the inversion
-	    // will order the rows correctly.
-	    //var rowIds = rows.map((row, index) => index).reverse();
 	   var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
 	   this.setState({
 	      dataSource: ds.cloneWithRows(ray),
@@ -149,18 +121,28 @@ module.exports = React.createClass({
 
 var styles = StyleSheet.create({
 	containers: {
+		backgroundColor: 'black',
 		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#F5FCFF',
-		paddingBottom: 90
+		padding: 0,
+		margin: 0
 	},
 
-	button: {
-		padding: 20,
-		borderStyle: 'solid',
-		borderWidth: 1,
-		borderColor: 'black'
+	list: {
+		backgroundColor: '#F5FCFF',
+		height: 400
+	},
+
+	inputArea: {
+		backgroundColor: 'red',
+		position: 'absolute',
+		left: 0,
+		right: 0,
+		bottom: 0
+	},
+
+	inputButton: {
+		backgroundColor: 'white',
+		justifyContent: 'center'
 	},
 
 	row: {

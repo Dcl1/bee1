@@ -28,7 +28,7 @@ module.exports = React.createClass({
 
 
 	increaseEpisode: function(){
-		this.props.updatelist(4);
+		this.props.updatelist();
 		//console.log("Current Current " + this.props.episode);
 		this.checkEpisode(this.props.episode);
 	},
@@ -65,8 +65,8 @@ module.exports = React.createClass({
 
 	render: function(){
 
-		console.log(this.props.episode);
-		console.log(this.state.dataSource);
+		//console.log(this.props.episode);
+		//console.log(this.state.dataSource);
 		
 
 		return (
@@ -97,13 +97,14 @@ module.exports = React.createClass({
 
 	_renderRow: function(rowData: string, sectionID: number, rowID: number ) {
 		return (
-			<TouchableHighlight style={styles.postCard} onPress={Actions.SingleConvo} >
+			<TouchableHighlight style={styles.postCard} onPress={Actions.SingleConvo({convoo: rowData.id})}>
 				<View>
 					<Text>
 						{this.state.userName}
 					</Text>
 					<Text> {rowData.user} </Text>
 					<Text> {rowData.text} </Text>
+					<Text> {rowData.id} </Text>
 				</View>
 			</TouchableHighlight>
 		);

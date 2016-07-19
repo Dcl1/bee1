@@ -1,17 +1,35 @@
 {
 	"conversation" : [
-		"convoID" : "001",
-		"messages" : [
-			{
-				"message" : {
-					"text" : "yolo molo",
-					"step" : "1",
-					"user" : {
-						"name" : "Sammy",
-						"userID" : "001"
-					}		
+		{
+			"convoID" : 1,
+			"counselor" : [
+				{
+					"option" : false,
+					"step" : 1,
+					"user" : "counselor",
+					"text" : "How are you settling in to Brookhaven? Finding everything all right?"
+				},
+				{
+					"option" : false,
+					"step" : 2,
+					"user" : "player",
+					"text" : "Yeah, thanks. About my roommate.../Actually, how do roommate swaps work?"
+				},
+				{
+					"option" : false,
+					"step" : 3,
+					"user" : "counselor",
+					"text" : "Let me stop you right there--roommate determinations are final, no matter what you may have seen on the home feed. I’m sorry, but you’ll have to tough it out. I hear it builds character."
+				},
+				{
+					"option" : false,
+					"step" : 4,
+					"user" : "player",
+					"text" : "All right"
 				}
-			}
-		] // This the end of the 
-	] 
+
+			] 
+		} // This is the end of convoID 1
+
+	]
 }
