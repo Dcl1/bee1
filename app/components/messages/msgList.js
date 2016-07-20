@@ -17,7 +17,7 @@ module.exports = React.createClass({
 
 
 	getInitialState: function(){
-		var theData = [{"user" : "bad", "id" : 0,"text" : "guy"}, {"user" : "", "id" : 0 ,"text" : ""}];
+		var theData = [{"user" : "bad", "id" : 0,"text" : "guy"}, {"user" : "boony", "id" : 0 ,"text" : "boony boony bonny"}];
 
 		var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
 		return {
@@ -27,33 +27,29 @@ module.exports = React.createClass({
 	},
 
 
-	increaseEpisode: function(){
-		this.props.updateepisode();
-		//console.log("Current Current " + this.props.episode);
-		this.checkEpisode(this.props.episode);
-	},
+
 
 	checkEpisode: function(epi){
-		console.log("X on the hat, this epi is " + epi)
+
+		var _this = this;
+		//console.log("X on the hat, this epi is " + epi)
 		switch(epi){
 			case 1:
-				this.setState({dataSource: this.state.dataSource.cloneWithRows(
-					epiOneMsgList.msgList[0].messages
-				)});
+				var jsonArray = epiOneMsgList.msgList[0].messages;
+				jsonArray.map(function(obj){
+					_this.props.updatemessagelist(obj.user, obj.convoID, obj.text );
+				});
+				
 				break;
 			case 2:
-				this.setState({
-					dataSource: this.state.dataSource.cloneWithRows(
-						epiTwoMsgList.msgList[0].messages
-					)
+				var jsonArray = epiTwoMsgList.msgList[0].messages;
+				jsonArray.map(function(obj){
+					_this.props.updatemessagelist(obj.user, obj.convoID, obj.text );
 				});
+
 				break;
 			default: 
-				this.setState({
-					dataSource: this.state.dataSource.cloneWithRows(
-						[]
-					)
-				});
+				break;
 		}
 	},
 
@@ -65,10 +61,12 @@ module.exports = React.createClass({
 
 	render: function(){
 
-		//console.log(this.props.episode);
-		//console.log(this.state.dataSource);
-		
+		//var Arr = this.props.msgArray;
+		//this.setState({
+		//	dataArray: Arr
+		//});
 
+		//console.log(this.state.dataArray);
 		return (
 			<View style={styles.container}>
 				<ListView
@@ -108,6 +106,10 @@ module.exports = React.createClass({
 				</View>
 			</TouchableHighlight>
 		);
+	},
+
+	increaseEpisode: function(){
+		this.props.updateepisode();	
 	}
 
 

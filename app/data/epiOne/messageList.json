@@ -4,8 +4,13 @@
 			"messages" : [
 				{
 					"user" : "Umi",
-					"id" : 1,
+					"convoID" : 1,
 					"text" : "yo lo mo lo from JSON"
+				},
+				{
+					"user" : "CANDY",
+					"convoID" : 2,
+					"text" : "reference _this with this, because that's boss"
 				}
 			]
 		}

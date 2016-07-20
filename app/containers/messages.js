@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
-import MessageList from '../components/messages/msgList';
+import MessageList from '../components/messages/msgList3';
 /* import actions */
 import * as AppActions from '../actions/appActions'; 
 import * as MessageActions from '../actions/messageAction';
@@ -20,16 +20,14 @@ class MessageContainer extends Component {
 		super(props);
 	}
 
-	componentDidMount(){
-		console.log("Message List Mounted");
-	}
-
 	render() {
 		const { state, actions } = this.props;
 
+		console.log(state.messages);
 		return (
 			<MessageList
 				episode={state.app.episode}
+				msgArray={state.messages}
 				{...actions}
 			/>
 		);
@@ -42,7 +40,7 @@ export default connect(state => ({
 		state: state
 	}), 
 	(dispatch) => ({
-		actions: bindActionCreators(Object.assign({}, AppActions, MessageActions), dispatch)
+		actions: bindActionCreators(Object.assign({}, MessageActions, AppActions ), dispatch)
 	})
 )(MessageContainer);
 
