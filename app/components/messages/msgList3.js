@@ -8,6 +8,9 @@ import {
 	TouchableHighlight
 } from 'react-native';
 
+import epiOneMsgList from '../../data/epiOne/messageList.json';
+import epiTwoMsgList from '../../data/epiTwo/messageList.json';
+
 import { Actions } from 'react-native-router-flux';
 
 module.exports = React.createClass({
@@ -27,8 +30,14 @@ module.exports = React.createClass({
 	},
 
 	checkData: function(epi){
+
+		var _this = this;
+
 		if(epi === 1) {
-			this.props.updatemessagelist("bobby", 1, "go bobby go bobby");
+			epiOneMsgList.msgList[0].messages.map(function(obj){
+				console.log("mmm " + obj.cid)
+				_this.props.updatemessagelist(obj.user, obj.cid, obj.text)
+			});
 		} else {
 			console.log("nothing here");
 		}
@@ -40,7 +49,6 @@ module.exports = React.createClass({
 	},
 
 	componentWillReceiveProps (nextProps){
-		console.log("nextProps " + nextProps.msgArray);
 
 		if(nextProps.msgArray !== this.props.msgArray ){
 			this.setState({
@@ -70,12 +78,18 @@ module.exports = React.createClass({
 	},
 
 	_renderRow: function(rowData: string, sectionID: number, rowID: number) {
+
+		console.log("convoID " + rowData.user + " & " + rowData.convoID + " & " + rowData.text);
+
 		return (
 			<TouchableHighlight
 				style={styles.button}
+				onPress={() => Actions.SingleConvo({cid: rowData.convoID})}
 			>
 				<View>
-					<Text> hmmm </Text>
+					<Text> {rowData.user} </Text>
+					<Text> {rowData.convoID} </Text>
+					<Text> {rowData.text} </Text>
 				</View>
 			</TouchableHighlight>
 		);
@@ -100,7 +114,7 @@ var styles = StyleSheet.create({
 	button: {
 		padding: 20,
 		backgroundColor: 'lightblue',
-		marginTop: 20
+		marginTop: 4
 	}
 
 });

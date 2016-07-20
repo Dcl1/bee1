@@ -16,14 +16,16 @@ class ConversationContainer extends Component {
 	}
 
 	componentWillMount() {
-		console.log( this.props.state.conversation.step );
+		console.log(this.props.cid);
 	}
 
 
 	render() {
 		const { state, actions } = this.props;
-		var cID = this.props.convoo;
+		var cID = this.props.cid;
 		
+		
+
 		return (
 			<SingleConversation
 				step={state.conversation.step}

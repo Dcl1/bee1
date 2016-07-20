@@ -3,14 +3,14 @@
 		{
 			"messages" : [
 				{
-					"user" : "Umi",
-					"convoID" : 1,
-					"text" : "yo lo mo lo from JSON"
+					"user" : 12,
+					"text" : "yo lo mo lo from JSON",
+					"cid" : 1
 				},
 				{
 					"user" : "CANDY",
-					"convoID" : 2,
-					"text" : "reference _this with this, because that's boss"
+					"text" : 505,
+					"cid" : 2
 				}
 			]
 		}

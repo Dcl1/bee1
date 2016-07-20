@@ -45,7 +45,7 @@ module.exports = React.createClass({
 					<Scene key="Home" title="Home" icon={TabIcon} component={Feed}  initial={true} />
 					<Scene key="Messages" title="Messages" icon={TabIcon}  >
 						<Scene key="MsgList" title="Messages" component={MsgList} passProps={true}  />
-						<Scene key="SingleConvo" title="" component={Conversation} hideTabBar={true} passProps={true} />
+						<Scene key="SingleConvo" title="" component={Conversation} hideTabBar={true}  />
 					</Scene>
 					<Scene key="Profile" title="Profile" icon={TabIcon} component={Profile} />
 				</Scene>

@@ -8,7 +8,7 @@ export default function messagereducer(state = [], action = {}) {
 				...state,
 				{
 					user: action.user,
-					id: action.id,
+					convoID: action.convoID,
 					text: action.text
 				}
 			];

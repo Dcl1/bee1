@@ -8,9 +8,12 @@ import * as AppActions from '../actions/appActions';
 import * as MessageActions from '../actions/messageAction';
 /* import actions */
 
-
+import epiOneMsgList from '../data/epiOne/messageList.json';
+import epiTwoMsgList from '../data/epiTwo/messageList.json';
 
 import { connect } from 'react-redux';
+
+
 
 
 
@@ -22,8 +25,8 @@ class MessageContainer extends Component {
 
 	render() {
 		const { state, actions } = this.props;
-
-		console.log(state.messages);
+		//const messages = getMessages(state.app.episode);
+		//console.log(messages);
 		return (
 			<MessageList
 				episode={state.app.episode}
