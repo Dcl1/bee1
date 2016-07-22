@@ -12,6 +12,10 @@ export default function messagereducer(state = [], action = {}) {
 					text: action.text
 				}
 			];
+		case types.CLEARMESSAGELIST:
+			return [
+				
+			];
 		default: 
 			return state;
 	}

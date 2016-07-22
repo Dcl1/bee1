@@ -9,7 +9,7 @@ import {
 
 import Feed from '../components/feed/feed';
 import MsgList from './messages';
-import Profile from '../components/profile/profile';
+import Profile from './profile';
 //import SingleConversation from '../components/messages/singleConversation';
 import Conversation from './conversation';
 

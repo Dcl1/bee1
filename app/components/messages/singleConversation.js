@@ -12,7 +12,7 @@ import YouUser from './youUser';
 
 import InvertibleScrollView from 'react-native-invertible-scroll-view';
 
-
+import conversationOne from '../../data/epiOne/conversations/conversations';
 
 
 module.exports = React.createClass({
@@ -24,35 +24,67 @@ module.exports = React.createClass({
 		var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
 		return {
 			dataSource: ds.cloneWithRows(msgs),
-			dataArray: msgs,
-			episodeArray: [],
-			currentEpisode: 0,
-			currentStep: 0,
-			currentConvo: 0
+			dataArray: msgs
 		};
 
 	},
-
-	grabArray: function(ee, stp){
-		console.log( ee + " " + stp + " ");
-	},
-
 
 	componentWillMount: function(){
 		var Episode = this.props.episode;
 		var Step = this.props.step;
 		var convoID = this.props.convoID;
-		//console.log("This is the conversation ID ID : " + this.props.convoID);
-		console.log("duh dude, wtf " + convoID)
-		var ray = this.grabArray(Episode, Step);
+		
+		
+		this.checkConvo(Episode, convoID, Step);
+	},
 
-		this.setState({
-			currentEpisode: Episode,
-			currentStep: Step,
-			currentConvo: convoID
+	checkConvo: function(Episode, convoID, Step) {
+
+		var _this = this;
+
+		function checkEpi(EE) {
+			switch(EE) {
+				case 1:
+					return conversationOne.convo;
+				case 2:
+					return conversationTwo.convo;
+				default:
+					return conversationDefault.convo;
+			}
+		}
+
+		
+		var convoArray = checkEpi(Episode);
+
+		//console.log(convoArray);
+		console.log("convoID is: " + convoID);
+		var selectedConvo = convoArray[convoID].conversation;
+		//console.log(selectedConvo);
+		selectedConvo.map(function(obj){
+			//console.log(obj.option, obj.user, obj.text);
+			_this.props.returnconversation(obj.option, obj.user, obj.text );
 		});
+
 	},
 	
+	componentWillReceiveProps: function(nextProps){
+		if(nextProps.convoArray !== this.props.convoArray) {
+			this.setState({
+				dataSource: this.state.dataSource.cloneWithRows(nextProps.convoArray)
+			})	
+		} else {
+			
+			this.setState({
+				dataSource: this.state.dataSource.cloneWithRows(nextProps.convoArray)
+			})	
+			console.log("I guess this isn't working")
+		}
+	},
+
+	componentWillUnmount: function(){
+		console.log("It UNMOUNTED!")
+		this.props.clearconversation();
+	},
 
 	render: function(){
 
@@ -69,7 +101,7 @@ module.exports = React.createClass({
 					style={styles.list}
 				/>
 				<View
-					style={styles.inputArea}
+					//style={styles.inputArea}
 				>
 					<TouchableHighlight
 						style={styles.inputButton}
@@ -79,9 +111,9 @@ module.exports = React.createClass({
 					</TouchableHighlight>
 				</View>
 				<View>
-						<Text> This is the episode {this.state.currentEpisode} </Text>
-						<Text> This is the current step {this.state.currentStep} </Text>
-						<Text> This is the current conversation id {this.state.currentConvo} </Text>
+						<Text> This is the episode {this.props.episode} </Text>
+						<Text> This is the current step {this.props.step} </Text>
+						<Text> This is the current conversation id {this.props.convoID} </Text>
 				</View>
 			</View>
 
@@ -94,7 +126,7 @@ module.exports = React.createClass({
 	_renderRow: function(rowData: string, sectionID: number, rowID: number){
 		return(
 			<View>
-				{ rowData.user == 1 ? <OtherUser text={rowData.text} source={require('image!Jeffy')} /> : <YouUser text={rowData.text} /> }
+				{ rowData.user == 'player' ?  <YouUser text={rowData.text} /> : <OtherUser text={rowData.text} source={require('image!Jeffy')} /> }
 			</View>
 		);
 	},
@@ -102,17 +134,7 @@ module.exports = React.createClass({
 
 
 	_onPress: function(){
-
-		let firstRay = [{"user": 1, "text" : "Hello this is the first array"}];
-		let secondRay = [{"user": 2, "text" : "Second Hello this is the second array"}];
-
-
-		let ray = this.state.dataArray;
-		Array.prototype.unshift.apply(ray, secondRay);
-	   var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
-	   this.setState({
-	      dataSource: ds.cloneWithRows(ray),
-	 	});
+		this.props.returnconversation(false, "Baily", "Go go gadget" );
 	}
 
 
@@ -141,7 +163,7 @@ var styles = StyleSheet.create({
 	},
 
 	inputButton: {
-		backgroundColor: 'white',
+		backgroundColor: 'red',
 		justifyContent: 'center'
 	},
 

@@ -1,18 +1,24 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
-	convoID: 0,
-	step: 0
+	messages: []
 };
 
-export default function conversationreducer(state = initialState, action = {}) {
+export default function conversationreducer(state = [], action = {}) {
 	switch(action.type) {
 		case types.RETURNCONVERSATION:
-			return {
+			return [
 				...state,
-				convoID: state.convoID,
-				step: state.step + 1
-			}
+				{
+					option: action.option,
+					user: action.user,
+					text: action.text
+				}
+			];
+		case types.CLEARCONVERSATION:
+			return [
+
+			]
 		default:
 			return state;
 	}

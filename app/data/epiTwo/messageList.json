@@ -4,13 +4,18 @@
 			"messages" : [
 				{
 					"user" : "Sarah",
-					"id" : 2,
-					"text" : "Sarah is gonna go far far away"
+					"text" : "Sarah is gonna go far far away",
+					"cid" : 1
 				},
 				{
 					"user" : "theDude",
-					"id" : 3,
-					"text" : "the dude likes to dance"
+					"text" : "the dude likes to dance",
+					"cid" : 2				
+				},
+				{
+					"user" : "YASSSEpi3",
+					"text" : "WE MADE IT!!!",
+					"cid" : 3			
 				}
 			]
 		}

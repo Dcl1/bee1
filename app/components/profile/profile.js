@@ -74,7 +74,7 @@ module.exports = React.createClass({
 					<Text>
 						{this.state.sampleName}
 					</Text>
-					<TouchableHighlight onPress={this._seeData}>
+					<TouchableHighlight onPress={() => this.props.updateepisode()}>
 						<Text> Press </Text>
 					</TouchableHighlight>
 				</View>

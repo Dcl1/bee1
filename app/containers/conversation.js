@@ -28,6 +28,7 @@ class ConversationContainer extends Component {
 
 		return (
 			<SingleConversation
+				convoArray={state.conversation}
 				step={state.conversation.step}
 				episode={state.app.episode}
 				convoID={cID}

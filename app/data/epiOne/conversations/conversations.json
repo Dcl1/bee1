@@ -1,0 +1,69 @@
+{
+	"convo" : [
+		{
+			"convoID" : 0,
+			"conversation" : []
+		},
+		{
+			"convoID" : 1,
+			"conversation" : [
+				{
+					"option" : false,
+					"step" : 1,
+					"user" : "counselor",
+					"text" : "How are you settling in to Brookhaven? Finding everything all right?"
+				},
+				{
+					"option" : false,
+					"step" : 2,
+					"user" : "player",
+					"text" : "Yeah, thanks. About my roommate.../Actually, how do roommate swaps work?"
+				},
+				{
+					"option" : false,
+					"step" : 3,
+					"user" : "counselor",
+					"text" : "Let me stop you right there--roommate determinations are final, no matter what you may have seen on the home feed. I’m sorry, but you’ll have to tough it out. I hear it builds character."
+				},
+				{
+					"option" : false,
+					"step" : 4,
+					"user" : "player",
+					"text" : "All right"
+				}
+
+			] 
+		}, // This is the end of convoID 1
+
+		{
+			"convoID" : 2,
+			"conversation" : [
+				{
+					"option" : false,
+					"step" : 1,
+					"user" : "Lexi",
+					"text" : "Great meeting you in class today!"
+				},
+				{
+					"option" : false,
+					"step" : 2,
+					"user" : "player",
+					"text" : "I was wondering if you could help me find this book for my class?"
+				},
+				{
+					"option" : false,
+					"step" : 3,
+					"user" : "Lexi",
+					"text" : "Sure thing, how are you settling in?"
+				},
+				{
+					"option" : false,
+					"step" : 4,
+					"user" : "player",
+					"text" : "Things are okay, but I think my new roommate kind of hates me./My roommate is a real jerk./How soon can I put in for a roommate transfer. "
+				}
+
+			] 
+		} // This is the end of convoID 1
+	]
+}

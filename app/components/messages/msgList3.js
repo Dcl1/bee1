@@ -35,7 +35,14 @@ module.exports = React.createClass({
 
 		if(epi === 1) {
 			epiOneMsgList.msgList[0].messages.map(function(obj){
-				console.log("mmm " + obj.cid)
+				//console.log("mmm " + obj.cid)
+				_this.props.updatemessagelist(obj.user, obj.cid, obj.text)
+			});
+		} else if (epi === 2) {
+			_this.props.clearmessagelist()
+		} else if (epi === 3) {
+			_this.props.clearmessagelist()
+			epiTwoMsgList.msgList[0].messages.map(function(obj){
 				_this.props.updatemessagelist(obj.user, obj.cid, obj.text)
 			});
 		} else {
@@ -49,6 +56,10 @@ module.exports = React.createClass({
 	},
 
 	componentWillReceiveProps (nextProps){
+
+		if(nextProps.episode !== this.props.episode) {
+			this.checkData(nextProps.episode)
+		}
 
 		if(nextProps.msgArray !== this.props.msgArray ){
 			this.setState({
@@ -79,7 +90,7 @@ module.exports = React.createClass({
 
 	_renderRow: function(rowData: string, sectionID: number, rowID: number) {
 
-		console.log("convoID " + rowData.user + " & " + rowData.convoID + " & " + rowData.text);
+		//console.log("convoID " + rowData.user + " & " + rowData.convoID + " & " + rowData.text);
 
 		return (
 			<TouchableHighlight

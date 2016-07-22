@@ -8,3 +8,9 @@ export function updatemessagelist(user, convoID, text){
 		text
 	}
 }
+
+export function clearmessagelist(){
+	return {
+		type: types.CLEARMESSAGELIST
+	}
+}
