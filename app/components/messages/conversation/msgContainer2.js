@@ -25,7 +25,6 @@ module.exports = React.createClass({
 		
 		this._isMounted = false;
 		this._messages = [];
-		this._mountFunc;
 
 		return {
 			messages: this._messages,
@@ -48,6 +47,8 @@ module.exports = React.createClass({
 	checkConvo: function(Episode, convoID, Step) {
 
 		var _this = this;
+		var subArray=[];
+		var startStep = 0;
 
 		function checkEpi(EE) {
 			switch(EE) {
@@ -62,12 +63,18 @@ module.exports = React.createClass({
 		}
 
 		var convoArray = checkEpi(Episode);
-
-		
-
+		var startStep = convoArray[convoID].startStep;
 		var selectedConvo = convoArray[convoID].conversation;
+		//console.log("Start Step " + startStep);
+		
+		for (var i = 0; i <= startStep ; i++){
+			subArray.push(
+				selectedConvo[i]
+			);
+		}
 
-		selectedConvo.map(function(obj){
+		subArray.map(function(obj){
+			//console.log("Called from WiilMount " + obj.user);
 			let uni = Math.round(Math.random() * 10000);
 			_this.props.returnconversation(obj.option, obj.user, obj.text, obj.position, uni);
 		});
@@ -127,25 +134,25 @@ module.exports = React.createClass({
 		this.props.clearconversation();
 	},
 
-	getInitialMessages: function() {
-		return [
-			{
-				text: 'Are you building a chat app?',
-				name: 'React-Bot',
-				image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
-				position: 'left',
-				date: new Date(2016, 0 ,1, 20, 0),
-				uniqueId: Math.round(Math.random() * 10000)
-			}, {
-				text: 'This is a touchable phone number 0606006060 parsed by taskrabbit/react-native-parsed-text',
-				name: 'Awesome Developer',
-				image: null,
-				position: 'right',
-				date: new Date(2016, 0, 2, 12, 0),
-				uniqueId: Math.round(Math.random() * 10000)
-			}
-		];
-	},
+	// getInitialMessages: function() {
+	// 	return [
+	// 		{
+	// 			text: 'Are you building a chat app?',
+	// 			name: 'React-Bot',
+	// 			image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
+	// 			position: 'left',
+	// 			date: new Date(2016, 0 ,1, 20, 0),
+	// 			uniqueId: Math.round(Math.random() * 10000)
+	// 		}, {
+	// 			text: 'This is a touchable phone number 0606006060 parsed by taskrabbit/react-native-parsed-text',
+	// 			name: 'Awesome Developer',
+	// 			image: null,
+	// 			position: 'right',
+	// 			date: new Date(2016, 0, 2, 12, 0),
+	// 			uniqueId: Math.round(Math.random() * 10000)
+	// 		}
+	// 	];
+	// },
 
 	setMessageStatus: function(uniqueId, status) {
 		let messages = [];
@@ -213,7 +220,7 @@ module.exports = React.createClass({
 		nextProps.convoArray.map(function(obj){
 
 			var imgURL = obj.position == 'left' ? {uri: 'https://facebook.github.io/react/img/logo_og.png'} : null; 
-
+			//console.log("Called from WillReceiveProps " + obj.user);
 			messages.push(
 				{
 					text: obj.text,
