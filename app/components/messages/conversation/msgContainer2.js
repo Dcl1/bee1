@@ -23,8 +23,9 @@ module.exports = React.createClass({
 
 	getInitialState: function(){
 		
-		this.isMounted = false;
+		this._isMounted = false;
 		this._messages = [];
+		this._mountFunc;
 
 		return {
 			messages: this._messages,
@@ -74,25 +75,32 @@ module.exports = React.createClass({
 
 	},
 
-	componentDidMount: function(){
 
+
+
+	componentDidMount: function(){
 
 		this._isMounted = true;
 
-			setTimeout(() => {
+
+		setTimeout(() => {
+			if(this._isMounted == true) {
 				this.setState({
 					typingMessage: 'React-Bot is typing a message...',
 				});
-			}, 3000 );
+			}
+		}, 3000 );
 
-			setTimeout(() => {
+		setTimeout(() => {
+			if(this._isMounted == true) {
 				this.setState({
 					typingMessage: '',
 				});
-			}, 6000 );
+			}
+		}, 6000 );
 
-			setTimeout(() => {
-
+		setTimeout(() => {
+			if(this._isMounted == true) {
 				let obj =({
 					text: 'Hello Awesome Developer',
 					name: 'React-Bot',
@@ -104,14 +112,18 @@ module.exports = React.createClass({
 
 				let uni = Math.round(Math.random() * 10000);
 				this.props.returnconversation("false", obj.name, obj.text, obj.position, obj.uniqueId);
+			}
+		}, 7000)
+		
 
 
-			}, 7000)
+
+
 	},
 
 	componentWillUnmount() {
+		
 		this._isMounted = false;
-		console.log("It Unmounted");
 		this.props.clearconversation();
 	},
 
@@ -156,12 +168,15 @@ module.exports = React.createClass({
 	},
 
 	setMessages: function(messages) {
-		this._messages = messages;
+		if(this._isMounted == true) {
 
-		// append the message
-		this.setState({
-			messages: messages
-		});
+			this._messages = messages;
+
+			// append the message
+			this.setState({
+				messages: messages
+			});
+		}
 	},
 
 
@@ -183,11 +198,11 @@ module.exports = React.createClass({
 
 	},
 
-	handleReceive(message = {}) {
+	//handleReceive(message = {}) {
     	// make sure that your message contains :
     	// text, name, image, position: 'left', date, uniqueId
-    	this.setMessages(this._messages.concat(message));
-	},
+    //	this.setMessages(this._messages.concat(message));
+	//},
 
 
 	componentWillReceiveProps: function(nextProps){
@@ -210,6 +225,9 @@ module.exports = React.createClass({
 				}
 			);
 		});		
+
+
+
 
 		if(nextProps.convoArray !== this.props.convoArray ) {
 			this.setMessages(messages)
