@@ -11,24 +11,28 @@
 					"option" : false,
 					"step" : 1,
 					"user" : "counselor",
+					"position" : "left",
 					"text" : "How are you settling in to Brookhaven? Finding everything all right?"
 				},
 				{
 					"option" : false,
 					"step" : 2,
 					"user" : "player",
+					"position" : "right",
 					"text" : "Yeah, thanks. About my roommate.../Actually, how do roommate swaps work?"
 				},
 				{
 					"option" : false,
 					"step" : 3,
 					"user" : "counselor",
+					"position" : "left",
 					"text" : "Let me stop you right there--roommate determinations are final, no matter what you may have seen on the home feed. I’m sorry, but you’ll have to tough it out. I hear it builds character."
 				},
 				{
 					"option" : false,
 					"step" : 4,
 					"user" : "player",
+					"position" : "right",
 					"text" : "All right"
 				}
 
@@ -42,24 +46,28 @@
 					"option" : false,
 					"step" : 1,
 					"user" : "Lexi",
+					"position" : "left",
 					"text" : "Great meeting you in class today!"
 				},
 				{
 					"option" : false,
 					"step" : 2,
 					"user" : "player",
+					"position" : "right",
 					"text" : "I was wondering if you could help me find this book for my class?"
 				},
 				{
 					"option" : false,
 					"step" : 3,
 					"user" : "Lexi",
+					"position" : "left",
 					"text" : "Sure thing, how are you settling in?"
 				},
 				{
 					"option" : false,
 					"step" : 4,
 					"user" : "player",
+					"position" : "right",
 					"text" : "Things are okay, but I think my new roommate kind of hates me./My roommate is a real jerk./How soon can I put in for a roommate transfer. "
 				}
 

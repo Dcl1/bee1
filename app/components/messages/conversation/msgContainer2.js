@@ -13,6 +13,8 @@ import {
 
 import GiftedMessenger  from 'react-native-gifted-messenger';
 
+import conversationOne from '../../../data/epiOne/conversations/conversations';
+
 
 var STATUS_BAR_HEIGHT = Navigator.NavigationBar.Styles.General.StatusBarHeight;
 
@@ -22,7 +24,7 @@ module.exports = React.createClass({
 	getInitialState: function(){
 		
 		this.isMounted = false;
-		this._messages = this.getInitialMessages();
+		this._messages = [];
 
 		return {
 			messages: this._messages,
@@ -30,6 +32,45 @@ module.exports = React.createClass({
 			typingMessage: '',
 			allLoaded: false
 		};
+	},
+
+
+	componentWillMount: function(){
+		var Episode = this.props.episode;
+		var Step = this.props.step;
+		var convoID = this.props.convoID;
+
+		this.checkConvo(Episode, convoID, Step);
+
+	},
+
+	checkConvo: function(Episode, convoID, Step) {
+
+		var _this = this;
+
+		function checkEpi(EE) {
+			switch(EE) {
+				case 1:
+					return conversationOne.convo;
+				case 2:
+					return conversationTwo.convo;
+				default:
+					return conversationDefault.convo;
+
+			}
+		}
+
+		var convoArray = checkEpi(Episode);
+
+		
+
+		var selectedConvo = convoArray[convoID].conversation;
+
+		selectedConvo.map(function(obj){
+			_this.props.returnconversation(obj.option, obj.user, obj.text, obj.position);
+		});
+
+
 	},
 
 	componentDidMount: function(){
@@ -135,6 +176,37 @@ module.exports = React.createClass({
     	// make sure that your message contains :
     	// text, name, image, position: 'left', date, uniqueId
     	this.setMessages(this._messages.concat(message));
+	},
+
+
+	componentWillReceiveProps: function(nextProps){
+
+		//console.log("Show me nextProps " + nextProps.convoArray);
+
+		var messages = [];
+		nextProps.convoArray.map(function(obj){
+
+			var imgURL = obj.position == 'left' ? {uri: 'https://facebook.github.io/react/img/logo_og.png'} : null; 
+
+			messages.push(
+				{
+					text: obj.text,
+					name: obj.user,
+					position: obj.position,
+					image: imgURL,
+					date: new Date(2016, 0 ,1, 20, 0),
+					uniqueId: Math.round(Math.random() * 10000)
+				}
+			);
+		});		
+
+		if(nextProps.convoArray !== this.props.convoArray ) {
+			this.setMessages(messages)
+		} else {
+			this.setMessages(messages)
+			console.log("msgContainer2: I guess this isn't working")
+		}
+
 	},
 
 	render: function(){

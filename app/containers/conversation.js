@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import SingleConversation from '../components/messages/singleConversation';
-import MessengerContainer from '../components/messages/conversation/msgContainer';
+import MessengerContainer from '../components/messages/conversation/msgContainer2';
 
 import * as ConversationActions from '../actions/conversationActions';
 import * as AppActions from '../actions/appActions';
@@ -18,7 +18,7 @@ class ConversationContainer extends Component {
 	}
 
 	componentWillMount() {
-		console.log(this.props.cid);
+		//console.log(this.props.cid);
 	}
 
 
@@ -26,19 +26,16 @@ class ConversationContainer extends Component {
 		const { state, actions } = this.props;
 		var cID = this.props.cid;
 		
-		
-
 		return (
-			
-			< MessengerContainer />
 
-			//<SingleConversation
-			//	convoArray={state.conversation}
-			//	step={state.conversation.step}
-			//	episode={state.app.episode}
-			//	convoID={cID}
-			//	{...actions}
-			///>
+			< MessengerContainer 
+				convoArray={state.conversation}
+				step={state.conversation.step}
+				episode={state.app.episode}
+				convoID={cID}
+				{...actions}
+			/>
+
 		);
 	}
 
@@ -51,3 +48,7 @@ export default connect(state => ({
 		actions: bindActionCreators(Object.assign({}, AppActions, ConversationActions), dispatch)
 	})
 )(ConversationContainer);
+
+
+
+
