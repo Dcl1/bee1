@@ -14,7 +14,8 @@ export default function conversationreducer(state = [], action = {}) {
 					user: action.user,
 					text: action.text,
 					uniqueId: action.uniqueID,
-					position: action.position
+					position: action.position,
+					uniqueId: action.uniqueId
 				}
 			];
 		case types.CLEARCONVERSATION:

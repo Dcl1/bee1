@@ -67,7 +67,8 @@ module.exports = React.createClass({
 		var selectedConvo = convoArray[convoID].conversation;
 
 		selectedConvo.map(function(obj){
-			_this.props.returnconversation(obj.option, obj.user, obj.text, obj.position);
+			let uni = Math.round(Math.random() * 10000);
+			_this.props.returnconversation(obj.option, obj.user, obj.text, obj.position, uni);
 		});
 
 
@@ -91,7 +92,8 @@ module.exports = React.createClass({
 			}, 6000 );
 
 			setTimeout(() => {
-				this.handleReceive({
+
+				let obj =({
 					text: 'Hello Awesome Developer',
 					name: 'React-Bot',
 					image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
@@ -99,11 +101,18 @@ module.exports = React.createClass({
 					date: new Date(),
 					uniqueId: Math.round(Math.random() * 1000)
 				});
+
+				let uni = Math.round(Math.random() * 10000);
+				this.props.returnconversation("false", obj.name, obj.text, obj.position, obj.uniqueId);
+
+
 			}, 7000)
 	},
 
 	componentWillUnmount() {
 		this._isMounted = false;
+		console.log("It Unmounted");
+		this.props.clearconversation();
 	},
 
 	getInitialMessages: function() {
@@ -161,7 +170,9 @@ module.exports = React.createClass({
 		// Send message.text to your server
 
 		message.uniqueId = Math.round(Math.random() * 10000);
-		this.setMessages(this._messages.concat(message));
+		//this.setMessages(this._messages.concat(message));
+
+		this.props.returnconversation(message.option, message.user, message.text, message.position, message.uniqueId);
 
 		setTimeout(() => {
 			this.setMessageStatus(message.uniqueId, 'Seen');
@@ -195,7 +206,7 @@ module.exports = React.createClass({
 					position: obj.position,
 					image: imgURL,
 					date: new Date(2016, 0 ,1, 20, 0),
-					uniqueId: Math.round(Math.random() * 10000)
+					uniqueId: obj.uniqueId
 				}
 			);
 		});		
