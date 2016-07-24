@@ -30,7 +30,8 @@ module.exports = React.createClass({
 			messages: this._messages,
 			isLoadingEarlierMessages: false,
 			typingMessage: '',
-			allLoaded: false
+			allLoaded: false,
+			testArea: ''
 		};
 	},
 
@@ -89,38 +90,42 @@ module.exports = React.createClass({
 
 		this._isMounted = true;
 
+		this.setState({
+			testArea: 'Hello'
+		});
 
-		setTimeout(() => {
-			if(this._isMounted == true) {
-				this.setState({
-					typingMessage: 'React-Bot is typing a message...',
-				});
-			}
-		}, 3000 );
 
-		setTimeout(() => {
-			if(this._isMounted == true) {
-				this.setState({
-					typingMessage: '',
-				});
-			}
-		}, 6000 );
+		// setTimeout(() => {
+		// 	if(this._isMounted == true) {
+		// 		this.setState({
+		// 			typingMessage: 'React-Bot is typing a message...',
+		// 		});
+		// 	}
+		// }, 3000 );
 
-		setTimeout(() => {
-			if(this._isMounted == true) {
-				let obj =({
-					text: 'Hello Awesome Developer',
-					name: 'React-Bot',
-					image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
-					position: 'left',
-					date: new Date(),
-					uniqueId: Math.round(Math.random() * 1000)
-				});
+		// setTimeout(() => {
+		// 	if(this._isMounted == true) {
+		// 		this.setState({
+		// 			typingMessage: '',
+		// 		});
+		// 	}
+		// }, 6000 );
 
-				let uni = Math.round(Math.random() * 10000);
-				this.props.returnconversation("false", obj.name, obj.text, obj.position, obj.uniqueId);
-			}
-		}, 7000)
+		//setTimeout(() => {
+			// if(this._isMounted == true) {
+				// let obj =({
+				// 	text: 'Hello Awesome Developer',
+				// 	name: 'React-Bot',
+				// 	image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
+				// 	position: 'left',
+				// 	date: new Date(),
+				// 	uniqueId: Math.round(Math.random() * 1000)
+				// });
+
+				// let uni = Math.round(Math.random() * 10000);
+				// this.props.returnconversation("false", obj.name, obj.text, obj.position, obj.uniqueId);
+			// }
+		//}, 7000)
 		
 
 
@@ -272,8 +277,39 @@ module.exports = React.createClass({
 				parseText={true}
 
 				typingMessage={this.state.typingMessage}
+
+
 			/>
 		);
 	}
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
