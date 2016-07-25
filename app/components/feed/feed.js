@@ -5,16 +5,22 @@ import {
 	StyleSheet,
 	Text,
 	ListView,
-	TouchableHighlight
+	TouchableHighlight,
+	StatusBar
 } from 'react-native';
 
 
 import PostButton from './postButton.js';
+import Post from './post';
+
+/* data */
+import FeedOne from '../../data/epiOne/feed/feed.json';
+/* data */
 
 module.exports = React.createClass({
 
 	getInitialState: function(){
-		var theData = [{"user": "ohoh", "text": "boo you too boo you too"}, {"user": "ohoh", "text": "boo you too boo you too"}, {"user": "ohoh", "text": "boo you too boo you too"}, {"user": "ohoh", "text": "boo you too boo you too"}];
+		var theData = [];
 
 		var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
 		return {
@@ -23,17 +29,24 @@ module.exports = React.createClass({
 		};
 	},
 
+	componentWillMount: function(){
+
+		this.setState({
+			dataSource: this.state.dataSource.cloneWithRows(this.props.dataArray)
+		})
+		
+	},
 
 	render: function() {
 		return (
-			<View>
+
 				<ListView
 					dataSource={this.state.dataSource}
 					renderRow = {this._renderRow}
 					renderSectionHeader= {this._renderSectionHeader}
+					enableEmptySections={true}
 					style={styles.listStyle}
 				/>
-			</View>
 		);
 	},
 
@@ -47,13 +60,19 @@ module.exports = React.createClass({
 
 
 	_renderRow: function(rowData: string, sectionID: number, rowID: number) {
+
+
 		return (
-			<TouchableHighlight style={styles.postCard}>
-				<View>
-					<Text> {rowData.user} </Text>
-					<Text> {rowData.text} </Text>
-				</View>
-			</TouchableHighlight>
+
+
+			<View>
+				<Post
+					userName = {rowData.user}
+					caption = {rowData.caption}
+					orderId = {rowData.postId}
+				/>
+			</View>
+
 		);
 	}
 
@@ -62,20 +81,21 @@ module.exports = React.createClass({
 
 
 var styles = StyleSheet.create({
+
+	container: {
+		backgroundColor: 'white'
+
+	},	
 	listStyle: {
-		flex: 1,
-		flexDirection: 'column',
-		padding: 0,
-		margin: 0,
-		height: 8000,
-		marginTop: 66
+		backgroundColor: 'white',
+		marginTop: 64
 	},
 
 	sectionHeader: {
 		marginBottom: 20, 
-		backgroundColor: 'white',
-		paddingTop: 10,
-		paddingBottom: 10
+		backgroundColor: '#717AEF',
+		paddingBottom: 10,
+		paddingTop: 10
 	},
 
 	postCard: {

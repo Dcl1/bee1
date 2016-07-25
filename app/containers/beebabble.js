@@ -4,10 +4,11 @@ import React, { Component } from 'react';
 import {
 	TabBarIOS,
 	Text,
-	StyleSheet
+	StyleSheet,
+	StatusBar
 } from 'react-native';
 
-import Feed from '../components/feed/feed';
+import Feed from './feed';
 import MsgList from './messages';
 import Profile from './profile';
 //import SingleConversation from '../components/messages/singleConversation';
@@ -39,7 +40,11 @@ module.exports = React.createClass({
 
 	render: function() {
 		return (
-			<RouterWithRedux>
+
+			<RouterWithRedux
+				navigationBarStyle={styles.navBar}
+				titleStyle={styles.navTitle}
+			>
 			<Scene key="roots">
 				<Scene key="maintabs" tabs={true} style={styles.container} >
 					<Scene key="Home" title="Home" icon={TabIcon} component={Feed}  initial={true} />
@@ -61,9 +66,16 @@ module.exports = React.createClass({
 var styles = StyleSheet.create({
 	container: {
 		backgroundColor: 'aliceblue'
+	},
+	navBar: {
+		backgroundColor: 'black'
+	},
+	navTitle: {
+		color: 'white'
 	}
 
 });
+
 
 
 

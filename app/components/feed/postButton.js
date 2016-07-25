@@ -143,7 +143,7 @@ var styles = StyleSheet.create({
 	},
 
 	quoteButton: {
-		backgroundColor: 'slategrey',
+		backgroundColor: '#DDDFFD',
 		paddingTop: 10,
 		paddingBottom: 14,
 		paddingLeft: 5,
@@ -166,7 +166,7 @@ var styles = StyleSheet.create({
 	},
 
 	quoteText: {
-		color: 'white'
+		color: '#717AEF'
 	},
 
 	questionArea: {

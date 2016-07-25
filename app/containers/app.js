@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {View, StatusBar} from 'react-native';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -21,9 +22,11 @@ module.exports = React.createClass({
 
 	render: function(){
 		return (
+
 			<Provider store={store}>
 				<BeeBabble />
 			</Provider>
+
 		);
 	}
 

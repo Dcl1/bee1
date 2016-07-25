@@ -1,0 +1,27 @@
+{
+	"feed" : [
+		{
+			"postId" : 1,
+			"type" : "image",
+			"user" : "Arnold",
+			"caption" : "",
+			"media" : "http://facebook.github.io/react/img/logo_og.png"
+		},
+		{
+			"postId" : 2,
+			"type" : "text",
+			"user" : "Slim",
+			"caption" : "UGH!!! I Can't believe everybody already has a date to the prom!",
+			"media" : null
+		},
+		{
+			"postId" : 3,
+			"type" : "image",
+			"user" : "Jimmy",
+			"caption" : "Daaaammmmnnn I look good ",
+			"media" : "http://facebook.github.io/react/img/logo_og.png"
+		}
+	]
+
+
+}
