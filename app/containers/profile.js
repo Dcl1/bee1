@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { View, StatusBar } from 'react-native';
+
 import { bindActionCreators } from 'redux';
 
 import Profile from '../components/profile/profile';
@@ -21,9 +23,14 @@ class ProfileContainer extends Component {
 		const { state, actions } = this.props;
 
 		return (
-			<Profile
-				{...actions}
-			/>
+			<View>
+				<StatusBar
+					barStyle="light-content"
+				/>
+				<Profile
+					{...actions}
+				/>
+			</View>
 		);
 	}
 }

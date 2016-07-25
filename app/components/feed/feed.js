@@ -70,6 +70,7 @@ module.exports = React.createClass({
 					userName = {rowData.user}
 					caption = {rowData.caption}
 					orderId = {rowData.postId}
+					mediaSrc={rowData.media}
 				/>
 			</View>
 

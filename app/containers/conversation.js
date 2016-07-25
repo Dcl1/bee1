@@ -27,7 +27,7 @@ class ConversationContainer extends Component {
 		var cID = this.props.cid;
 		
 		return (
-
+			
 			< MessengerContainer 
 				convoArray={state.conversation}
 				step={state.conversation.step}

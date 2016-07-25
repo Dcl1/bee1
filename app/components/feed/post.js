@@ -179,7 +179,8 @@ var LeftPost = React.createClass({
 
 	setWidth: function(){
 		return {
-			height: this.state.width
+			height: this.state.width,
+			width: this.state.width
 		};
 	},
 
@@ -217,7 +218,10 @@ var LeftPost = React.createClass({
 							onLayout={(event) => {this.setDim(event.nativeEvent.layout)}}
 							style={Object.assign({}, this.styles.mediaArea, this.setWidth())}
 						>
-							<Text> Media </Text>
+							<Image
+								source={require('image!TestTwo')}
+								style={Object.assign({}, this.setWidth())}
+							/>	
 						</View>
 					</View>
 
@@ -248,11 +252,13 @@ var post = React.createClass({
 					<LeftPost
 						userName={this.props.userName}
 						caption={this.props.caption}
+						mediaSrc={this.props.mediaSrc}
 					/>
 					: 
 					<RightPost
 						userName={this.props.userName}
 						caption={this.props.caption}
+						mediaSrc={this.props.mediaSrc}
 					/>	
 				}
 				

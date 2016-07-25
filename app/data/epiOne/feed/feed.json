@@ -5,21 +5,21 @@
 			"type" : "image",
 			"user" : "Arnold",
 			"caption" : "",
-			"media" : "http://facebook.github.io/react/img/logo_og.png"
+			"media" : "image!testImg2"
 		},
 		{
 			"postId" : 2,
 			"type" : "text",
 			"user" : "Slim",
 			"caption" : "UGH!!! I Can't believe everybody already has a date to the prom!",
-			"media" : null
+			"media" : "image!testImg2"
 		},
 		{
 			"postId" : 3,
 			"type" : "image",
 			"user" : "Jimmy",
 			"caption" : "Daaaammmmnnn I look good ",
-			"media" : "http://facebook.github.io/react/img/logo_og.png"
+			"media" : "image!testImg1"
 		}
 	]
 
