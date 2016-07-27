@@ -5,7 +5,8 @@ import {
 	TabBarIOS,
 	Text,
 	StyleSheet,
-	StatusBar
+	StatusBar,
+	Image
 } from 'react-native';
 
 import Feed from './feed';
@@ -21,13 +22,78 @@ import { connect } from 'react-redux';
 const RouterWithRedux = connect()(Router);
 
 
-class TabIcon extends React.Component {
+class HomeTabIcon extends React.Component {
+
+	componentWillMount(){
+		this.styles={
+			selected: {
+				opacity: 1
+			},
+			unselected: {
+				opacity: 0.24
+			}
+		};
+	}
+
+
 	render() {
+		var url = this.props.srce
+
       return (
-            <Text style={{color: this.props.selected ? 'red' :'black'}}>{this.props.title}</Text>
+           // <Text style={this.props.selected ? this.styles.selected : this.styles.unselected }>{this.props.title}</Text>
+           <Image source={require('image!home')} style={this.props.selected ? this.styles.selected : this.styles.unselected } />
         );
 	}
 }
+
+class MessagesTabIcon extends React.Component {
+
+	componentWillMount(){
+		this.styles={
+			selected: {
+				opacity: 1
+			},
+			unselected: {
+				opacity: 0.24
+			}
+		};
+	}
+
+
+	render() {
+		var url = this.props.srce
+
+      return (
+           // <Text style={this.props.selected ? this.styles.selected : this.styles.unselected }>{this.props.title}</Text>
+           <Image source={require('image!messages')} style={this.props.selected ? this.styles.selected : this.styles.unselected } />
+        );
+	}
+}
+
+class ProfileTabIcon extends React.Component {
+
+	componentWillMount(){
+		this.styles={
+			selected: {
+				opacity: 1
+			},
+			unselected: {
+				opacity: 0.24
+			}
+		};
+	}
+
+
+	render() {
+		var url = this.props.srce
+
+      return (
+           // <Text style={this.props.selected ? this.styles.selected : this.styles.unselected }>{this.props.title}</Text>
+           <Image source={require('image!profile')} style={this.props.selected ? this.styles.selected : this.styles.unselected } />
+        );
+	}
+}
+
 
 
 module.exports = React.createClass({
@@ -46,13 +112,13 @@ module.exports = React.createClass({
 				titleStyle={styles.navTitle}
 			>
 			<Scene key="roots">
-				<Scene key="maintabs" tabs={true} style={styles.container} >
-					<Scene key="Home" title="Home" icon={TabIcon} component={Feed}  initial={true} />
-					<Scene key="Messages" title="Messages" icon={TabIcon}  >
+				<Scene key="maintabs" tabs={true} tabBarStyle={styles.container} >
+					<Scene key="Home" title="Home" icon={HomeTabIcon}  component={Feed}  initial={true} />
+					<Scene key="Messages" title="Messages" icon={MessagesTabIcon} >
 						<Scene key="MsgList" title="Messages" component={MsgList} passProps={true}  />
 						<Scene key="SingleConvo" title="" component={Conversation} hideTabBar={true}  />
 					</Scene>
-					<Scene key="Profile" title="Profile" icon={TabIcon} component={Profile} />
+					<Scene key="Profile" title="Profile" icon={ProfileTabIcon} component={Profile} />
 				</Scene>
 			</Scene>
 			</RouterWithRedux>
@@ -65,10 +131,16 @@ module.exports = React.createClass({
 
 var styles = StyleSheet.create({
 	container: {
-		backgroundColor: 'aliceblue'
+		backgroundColor: 'white',
+		borderTopWidth: 2
+	},
+	tabIcon: {
+		backgroundColor: 'pink'
 	},
 	navBar: {
-		backgroundColor: 'black'
+		backgroundColor: 'black',
+		borderColor: 'black',
+		borderBottomWidth: 0
 	},
 	navTitle: {
 		color: 'white'

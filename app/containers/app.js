@@ -10,6 +10,8 @@ import * as reducers from '../reducers';
 /* import app */
 import BeeBabble from './beebabble';
 
+import firebase from 'firebase';
+
 /* import app */
 
 const createStoreWithMiddleware = compose(applyMiddleware(thunk), devTools())(createStore);
@@ -19,6 +21,9 @@ const store = createStoreWithMiddleware(reducer);
 
 module.exports = React.createClass({
 
+	componentWillMount: function(){
+
+	},
 
 	render: function(){
 		return (

@@ -5,21 +5,56 @@
 			"type" : "image",
 			"user" : "Arnold",
 			"caption" : "",
-			"media" : "image!testImg2"
+			"media" : "images/prom@3x.png"
 		},
 		{
 			"postId" : 2,
 			"type" : "text",
 			"user" : "Slim",
 			"caption" : "UGH!!! I Can't believe everybody already has a date to the prom!",
-			"media" : "image!testImg2"
+			"media" : "images/prom@3x.png"
 		},
 		{
 			"postId" : 3,
 			"type" : "image",
 			"user" : "Jimmy",
 			"caption" : "Daaaammmmnnn I look good ",
-			"media" : "image!testImg1"
+			"media" : "images/dresses@3x.png"
+		},
+		{
+			"postId" : 4,
+			"type" : "image",
+			"user" : "Arnold",
+			"caption" : "",
+			"media" : "images/dresses@3x.png"
+		},
+		{
+			"postId" : 5,
+			"type" : "text",
+			"user" : "Slim",
+			"caption" : "UGH!!! I Can't believe everybody already has a date to the prom!",
+			"media" : "images/prom@3x.png"
+		},
+		{
+			"postId" : 6,
+			"type" : "image",
+			"user" : "Jimmy",
+			"caption" : "Daaaammmmnnn I look good ",
+			"media" : "images/prom@3x.png"
+		},
+		{
+			"postId" : 7,
+			"type" : "image",
+			"user" : "Arnold",
+			"caption" : "",
+			"media" : "images/dresses@3x.png"
+		},
+		{
+			"postId" : 8,
+			"type" : "text",
+			"user" : "Slim",
+			"caption" : "UGH!!! I Can't believe everybody already has a date to the prom!",
+			"media" : "images/prom@3x.png"
 		}
 	]
 

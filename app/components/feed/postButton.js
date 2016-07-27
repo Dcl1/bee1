@@ -99,9 +99,21 @@ module.exports = React.createClass({
 	startState: function(){
 		return (
 			<TouchableHighlight style={styles.quoteButton} onPress={this._clicked}>
+				<View
+					style={styles.quoteItem}
+				>
 					<Text style={styles.quoteText}>
-						What's on your mind?
+						Whats on your mind?
 					</Text>
+					<View
+						style={styles.quoteImageContainer}
+					>
+						<Image
+							style={styles.quoteImage}
+							source={require('image!microphone')}
+						/>
+					</View>
+				</View>
 			</TouchableHighlight>
 		);
 	},
@@ -143,20 +155,23 @@ var styles = StyleSheet.create({
 	},
 
 	quoteButton: {
-		backgroundColor: '#DDDFFD',
-		paddingTop: 10,
-		paddingBottom: 14,
-		paddingLeft: 5,
-		paddingRight: 5,
-		marginLeft: 5,
-		marginRight: 5,
-		borderRadius: 2
+		backgroundColor: '#212559',
+		marginTop: 12,
+		marginBottom: 6,
+		marginLeft: 8,
+		marginRight: 8,
+		borderWidth: 0,
+		borderRadius: 6
+	},
+
+	quoteItem: {
+		flexDirection: 'row'
 	},
 
 	questionButton: {
 		backgroundColor: 'slategrey',
-		paddingTop: 10,
-		paddingBottom: 14,
+		paddingTop: 4,
+		paddingBottom: 4,
 		paddingLeft: 5,
 		paddingRight: 5,
 		marginLeft: 5,
@@ -166,7 +181,21 @@ var styles = StyleSheet.create({
 	},
 
 	quoteText: {
-		color: '#717AEF'
+		flex: 4,
+		color: '#717AEF',
+		paddingTop: 10,
+		paddingBottom: 10,
+		paddingLeft: 8
+	},
+	quoteImageContainer:{
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'flex-end',
+		marginRight: 8
+		
+	},
+	quoteImage: {
+
 	},
 
 	questionArea: {
