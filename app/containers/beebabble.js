@@ -19,12 +19,26 @@ import { Router, Scene } from 'react-native-router-flux';
 
 import { connect } from 'react-redux';
 
+
+import firebase from 'firebase';
+
+
 const RouterWithRedux = connect()(Router);
 
 
 class HomeTabIcon extends React.Component {
 
 	componentWillMount(){
+
+	    firebase.auth().signInAnonymously().catch(function(error){
+
+	        var errorCode = error.code;
+	        var errorMessage = error.message;
+
+	        console.log(errorMessage);
+
+	    });
+
 		this.styles={
 			selected: {
 				opacity: 1

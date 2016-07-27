@@ -1,22 +1,46 @@
 import * as types from './actionTypes';
+import * as firebase from 'firebase';
 
-import FeedOne from '../data/epiOne/feed/feed.json';
+import FbApp from '../firebase/fbApp';
 
-function geturl(media) {
-	//console.log("Getting a url");
-	return 'https://facebook.github.io/react/img/logo_og.png';
-}
+// Get a reference to the storage service, which is used to create references in your storage bucket
+var storage = firebase.storage();
+
+// Create a storage reference from our storage service
+var storageRef = storage.ref();
+
+
+
+
+// function geturl(med, callback) {
+
+// 	var mediaRef = storageRef.child(med);
+
+// 	mediaRef.getDownloadURL().then(function(url){
+// 		callback(url);
+// 	});
+
+// }
+
+// function writeData(myData) {
+// 	console.log("This is my myData " + myData);
+// }
+
+
+
+
 
 
 export function callarray(user, mediatype, postid, caption, media){
-	//console.log(user + " " + postid);
+
+
 	return{
 		type: types.CALLARRAY,
 		user,
 		mediatype,
 		postid,
 		caption,
-		url: geturl(media)
+		url: media
 
 	}
 }

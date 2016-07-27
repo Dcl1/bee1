@@ -17,6 +17,12 @@ import Post from './post';
 import FeedOne from '../../data/epiOne/feed/feed.json';
 /* data */
 
+import firebase from 'firebase';
+import FbApp from '../../firebase/fbApp';
+var storage = firebase.storage();
+
+// Create a storage reference from our storage service
+var storageRef = storage.ref();
 
 
 module.exports = React.createClass({
@@ -46,7 +52,15 @@ module.exports = React.createClass({
 
 		if(epi === 1) {
 			FeedOne.feed.map(function(obj){
-				_this.props.callarray(obj.user, obj.type, obj.postId, obj.caption, obj.media)
+				var mediaRef = storageRef.child(obj.media);
+				mediaRef.getDownloadURL().then(function(url){
+					console.log(obj.postId);
+					_this.props.callarray(obj.user, obj.type, obj.postId, obj.caption, url)
+				}).catch(function(error){
+
+				});
+
+				
 			});
 		} else if (epi === 2) {
 			FeedOne.feed.map(function(obj){
@@ -100,7 +114,6 @@ module.exports = React.createClass({
 
 	_renderRow: function(rowData: string, sectionID: number, rowID: number) {
 
-		console.log(rowData.user);
 
 		return (
 			<View>

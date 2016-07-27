@@ -25,7 +25,7 @@ module.exports = React.createClass({
 			container: {
 				flex: 1,
 				flexDirection: 'column',
-				marginBottom: 75,
+				marginBottom: 45,
 				marginLeft: 16,
 				marginRight: 16
 			},
@@ -35,7 +35,8 @@ module.exports = React.createClass({
 				flexDirection: 'row'
 			},
 			bigPortion: {
-				borderTopWidth: 0,
+				borderTopWidth: 4,
+				borderColor: 'lightgrey',
 				flex: 5,
 				paddingTop: 10
 				
@@ -49,8 +50,8 @@ module.exports = React.createClass({
 		    	shadowOpacity: 0.3,
 		    	shadowRadius: 2,
 		    	shadowOffset: {
-		      		height: 3,
-		      		width: 2
+		      		height: 1 ,
+		      		width: 1
 		    	}
 			},
 			smallPortion: {
@@ -69,11 +70,15 @@ module.exports = React.createClass({
 			},
 			actionIcon:{
 				resizeMode: 'cover',
-				marginTop: 10
+				marginTop: 10,
+				opacity: 0
 			},
 			img: {
 				width: 100,
 				height: 100
+			},
+			metaContainer:{
+				flexDirection: 'row'
 			},
 			userName: {
 				fontWeight: 'bold',
@@ -81,9 +86,18 @@ module.exports = React.createClass({
 				marginTop: 2,
 				marginBottom: 2
 			},
+			userImage: {
+				width: 20,
+				height: 20,
+		    	alignSelf: 'flex-start',
+    			borderRadius: 10,
+    			marginBottom: 2,
+    			marginRight: 2
+			},
 			caption: {
 				fontWeight: '100',
-				fontSize: 14
+				fontSize: 12,
+				marginBottom: 6
 			}
 
 		};
@@ -129,16 +143,25 @@ module.exports = React.createClass({
 					<View
 						style={this.styles.bigPortion}
 					>
-						<Text
-							style={this.styles.userName}
-						> 
-							{this.props.userName} 
-						</Text>
-						<Text
-							style={this.styles.caption}
-						> 
-							{this.props.caption} 
-						</Text>
+						<View
+							style={this.styles.metaContainer}
+						>
+							<Image 
+								source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} 
+								style={this.styles.userImage}
+							/> 
+							<Text
+								style={this.styles.userName}
+							> 
+								{this.props.userName} 
+							</Text>
+						</View>
+
+						{
+							this.props.caption == "" ? <View></View> : <Text style={this.styles.caption}>  {this.props.caption} </Text> 
+						}
+
+
 						<View
 							onLayout={(event) => {this.setDim(event.nativeEvent.layout)}}
 							style={Object.assign({}, this.styles.mediaArea, this.setHeight())}
