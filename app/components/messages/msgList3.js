@@ -13,6 +13,8 @@ import epiTwoMsgList from '../../data/epiTwo/messageList.json';
 
 import { Actions } from 'react-native-router-flux';
 
+import MsgRow from './msgRow';
+
 module.exports = React.createClass({
 
 	getInitialState: function(){
@@ -72,18 +74,18 @@ module.exports = React.createClass({
 
 	render: function(){
 		return (
-			<View style={styles.topMargin}>
-				<TouchableHighlight
-					onPress={ () => this.buttonPress() }
+			<View style={styles.container}>
+				<View
+					style={styles.listStyle}
 				>
-					<Text> Press This </Text>
-				</TouchableHighlight>
 				<ListView
 					automaticallyAdjustContentInsets={false}
 					enableEmptySections={true}
 					dataSource={this.state.dataSource}
 					renderRow={this._renderRow}
+					
 				/>
+				</View>
 			</View>
 		);
 	},
@@ -93,39 +95,65 @@ module.exports = React.createClass({
 		//console.log("convoID " + rowData.user + " & " + rowData.convoID + " & " + rowData.text);
 
 		return (
-			<TouchableHighlight
-				style={styles.button}
+
+			<MsgRow
 				onPress={() => Actions.SingleConvo({cid: rowData.convoID})}
-			>
-				<View>
-					<Text> {rowData.user} </Text>
-					<Text> {rowData.convoID} </Text>
-					<Text> {rowData.text} </Text>
-				</View>
-			</TouchableHighlight>
+				user = {rowData.user}
+				convoID = {rowData.convoID} 
+				text = {rowData.text} 
+			/>
+
+
 		);
 	}
 
 });
 
 
+
+
 var styles = StyleSheet.create({
 
 	container: {
 		flex: 1,
-		flexDirection: 'column'
+		flexDirection: 'column',
+		backgroundColor: '#F8F8F8'
 	},
 
-	topMargin: {
-		marginTop: 80,
-		backgroundColor: 'grey'
+	listStyle: {
+		paddingTop: 60,
+		paddingBottom: 80,
+		marginTop: 10,
+		marginBottom: 10,
+		borderBottomWidth: 2,
+		borderColor: 'black',
+		backgroundColor: 'white',
 	},
 
 
-	button: {
-		padding: 20,
-		backgroundColor: 'lightblue',
-		marginTop: 4
-	}
+
+
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

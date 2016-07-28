@@ -15,7 +15,13 @@ import EpisodeRow from './episodeRow.js';
 module.exports = React.createClass({
 
 	getInitialState: function(){
-		var theData = [{"number": 1 , "title": "Welcome to Brookhaven"}, {"number": 2 , "title": "The Investigation"}];
+		var theData = [
+				{"number": 1 , "title": "Welcome to Brookhaven"}, 
+				{"number": 2 , "title": "The Investigation"},
+				{"number": 3 , "title": "History Repeats Itself"},
+				{"number": 4 , "title": "The Sins of the Father"},
+				{"number": 5 , "title": "Choose"},
+			];
 
 			var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2 });
 			return {

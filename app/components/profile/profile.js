@@ -74,9 +74,6 @@ module.exports = React.createClass({
 					<Text>
 						{this.state.sampleName}
 					</Text>
-					<TouchableHighlight onPress={() => this.props.updateepisode()}>
-						<Text> Press </Text>
-					</TouchableHighlight>
 				</View>
 
 				<View style={styles.episodeSwitcher} >
@@ -94,7 +91,7 @@ var styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		flexDirection: 'column',
-		marginTop: 70
+		marginTop: 60
 	},
 
 	topSection: {
