@@ -127,7 +127,7 @@ module.exports = React.createClass({
 			>
 			<Scene key="roots">
 				<Scene key="maintabs" tabs={true} tabBarStyle={styles.container} >
-					<Scene key="Home" title="Home" icon={HomeTabIcon}  component={Feed}  initial={true} />
+					<Scene key="Home" title="Brookhaven Wall" icon={HomeTabIcon}  component={Feed}  initial={true} />
 					<Scene key="Messages" title="Messages" icon={MessagesTabIcon} >
 						<Scene key="MsgList" title="Messages" component={MsgList} passProps={true}  />
 						<Scene key="SingleConvo" title="" component={Conversation} hideTabBar={true}  />
@@ -157,7 +157,8 @@ var styles = StyleSheet.create({
 		borderBottomWidth: 0
 	},
 	navTitle: {
-		color: 'white'
+		color: '#717AEF',
+		fontWeight: 'bold'
 	}
 
 });
