@@ -110,7 +110,7 @@ module.exports = React.createClass({
 					>
 						<Image
 							style={styles.quoteImage}
-							source={require('image!microphone')}
+							source={require('image!megaphone')}
 						/>
 					</View>
 				</View>
@@ -155,7 +155,7 @@ var styles = StyleSheet.create({
 	},
 
 	quoteButton: {
-		backgroundColor: '#212559',
+		backgroundColor: '#202AB2',
 		marginTop: 12,
 		marginBottom: 6,
 		marginLeft: 8,
@@ -181,7 +181,7 @@ var styles = StyleSheet.create({
 
 	quoteText: {
 		flex: 4,
-		color: '#717AEF',
+		color: '#BCC0FB',
 		paddingTop: 10,
 		paddingBottom: 10,
 		paddingLeft: 8

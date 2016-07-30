@@ -12,6 +12,7 @@ import {
 
 import PostButton from './postButton.js';
 import Post from './post';
+import FbPost from './fbPost';
 
 /* data */
 import FeedOne from '../../data/epiOne/feed/feed.json';
@@ -117,10 +118,9 @@ module.exports = React.createClass({
 
 		return (
 			<View>
-				<Post
+				<FbPost 
 					userName = {rowData.user}
 					caption = {rowData.caption}
-					orderId = {rowData.postid}
 					mediaurl = {rowData.url}
 				/>
 			</View>
