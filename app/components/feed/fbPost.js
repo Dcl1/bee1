@@ -2,7 +2,7 @@ import React from 'react';
 import {
 	View,
 	Text,
-	TouchableHightlight,
+	TouchableHighlight,
 	StyleSheet,
 	Image
 } from 'react-native';
@@ -13,43 +13,47 @@ module.exports = React.createClass({
 	render: function(){
 		return (
 			<View style={styles.container}>
-				<View style={styles.card}>
-					<Image 
-						source={{uri: this.props.mediaurl}} 
-						style={styles.imgStyle}
-					/>
-					<View style={styles.caption}>
-						<View style={styles.nameContainer}>
-							<Image 
-								source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} 
-								style={styles.userImage}
-							/> 
-							<Text
-								style={styles.nameStyle}
-							> 
-								{this.props.userName} 
-							</Text>
-						</View>
-						<Text style={this.props.caption !== "" ? styles.captionStyle : {}}> {this.props.caption} </Text>
 
-					</View>
-				</View>
 
-				<View style={styles.actionArea} >
-					<TouchableHightlight>
+					<View style={styles.card}>
 						<Image 
-
-							style={styles.actionIcons}
+							source={{uri: this.props.mediaurl}} 
+							style={styles.imgStyle}
 						/>
-					</TouchableHightlight>
+						<View style={styles.caption}>
+							<View style={styles.nameContainer}>
+								<Image 
+									source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} 
+									style={styles.userImage}
+								/> 
+								<Text
+									style={styles.nameStyle}
+								> 
+									{this.props.userName} 
+								</Text>
+							</View>
+							<Text style={this.props.caption !== "" ? styles.captionStyle : {}}> {this.props.caption} </Text>
 
-					<TouchableHightlight>
-						<Image
+						</View>
+					</View>
 
-							style={styles.actionIcons}
-						/>
-					</TouchableHightlight>
-				</View>
+
+					<View style={styles.actionArea} >
+						<TouchableHighlight style={[styles.actionButton, {borderColor: '#FFB000'}]} >
+							<Image 
+								source={require('image!yellowstar')}
+								style={styles.actionIcons}
+							/>
+						</TouchableHighlight>
+
+						<TouchableHighlight style={[styles.actionButton, {borderColor: '#EE4735'}]} >
+							<Image
+								source={require('image!redcomment')}
+								style={styles.actionIcons}
+							/>
+						</TouchableHighlight>
+					</View>
+
 			</View>
 		);
 	}
@@ -80,11 +84,22 @@ var styles = StyleSheet.create({
 	},
 
 	actionArea: {
-
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
 		marginRight: 8,
 		marginLeft: 8,
 		marginTop: 8
 
+	},
+
+	actionButton: {
+		borderWidth: 1,
+		paddingLeft: 16,
+		paddingRight: 16,
+		paddingTop: 4,
+		paddingBottom: 4,
+		marginLeft: 8,
+		borderRadius: 4
 	},
 
 	actionIcons: {

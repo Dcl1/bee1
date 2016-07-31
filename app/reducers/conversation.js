@@ -19,6 +19,7 @@ export default function conversationreducer(state = [], action = {}) {
 				}
 			];
 		case types.CLEARCONVERSATION:
+			console.log("The conversation was cleared");
 			return [
 
 			]

@@ -191,6 +191,10 @@ module.exports = React.createClass({
 		}
 	},
 
+	onBack: function(){
+		console.log("Back was called");
+	},
+
 
 	handleSend: function(message = {}) {
 		// Your logic here
@@ -238,15 +242,17 @@ module.exports = React.createClass({
 			);
 		});		
 
+		if(nextProps.convoID !== this.props.convoID) {
+			console.log("Different Conversation " + nextProps.convoID + " & " + this.props.convoID + " ")
+		} else {
+			console.log(" This should be the same conversation " + nextProps.convoID + " & " + this.props.convoID + " ")
+		}
 
 
 
 		if(nextProps.convoArray !== this.props.convoArray ) {
 			this.setMessages(messages)
-		} else {
-			this.setMessages(messages)
-			console.log("msgContainer2: I guess this isn't working")
-		}
+		} 
 
 	},
 

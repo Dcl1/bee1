@@ -11,7 +11,7 @@ import {
 
 
 import PostButton from './postButton.js';
-import Post from './post';
+//import Post from './post';
 import FbPost from './fbPost';
 
 /* data */
@@ -55,7 +55,7 @@ module.exports = React.createClass({
 			FeedOne.feed.map(function(obj){
 				var mediaRef = storageRef.child(obj.media);
 				mediaRef.getDownloadURL().then(function(url){
-					console.log(obj.postId);
+					//console.log(obj.postId);
 					_this.props.callarray(obj.user, obj.type, obj.postId, obj.caption, url)
 				}).catch(function(error){
 
