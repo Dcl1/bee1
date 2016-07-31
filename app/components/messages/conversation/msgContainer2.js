@@ -15,6 +15,7 @@ import GiftedMessenger  from 'react-native-gifted-messenger';
 
 import conversationOne from '../../../data/epiOne/conversations/conversations';
 
+import {Actions} from 'react-native-router-flux'
 
 var STATUS_BAR_HEIGHT = Navigator.NavigationBar.Styles.General.StatusBarHeight;
 
@@ -42,6 +43,8 @@ module.exports = React.createClass({
 		var convoID = this.props.convoID;
 
 		this.checkConvo(Episode, convoID, Step);
+
+		
 
 	},
 
