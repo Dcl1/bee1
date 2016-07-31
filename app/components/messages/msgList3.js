@@ -29,6 +29,8 @@ module.exports = React.createClass({
 
 	componentWillMount: function(){
 		this.checkData(this.props.episode);
+
+		console.log(" MsgList3 is mounted");
 	},
 
 	checkData: function(epi){
@@ -125,7 +127,7 @@ var styles = StyleSheet.create({
 		paddingBottom: 80,
 		marginTop: 10,
 		marginBottom: 10,
-		borderBottomWidth: 2,
+		borderBottomWidth: 0,
 		borderColor: 'black',
 		backgroundColor: 'white',
 	},

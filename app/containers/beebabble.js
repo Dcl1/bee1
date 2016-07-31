@@ -15,7 +15,7 @@ import Profile from './profile';
 //import SingleConversation from '../components/messages/singleConversation';
 import Conversation from './conversation';
 
-import { Router, Scene, ActionConst } from 'react-native-router-flux';
+import { Router, Scene, ActionConst, Actions } from 'react-native-router-flux';
 
 import { connect } from 'react-redux';
 
@@ -119,8 +119,11 @@ module.exports = React.createClass({
 	},
 
 	backCall: function(){
-		console.log('I guess onBack has to be called from the router'),
-		() => ActionConst.BACK;
+		//console.log('I guess onBack has to be called from the router')
+		
+
+
+		Actions.pop()
 	},
 
 	render: function() {
@@ -135,7 +138,7 @@ module.exports = React.createClass({
 					<Scene key="Home" title="Brookhaven Wall" icon={HomeTabIcon}  component={Feed}  initial={true} />
 					<Scene key="Messages" title="Messages" icon={MessagesTabIcon} >
 						<Scene key="MsgList" title="Messages" component={MsgList} passProps={true}  />
-						<Scene key="SingleConvo" title="" component={Conversation} hideTabBar={true} />
+						<Scene key="SingleConvo" title="" component={Conversation} hideTabBar={true} onBack={this.backCall} />
 					</Scene>
 					<Scene key="Profile" title="Profile" icon={ProfileTabIcon} component={Profile} />
 				</Scene>

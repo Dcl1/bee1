@@ -15,6 +15,7 @@ import GiftedMessenger  from 'react-native-gifted-messenger';
 
 import conversationOne from '../../../data/epiOne/conversations/conversations';
 
+import {Actions} from 'react-native-router-flux'
 
 var STATUS_BAR_HEIGHT = Navigator.NavigationBar.Styles.General.StatusBarHeight;
 
@@ -37,11 +38,14 @@ module.exports = React.createClass({
 
 
 	componentWillMount: function(){
+
 		var Episode = this.props.episode;
 		var Step = this.props.step;
 		var convoID = this.props.convoID;
 
 		this.checkConvo(Episode, convoID, Step);
+
+		Actions.refresh();
 
 	},
 
@@ -128,36 +132,15 @@ module.exports = React.createClass({
 		//}, 7000)
 		
 
-
-
-
 	},
 
 	componentWillUnmount() {
 		
+		console.log(" UNMOUNTED !!! "); 
+
 		this._isMounted = false;
 		this.props.clearconversation();
 	},
-
-	// getInitialMessages: function() {
-	// 	return [
-	// 		{
-	// 			text: 'Are you building a chat app?',
-	// 			name: 'React-Bot',
-	// 			image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
-	// 			position: 'left',
-	// 			date: new Date(2016, 0 ,1, 20, 0),
-	// 			uniqueId: Math.round(Math.random() * 10000)
-	// 		}, {
-	// 			text: 'This is a touchable phone number 0606006060 parsed by taskrabbit/react-native-parsed-text',
-	// 			name: 'Awesome Developer',
-	// 			image: null,
-	// 			position: 'right',
-	// 			date: new Date(2016, 0, 2, 12, 0),
-	// 			uniqueId: Math.round(Math.random() * 10000)
-	// 		}
-	// 	];
-	// },
 
 	setMessageStatus: function(uniqueId, status) {
 		let messages = [];
@@ -244,11 +227,18 @@ module.exports = React.createClass({
 
 		if(nextProps.convoID !== this.props.convoID) {
 			console.log("Different Conversation " + nextProps.convoID + " & " + this.props.convoID + " ")
+			this.props.clearconversation();
+			
+			var Episode = nextProps.episode;
+			var Step = nextProps.step;
+			var convoID = nextProps.convoID;
+
+			this.checkConvo(Episode, convoID, Step);
 		} else {
 			console.log(" This should be the same conversation " + nextProps.convoID + " & " + this.props.convoID + " ")
 		}
 
-
+		var _this = this;
 
 		if(nextProps.convoArray !== this.props.convoArray ) {
 			this.setMessages(messages)

@@ -160,7 +160,9 @@ var styles = StyleSheet.create({
 		marginBottom: 6,
 		marginLeft: 8,
 		marginRight: 8,
-		borderWidth: 0
+		borderWidth: 0,
+		paddingTop: 4,
+		paddingBottom: 4
 	},
 
 	quoteItem: {
