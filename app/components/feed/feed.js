@@ -135,11 +135,11 @@ module.exports = React.createClass({
 var styles = StyleSheet.create({
 
 	container: {
-		backgroundColor: 'white'
+		backgroundColor: 'grey'
 
 	},	
 	listStyle: {
-		backgroundColor: 'white',
+		backgroundColor: '#F6F6F6',
 		marginTop: 64
 	},
 

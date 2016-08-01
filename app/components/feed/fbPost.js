@@ -76,19 +76,20 @@ var styles = StyleSheet.create({
 	},
 
 	card: {
-		// marginLeft: 8,
-		// marginRight: 8,
+		marginLeft: 8,
+		marginRight: 8,
 		borderTopWidth: 1,
 		borderBottomWidth: 1,
-		borderColor: '#CDCDCD'
+		borderColor: '#CDCDCD',
+		backgroundColor: 'white'
 
 	},
 
 	actionArea: {
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
-		// marginRight: 8,
-		// marginLeft: 8,
+		marginRight: 8,
+		marginLeft: 8,
 		marginTop: 8
 
 	},

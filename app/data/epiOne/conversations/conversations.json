@@ -7,7 +7,7 @@
 		},
 		{
 			"convoID" : 1,
-			"startStep" : 2,
+			"startStep" : 0,
 			"conversation" : [
 				{
 					"option" : false,
@@ -72,9 +72,98 @@
 					"user" : "player",
 					"position" : "right",
 					"text" : "Things are okay, but I think my new roommate kind of hates me./My roommate is a real jerk./How soon can I put in for a roommate transfer. "
+				},
+				{
+					"option" : false,
+					"step" : 5,
+					"user" : "Lexi",
+					"position" : "left",
+					"text" : "Don’t worry, you can make plenty of friends without getting along with your roommate. In fact, let’s grab dinner later. I’ll introduce you to some people.  "
+				},
+				{
+					"option" : false,
+					"step" : 6,
+					"user" : "player",
+					"position" : "right",
+					"text" : "That’d be amazing, thank you"
+				},
+				{
+					"option" : false,
+					"step" : 7,
+					"user" : "Lexi",
+					"position" : "left",
+					"text" : "You could also join a Society. That’s where I’ve made a lot of my friends."
+				},
+				{
+					"option" : false,
+					"step" : 8,
+					"user" : "player",
+					"position" : "right",
+					"text" : "Not bad, although...do you know anything about the Societies?"
+				},
+				{
+					"option" : false,
+					"step" : 9,
+					"user" : "Lexi",
+					"position" : "left",
+					"text" : "Yeah, they’re great! That’s where I’ve made a lot of my friends, actually."
+				},
+				{
+					"option" : false,
+					"step" : 10,
+					"user" : "Player",
+					"position" : "right",
+					"text" : "So you’d recommend joining one?"
+				},
+				{
+					"option" : false,
+					"step" : 11,
+					"user" : "Lexi",
+					"position" : "left",
+					"text" : " I’m in Leverage, but they each have a different focus. I might have a list somewhere I could dig up?"
+				},
+				{
+					"option" : false,
+					"step" : 12,
+					"user" : "Player",
+					"position" : "right",
+					"text" : "Yes, send me the list."
 				}
 
 			] 
 		} // This is the end of convoID 1
 	]
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

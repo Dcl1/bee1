@@ -35,7 +35,8 @@ module.exports = React.createClass({
 			messages: this._messages,
 			isLoadingEarlierMessages: false,
 			typingMessage: '',
-			allLoaded: false
+			allLoaded: false,
+			isPlayer: false
 		};
 	},
 
@@ -103,7 +104,7 @@ module.exports = React.createClass({
 
 		this._isMounted = true;
 
-		
+		this.checkNextMessage();
 
 
 		// setTimeout(() => {
@@ -142,10 +143,11 @@ module.exports = React.createClass({
 	},
 
 	checkNextMessage: function(){
-		console.log("The current step is "  + this.props.step);
+		//console.log("The current step is "  + this.props.step);
+		var _this = this;
 		this._currentStep = this.props.step;
 		var nextStep = this._currentStep + 1;
-		console.log("That means the next step is " + nextStep);
+		//console.log("That means the next step is " + nextStep);
 
 		function checkEpi(EE) {
 			switch(EE) {
@@ -161,20 +163,97 @@ module.exports = React.createClass({
 
 		var convoArray = checkEpi(this._episode);
 
-		var user = convoArray[this._convoID].conversation[nextStep].user;
-		console.log("Got the user of the next step " + user);
+		console.log("Before user " + convoArray[this._convoID].conversation[nextStep]);
 
-		// for (var i = nextStep; i <= convoArray.length; i ++) {
+		if(nextStep < convoArray[this._convoID].conversation.length ) {
 
-		// } 
+			var user = convoArray[this._convoID].conversation[nextStep].user;
+			//console.log("Got the user of the next step " + user);
 
+			if(user !== 'player') {
+				//console.log("This is not a player, so here is the nextstep " + nextStep);
+				this.setState({
+					isPlayer: false
+				});
+
+				this.renderNextMessage(nextStep);
+			} else {
+				
+				this.setState({
+					isPlayer: true
+				});
+				//console.log("I guess it's a player");
+			}
+			// for (var i = nextStep; i <= convoArray.length; i ++) {
+
+			// } 
+
+		}
 
 
 
 	},
 
-	componentDidUpdate: function(){
-		this.checkNextMessage();
+	renderNextMessage: function(next) {
+
+
+
+		function checkEpi(EE) {
+			switch(EE) {
+				case 1:
+					return conversationOne.convo;
+				case 2:
+					return conversationTwo.convo;
+				default:
+					return conversationDefault.convo;
+
+			}
+		}
+
+		var convoArray = checkEpi(this._episode);
+		var obj = convoArray[this._convoID].conversation[next];
+
+
+		setTimeout(() => {
+			if(this._isMounted == true) {
+
+				this.setState({
+					typingMessage: 'Typing a message...',
+				});
+			}
+		}, 400 );
+
+		setTimeout(() => {
+
+			if(this._isMounted == true) {
+				this.setState({
+					typingMessage: '',
+				});
+			}
+		}, 1500 );
+
+
+		setTimeout(() => {
+			let uni = Math.round(Math.random() * 10000);
+			this.props.returnconversation(obj.option, obj.user, obj.text, obj.position, uni);
+			setTimeout(() => {
+				this.props.increasestep();
+			}, 500);
+			
+		}, Math.random() * (5000 - 1600) + 1600 );
+
+		
+	},
+
+
+	componentDidUpdate: function(prevProps, prevState){
+
+		//console.log("This is  " + prevProps.step);
+		//console.log("This is current Props " + this.props.step);
+
+		if(prevProps.step !== this.props.step ) {
+			this.checkNextMessage();
+		}
 	},
 
 	componentWillUnmount() {
@@ -204,6 +283,8 @@ module.exports = React.createClass({
 	},
 
 	setMessages: function(messages) {
+
+
 		if(this._isMounted == true) {
 
 			this._messages = messages;
@@ -218,6 +299,11 @@ module.exports = React.createClass({
 	handleSend: function(message = {}) {
 		// Your logic here
 		// Send message.text to your server
+		var _this = this;
+
+		this.setState({
+			isPlayer: false
+		});
 
 		message.uniqueId = Math.round(Math.random() * 10000);
 		//this.setMessages(this._messages.concat(message));
@@ -225,6 +311,7 @@ module.exports = React.createClass({
 		this.props.returnconversation(message.option, message.user, message.text, message.position, message.uniqueId);
 
 		setTimeout(() => {
+			_this.props.increasestep();
 			this.setMessageStatus(message.uniqueId, 'Seen');
 		}, 1000);
 
@@ -309,7 +396,7 @@ module.exports = React.createClass({
 				parseText={true}
 
 				typingMessage={this.state.typingMessage}
-				disabled={false}
+				disabled={this.state.isPlayer ? false : true}
 
 
 			/>

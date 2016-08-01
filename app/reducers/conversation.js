@@ -23,7 +23,11 @@ export default function conversationreducer(state = initialState, action = {}) {
 
 				]
 			};
-
+		case types.INCREASESTEP:
+			return {
+				...state,
+				currStep: state.currStep += 1
+			};
 		case types.CLEARCONVERSATION:
 			//console.log("The conversation was cleared");
 			return {

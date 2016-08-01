@@ -23,3 +23,9 @@ export function setcurrentstep(stepp) {
 		stepp
 	}
 }
+
+export function increasestep(){
+	return {
+		type: types.INCREASESTEP,
+	}
+}
