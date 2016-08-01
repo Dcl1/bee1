@@ -70,7 +70,6 @@ module.exports = React.createClass({
 		var convoArray = checkEpi(Episode);
 		var startStep = convoArray[convoID].startStep;
 		var selectedConvo = convoArray[convoID].conversation;
-		//console.log("Start Step " + startStep);
 		
 		for (var i = 0; i <= startStep ; i++){
 			subArray.push(
@@ -79,7 +78,6 @@ module.exports = React.createClass({
 		}
 
 		subArray.map(function(obj){
-			//console.log("Called from WiilMount " + obj.user);
 			let uni = Math.round(Math.random() * 10000);
 			_this.props.returnconversation(obj.option, obj.user, obj.text, obj.position, uni);
 		});
@@ -135,8 +133,6 @@ module.exports = React.createClass({
 	},
 
 	componentWillUnmount() {
-		
-		console.log(" UNMOUNTED !!! "); 
 
 		this._isMounted = false;
 		this.props.clearconversation();
@@ -174,11 +170,6 @@ module.exports = React.createClass({
 		}
 	},
 
-	onBack: function(){
-		console.log("Back was called");
-	},
-
-
 	handleSend: function(message = {}) {
 		// Your logic here
 		// Send message.text to your server
@@ -206,13 +197,13 @@ module.exports = React.createClass({
 
 	componentWillReceiveProps: function(nextProps){
 
-		//console.log("Show me nextProps " + nextProps.convoArray);
+	
 
 		var messages = [];
 		nextProps.convoArray.map(function(obj){
 
 			var imgURL = obj.position == 'left' ? {uri: 'https://facebook.github.io/react/img/logo_og.png'} : null; 
-			//console.log("Called from WillReceiveProps " + obj.user);
+	
 			messages.push(
 				{
 					text: obj.text,
@@ -226,18 +217,14 @@ module.exports = React.createClass({
 		});		
 
 		if(nextProps.convoID !== this.props.convoID) {
-			console.log("Different Conversation " + nextProps.convoID + " & " + this.props.convoID + " ")
 			this.props.clearconversation();
-			
+
 			var Episode = nextProps.episode;
 			var Step = nextProps.step;
 			var convoID = nextProps.convoID;
 
 			this.checkConvo(Episode, convoID, Step);
-		} else {
-			console.log(" This should be the same conversation " + nextProps.convoID + " & " + this.props.convoID + " ")
-		}
-
+		} 
 		var _this = this;
 
 		if(nextProps.convoArray !== this.props.convoArray ) {
