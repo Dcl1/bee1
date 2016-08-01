@@ -25,6 +25,8 @@ module.exports = React.createClass({
 	getInitialState: function(){
 
 		this._currentStep;
+		this._episode;
+		this._convoID;
 		
 		this._isMounted = false;
 		this._messages = [];
@@ -42,11 +44,11 @@ module.exports = React.createClass({
 
 		this._currentStep = this.props.step;
 
-		var Episode = this.props.episode;
+		this._episode = this.props.episode;
 		//var Step = this.props.step;
-		var convoID = this.props.convoID;
+		this._convoID = this.props.convoID;
 
-		this.checkConvo(Episode, convoID);
+		this.checkConvo(this._episode, this._convoID);
 
 		//Actions.refresh();
 
@@ -144,6 +146,30 @@ module.exports = React.createClass({
 		this._currentStep = this.props.step;
 		var nextStep = this._currentStep + 1;
 		console.log("That means the next step is " + nextStep);
+
+		function checkEpi(EE) {
+			switch(EE) {
+				case 1:
+					return conversationOne.convo;
+				case 2:
+					return conversationTwo.convo;
+				default:
+					return conversationDefault.convo;
+
+			}
+		}
+
+		var convoArray = checkEpi(this._episode);
+
+		var user = convoArray[this._convoID].conversation[nextStep].user;
+		console.log("Got the user of the next step " + user);
+
+		// for (var i = nextStep; i <= convoArray.length; i ++) {
+
+		// } 
+
+
+
 
 	},
 
