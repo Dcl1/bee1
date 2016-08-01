@@ -23,6 +23,8 @@ var STATUS_BAR_HEIGHT = Navigator.NavigationBar.Styles.General.StatusBarHeight;
 module.exports = React.createClass({
 
 	getInitialState: function(){
+
+		this._currentStep;
 		
 		this._isMounted = false;
 		this._messages = [];
@@ -38,17 +40,21 @@ module.exports = React.createClass({
 
 	componentWillMount: function(){
 
+		this._currentStep = this.props.step;
+
 		var Episode = this.props.episode;
 		//var Step = this.props.step;
 		var convoID = this.props.convoID;
 
 		this.checkConvo(Episode, convoID);
 
-		Actions.refresh();
+		//Actions.refresh();
 
 	},
 
 	checkConvo: function(Episode, convoID) {
+
+		
 
 		var _this = this;
 		var subArray=[];
@@ -68,6 +74,9 @@ module.exports = React.createClass({
 
 		var convoArray = checkEpi(Episode);
 		var startStep = convoArray[convoID].startStep;
+
+		console.log("This is the start step "  + startStep);
+
 		this.props.setcurrentstep(startStep);
 		var selectedConvo = convoArray[convoID].conversation;
 		
@@ -92,7 +101,7 @@ module.exports = React.createClass({
 
 		this._isMounted = true;
 
-		this.checkNextMessage();
+		
 
 
 		// setTimeout(() => {
@@ -131,8 +140,15 @@ module.exports = React.createClass({
 	},
 
 	checkNextMessage: function(){
-		var currentStep = this.props.step;
-		console.log("Here is the step you are on " + currentStep);
+		console.log("The current step is "  + this.props.step);
+		this._currentStep = this.props.step;
+		var nextStep = this._currentStep + 1;
+		console.log("That means the next step is " + nextStep);
+
+	},
+
+	componentDidUpdate: function(){
+		this.checkNextMessage();
 	},
 
 	componentWillUnmount() {
@@ -217,7 +233,8 @@ module.exports = React.createClass({
 					uniqueId: obj.uniqueId
 				}
 			);
-		});		
+		});	
+
 
 		if(nextProps.convoID !== this.props.convoID) {
 			this.props.clearconversation();
@@ -237,6 +254,9 @@ module.exports = React.createClass({
 	},
 
 	render: function(){
+
+		
+
 		return (
 			<GiftedMessenger
 

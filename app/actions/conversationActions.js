@@ -17,9 +17,9 @@ export function clearconversation(){
 	}
 }
 
-export function setcurrentstep(step) {
+export function setcurrentstep(stepp) {
 	return {
 		type: types.SETCURRENTSTEP,
-		step
+		stepp
 	}
 }

@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
-	step: 0,
+	currStep: 0,
 	messages: []
 };
 
@@ -9,6 +9,7 @@ export default function conversationreducer(state = initialState, action = {}) {
 	switch(action.type) {
 		case types.RETURNCONVERSATION:
 			return {
+				...state,
 				messages: [
 					...state.messages,
 					{
@@ -24,17 +25,17 @@ export default function conversationreducer(state = initialState, action = {}) {
 			};
 
 		case types.CLEARCONVERSATION:
-			console.log("The conversation was cleared");
+			//console.log("The conversation was cleared");
 			return {
 				...state,
 				messages: []
-			}
+			};
 		case types.SETCURRENTSTEP:
-			console.log("Setting the current step " + action.step);
+			//console.log("Setting the current step " + action.stepp);
 			return {
 				...state,
-				step: action.step
-			}
+				currStep: action.stepp
+			};
 		default:
 			return state;
 	}
