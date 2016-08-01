@@ -31,8 +31,7 @@ module.exports = React.createClass({
 			messages: this._messages,
 			isLoadingEarlierMessages: false,
 			typingMessage: '',
-			allLoaded: false,
-			testArea: ''
+			allLoaded: false
 		};
 	},
 
@@ -40,16 +39,16 @@ module.exports = React.createClass({
 	componentWillMount: function(){
 
 		var Episode = this.props.episode;
-		var Step = this.props.step;
+		//var Step = this.props.step;
 		var convoID = this.props.convoID;
 
-		this.checkConvo(Episode, convoID, Step);
+		this.checkConvo(Episode, convoID);
 
 		Actions.refresh();
 
 	},
 
-	checkConvo: function(Episode, convoID, Step) {
+	checkConvo: function(Episode, convoID) {
 
 		var _this = this;
 		var subArray=[];
@@ -69,6 +68,7 @@ module.exports = React.createClass({
 
 		var convoArray = checkEpi(Episode);
 		var startStep = convoArray[convoID].startStep;
+		this.props.setcurrentstep(startStep);
 		var selectedConvo = convoArray[convoID].conversation;
 		
 		for (var i = 0; i <= startStep ; i++){
@@ -92,9 +92,7 @@ module.exports = React.createClass({
 
 		this._isMounted = true;
 
-		this.setState({
-			testArea: 'Hello'
-		});
+		this.checkNextMessage();
 
 
 		// setTimeout(() => {
@@ -130,6 +128,11 @@ module.exports = React.createClass({
 		//}, 7000)
 		
 
+	},
+
+	checkNextMessage: function(){
+		var currentStep = this.props.step;
+		console.log("Here is the step you are on " + currentStep);
 	},
 
 	componentWillUnmount() {
@@ -260,6 +263,7 @@ module.exports = React.createClass({
 				parseText={true}
 
 				typingMessage={this.state.typingMessage}
+				disabled={false}
 
 
 			/>

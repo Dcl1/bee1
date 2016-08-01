@@ -16,3 +16,10 @@ export function clearconversation(){
 		type: types.CLEARCONVERSATION
 	}
 }
+
+export function setcurrentstep(step) {
+	return {
+		type: types.SETCURRENTSTEP,
+		step
+	}
+}

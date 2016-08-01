@@ -29,7 +29,7 @@ class ConversationContainer extends Component {
 		return (
 			
 			< MessengerContainer 
-				convoArray={state.conversation}
+				convoArray={state.conversation.messages}
 				step={state.conversation.step}
 				episode={state.app.episode}
 				convoID={cID}
