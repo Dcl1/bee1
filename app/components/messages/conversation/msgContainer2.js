@@ -36,7 +36,9 @@ module.exports = React.createClass({
 			isLoadingEarlierMessages: false,
 			typingMessage: '',
 			allLoaded: false,
-			isPlayer: false
+			isPlayer: false,
+			responseUno: '',
+			responseDeuce: ''
 		};
 	},
 
@@ -163,14 +165,14 @@ module.exports = React.createClass({
 
 		var convoArray = checkEpi(this._episode);
 
-		console.log("Before user " + convoArray[this._convoID].conversation[nextStep]);
+		//console.log("Before user " + convoArray[this._convoID].conversation[nextStep]);
 
 		if(nextStep < convoArray[this._convoID].conversation.length ) {
 
 			var user = convoArray[this._convoID].conversation[nextStep].user;
 			//console.log("Got the user of the next step " + user);
 
-			if(user !== 'player') {
+			if(user.toUpperCase() !== 'PLAYER') {
 				//console.log("This is not a player, so here is the nextstep " + nextStep);
 				this.setState({
 					isPlayer: false
@@ -179,8 +181,10 @@ module.exports = React.createClass({
 				this.renderNextMessage(nextStep);
 			} else {
 				
+
 				this.setState({
-					isPlayer: true
+					isPlayer: true,
+					responseUno: convoArray[this._convoID].conversation[nextStep].text
 				});
 				//console.log("I guess it's a player");
 			}
@@ -240,7 +244,7 @@ module.exports = React.createClass({
 				this.props.increasestep();
 			}, 500);
 			
-		}, Math.random() * (5000 - 1600) + 1600 );
+		}, Math.random() * (4000 - 1200) + 1200 );
 
 		
 	},
@@ -398,6 +402,8 @@ module.exports = React.createClass({
 				typingMessage={this.state.typingMessage}
 				disabled={this.state.isPlayer ? false : true}
 
+				responseOne={this.state.responseUno}
+				responseTwo={this.state.responseDeuce}
 
 			/>
 		);

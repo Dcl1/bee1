@@ -35,8 +35,6 @@ module.exports = React.createClass({
 							<Text style={this.props.caption !== "" ? styles.captionStyle : {}}> {this.props.caption} </Text>
 
 						</View>
-					</View>
-
 
 					<View style={styles.actionArea} >
 						<TouchableHighlight style={[styles.actionButton, {borderColor: '#FFB000'}]} >
@@ -52,6 +50,9 @@ module.exports = React.createClass({
 								style={styles.actionIcons}
 							/>
 						</TouchableHighlight>
+					</View>
+
+
 					</View>
 
 			</View>
@@ -95,13 +96,15 @@ var styles = StyleSheet.create({
 	},
 
 	actionButton: {
-		borderWidth: 1,
-		paddingLeft: 16,
-		paddingRight: 16,
+		borderWidth: 0,
+		paddingLeft: 4,
+		paddingRight: 4,
 		paddingTop: 4,
 		paddingBottom: 4,
 		marginLeft: 8,
-		borderRadius: 4
+		marginBottom: 16,
+		borderRadius: 4,
+		justifyContent: 'flex-end'
 	},
 
 	actionIcons: {

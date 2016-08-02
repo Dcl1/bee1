@@ -111,7 +111,7 @@
 				{
 					"option" : false,
 					"step" : 10,
-					"user" : "Player",
+					"user" : "player",
 					"position" : "right",
 					"text" : "So you’d recommend joining one?"
 				},
@@ -125,7 +125,7 @@
 				{
 					"option" : false,
 					"step" : 12,
-					"user" : "Player",
+					"user" : "player",
 					"position" : "right",
 					"text" : "Yes, send me the list."
 				}
