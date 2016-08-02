@@ -175,7 +175,9 @@ module.exports = React.createClass({
 			if(user.toUpperCase() !== 'PLAYER') {
 				//console.log("This is not a player, so here is the nextstep " + nextStep);
 				this.setState({
-					isPlayer: false
+					isPlayer: false,
+					responseUno: '',
+					responseDeuce: ''
 				});
 
 				this.renderNextMessage(nextStep);
