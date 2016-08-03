@@ -51,33 +51,35 @@ module.exports = React.createClass({
 		//var Step = this.props.step;
 		this._convoID = this.props.convoID;
 
-		this.checkConvo(this._episode, this._convoID);
+		this.checkConvo(this._convoID);
 
 		//Actions.refresh();
 
 	},
 
-	checkConvo: function(Episode, convoID) {
+	getConvoFile: function(Episode){
 
-		
+		switch(Episode) {
+			case 1:
+				return conversationOne.convo;
+			case 2:
+				return conversationTwo.convo;
+			default:
+				return conversationDefault.convo;
+
+		};
+
+
+	},
+
+	checkConvo: function(convoID) {
 
 		var _this = this;
 		var subArray=[];
 		var startStep = 0;
 
-		function checkEpi(EE) {
-			switch(EE) {
-				case 1:
-					return conversationOne.convo;
-				case 2:
-					return conversationTwo.convo;
-				default:
-					return conversationDefault.convo;
 
-			}
-		}
-
-		var convoArray = checkEpi(Episode);
+		var convoArray = this.getConvoFile(this._episode);
 		var startStep = convoArray[convoID].startStep;
 
 		console.log("This is the start step "  + startStep);
@@ -107,42 +109,8 @@ module.exports = React.createClass({
 		this._isMounted = true;
 
 		this.checkNextMessage();
-
-
-		// setTimeout(() => {
-		// 	if(this._isMounted == true) {
-		// 		this.setState({
-		// 			typingMessage: 'React-Bot is typing a message...',
-		// 		});
-		// 	}
-		// }, 3000 );
-
-		// setTimeout(() => {
-		// 	if(this._isMounted == true) {
-		// 		this.setState({
-		// 			typingMessage: '',
-		// 		});
-		// 	}
-		// }, 6000 );
-
-		//setTimeout(() => {
-			// if(this._isMounted == true) {
-				// let obj =({
-				// 	text: 'Hello Awesome Developer',
-				// 	name: 'React-Bot',
-				// 	image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
-				// 	position: 'left',
-				// 	date: new Date(),
-				// 	uniqueId: Math.round(Math.random() * 1000)
-				// });
-
-				// let uni = Math.round(Math.random() * 10000);
-				// this.props.returnconversation("false", obj.name, obj.text, obj.position, obj.uniqueId);
-			// }
-		//}, 7000)
-		
-
 	},
+
 
 	checkNextMessage: function(){
 		//console.log("The current step is "  + this.props.step);
@@ -203,20 +171,7 @@ module.exports = React.createClass({
 	renderNextMessage: function(next) {
 
 
-
-		function checkEpi(EE) {
-			switch(EE) {
-				case 1:
-					return conversationOne.convo;
-				case 2:
-					return conversationTwo.convo;
-				default:
-					return conversationDefault.convo;
-
-			}
-		}
-
-		var convoArray = checkEpi(this._episode);
+		var convoArray = this.getConvoFile(this._episode);
 		var obj = convoArray[this._convoID].conversation[next];
 
 
@@ -362,7 +317,7 @@ module.exports = React.createClass({
 			var Step = nextProps.step;
 			var convoID = nextProps.convoID;
 
-			this.checkConvo(Episode, convoID, Step);
+			this.checkConvo(convoID);
 		} 
 		var _this = this;
 
