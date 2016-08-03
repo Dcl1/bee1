@@ -25,6 +25,12 @@ export function setcurrentstep(stepp) {
 	}
 }
 
+export function initialstepreturn(){
+	return {
+		type: types.INITIALSTEPRETURN
+	}
+}
+
 export function increasestep(){
 	return {
 		type: types.INCREASESTEP,

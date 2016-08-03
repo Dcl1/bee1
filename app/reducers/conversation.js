@@ -2,12 +2,9 @@ import * as types from '../actions/actionTypes';
 
 var simpleStore = require('react-native-simple-store');
 
-const initialState = {
-	currStep: 0,
-	messages: []
-};
 
-function workStore(Epi, Cid){
+
+function getKey(Epi, Cid){
 	//console.log("THIS IS WORK STORE " + "E" + Epi + " " + "CID" + Cid);
 
 	var msgKey = String("E" + Epi + "CID" + Cid);
@@ -16,18 +13,46 @@ function workStore(Epi, Cid){
 	console.log("Work Message Key " + msgKey);
 	//console.log(typeof(msgVar));
 
-	simpleStore.save( msgKey, {
+	return msgKey;
+
+	// simpleStore.save( msgKey, {
+	// 	step: 3
+	// })
+	// .then(() => simpleStore.get(msgKey))
+	// .then( msgVar => {
+	// 	//console.log( msgVar.step );
+
+	// })
+
+}
+
+
+function getStep(key){
+
+	var msgVar = this[key];
+
+	simpleStore.save( key, {
 		step: 3
 	})
-	.then(() => simpleStore.get(msgKey))
+	.then(() => simpleStore.get(key))
 	.then( msgVar => {
-		console.log( msgVar.step );
+		console.log("See the step " + msgVar.step)
 	})
 
 }
 
 
+
+const initialState = {
+	currStep: 0,
+	messages: []
+};
+
+
 export default function conversationreducer(state = initialState, action = {}) {
+
+	var CurrentKey;
+
 	switch(action.type) {
 		case types.RETURNCONVERSATION:
 			return {
@@ -46,8 +71,8 @@ export default function conversationreducer(state = initialState, action = {}) {
 				]
 			};
 		case types.INCREASESTEP:
-			
-			workStore();
+
+
 
 			return {
 				...state,
@@ -59,6 +84,14 @@ export default function conversationreducer(state = initialState, action = {}) {
 				...state,
 				messages: []
 			};
+		case types.INITIALSTEPRETURN:
+
+			console.log("WAIT WAIT we are inside INITIALSTEPRETURN ")
+
+			return {
+				...state,
+				currStep: state.currStep
+			};
 		case types.SETCURRENTSTEP:
 			//console.log("Setting the current step " + action.stepp);
 			return {
@@ -66,13 +99,15 @@ export default function conversationreducer(state = initialState, action = {}) {
 				currStep: action.stepp
 			};
 		case types.SETKEY:
-			workStore(action.Episode, action.Convoid);
+		 	CurrentKey	 =	getKey(action.Episode, action.Convoid);
+		 	console.log(CurrentKey);
+		
 		default:
 			return state;
 	}
 }
 
-
+ 
 
 
 

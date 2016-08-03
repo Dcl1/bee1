@@ -45,11 +45,30 @@ module.exports = React.createClass({
 
 	componentWillMount: function(){
 
-		this._currentStep = this.props.step;
+		var _this = this;
 
 		this._episode = this.props.episode;
-		//var Step = this.props.step;
 		this._convoID = this.props.convoID;
+		
+
+
+		// The callback
+
+		setStage( setStep );
+
+		function setStage( callback ) {
+			_this.props.setkey(_this._episode, _this._convoID);
+			callback(_this.props.step);
+		}
+
+		function setStep(step) {
+			_this.props.initialstepreturn();
+			console.log("The CALLBACK worked " + step);
+			_this._currentStep = step;
+		}
+
+		// End of the callback
+		
 
 		this.startConvo(this._convoID);
 
@@ -60,7 +79,7 @@ module.exports = React.createClass({
 		//console.log("This is the start step " + startStep);
 		//console.log("This is the current step " + this._currentStep);
 		this.props.setcurrentstep(startStep);
-		this.props.setkey(this._episode, this._convoID);
+		
 
 		if(this._currentStep > startStep) {
 			console.log("CURRENT STEP IS GREATER")
