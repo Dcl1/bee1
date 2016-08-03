@@ -51,45 +51,50 @@ module.exports = React.createClass({
 		//var Step = this.props.step;
 		this._convoID = this.props.convoID;
 
-		this.checkConvo(this._convoID);
+		this.startConvo(this._convoID);
 
-		//Actions.refresh();
+
+		//console.log("THE EPISODE " + this._episode);
+		var thefile = this.getConvoFile(this._episode, this._convoID);
+		var startStep = thefile.startStep;
+		console.log("This is the start step " + startStep);
+		console.log("This is the current step " + this._currentStep);
 
 	},
 
-	getConvoFile: function(Episode){
+	getConvoFile: function(Episode, ConvoID){
 
 		switch(Episode) {
 			case 1:
-				return conversationOne.convo;
+				return conversationOne.convo[ConvoID];
 			case 2:
-				return conversationTwo.convo;
+				return conversationTwo.convo[ConvoID];
 			default:
-				return conversationDefault.convo;
+				return conversationDefault.convo[ConvoID];
 
 		};
 
 
 	},
 
-	checkConvo: function(convoID) {
+	startConvo: function(convoID) {
 
 		var _this = this;
 		var subArray=[];
 		var startStep = 0;
 
 
-		var convoArray = this.getConvoFile(this._episode);
-		var startStep = convoArray[convoID].startStep;
+		var selectedConvo = this.getConvoFile(this._episode, convoID);
+		var startStep = selectedConvo.startStep;
 
-		console.log("This is the start step "  + startStep);
+		//console.log("This is the start step "  + startStep);
 
 		this.props.setcurrentstep(startStep);
-		var selectedConvo = convoArray[convoID].conversation;
+		//var selectedConvo = convoArray[convoID].conversation;
 		
 		for (var i = 0; i <= startStep ; i++){
 			subArray.push(
-				selectedConvo[i]
+				selectedConvo.conversation[i]
 			);
 		}
 
@@ -119,25 +124,14 @@ module.exports = React.createClass({
 		var nextStep = this._currentStep + 1;
 		//console.log("That means the next step is " + nextStep);
 
-		function checkEpi(EE) {
-			switch(EE) {
-				case 1:
-					return conversationOne.convo;
-				case 2:
-					return conversationTwo.convo;
-				default:
-					return conversationDefault.convo;
 
-			}
-		}
-
-		var convoArray = checkEpi(this._episode);
+		var convoArray = this.getConvoFile(this._episode, this._convoID);
 
 		//console.log("Before user " + convoArray[this._convoID].conversation[nextStep]);
 
-		if(nextStep < convoArray[this._convoID].conversation.length ) {
+		if(nextStep < convoArray.conversation.length ) {
 
-			var user = convoArray[this._convoID].conversation[nextStep].user;
+			var user = convoArray.conversation[nextStep].user;
 			//console.log("Got the user of the next step " + user);
 
 			if(user.toUpperCase() !== 'PLAYER') {
@@ -154,7 +148,7 @@ module.exports = React.createClass({
 
 				this.setState({
 					isPlayer: true,
-					responseUno: convoArray[this._convoID].conversation[nextStep].text
+					responseUno: convoArray.conversation[nextStep].text
 				});
 				//console.log("I guess it's a player");
 			}
@@ -170,9 +164,8 @@ module.exports = React.createClass({
 
 	renderNextMessage: function(next) {
 
-
-		var convoArray = this.getConvoFile(this._episode);
-		var obj = convoArray[this._convoID].conversation[next];
+		var convoArray = this.getConvoFile(this._episode, this._convoID);
+		var obj = convoArray.conversation[next];
 
 
 		setTimeout(() => {
@@ -317,7 +310,7 @@ module.exports = React.createClass({
 			var Step = nextProps.step;
 			var convoID = nextProps.convoID;
 
-			this.checkConvo(convoID);
+			this.startConvo(convoID);
 		} 
 		var _this = this;
 
