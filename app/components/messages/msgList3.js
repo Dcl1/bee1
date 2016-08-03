@@ -29,8 +29,6 @@ module.exports = React.createClass({
 
 	componentWillMount: function(){
 		this.checkData(this.props.episode);
-
-		console.log(" MsgList3 is mounted");
 	},
 
 	checkData: function(epi){

@@ -20,6 +20,8 @@ import {Actions} from 'react-native-router-flux'
 var STATUS_BAR_HEIGHT = Navigator.NavigationBar.Styles.General.StatusBarHeight;
 
 
+
+
 module.exports = React.createClass({
 
 	getInitialState: function(){
@@ -57,8 +59,12 @@ module.exports = React.createClass({
 		//console.log("THE EPISODE " + this._episode);
 		var thefile = this.getConvoFile(this._episode, this._convoID);
 		var startStep = thefile.startStep;
-		console.log("This is the start step " + startStep);
-		console.log("This is the current step " + this._currentStep);
+		//console.log("This is the start step " + startStep);
+		//console.log("This is the current step " + this._currentStep);
+
+		var thisKey = String("E" + this._episode + "CD" + this._convoID);
+		console.log("This is the KEY " + thisKey);
+		//this.props.setstep();
 
 	},
 

@@ -5,6 +5,16 @@ const initialState = {
 	messages: []
 };
 
+var simpleStore = require('react-native-simple-store');
+
+
+function getStep(key, defaultStep){
+
+
+
+}
+
+
 export default function conversationreducer(state = initialState, action = {}) {
 	switch(action.type) {
 		case types.RETURNCONVERSATION:
@@ -40,7 +50,28 @@ export default function conversationreducer(state = initialState, action = {}) {
 				...state,
 				currStep: action.stepp
 			};
+		case types.SETSTEP:
+			getStep(action.key, action.defaultStep);
+
+			return {
+
+			};
 		default:
 			return state;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -30,3 +30,12 @@ export function increasestep(){
 		type: types.INCREASESTEP,
 	}
 }
+
+
+export function setstep(key, defaultStep){
+	return {
+		type: types.SETSTEP,
+		key,
+		defaultStep
+	}
+}
