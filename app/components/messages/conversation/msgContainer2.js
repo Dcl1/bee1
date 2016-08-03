@@ -57,8 +57,17 @@ module.exports = React.createClass({
 		//console.log("THE EPISODE " + this._episode);
 		var thefile = this.getConvoFile(this._episode, this._convoID);
 		var startStep = thefile.startStep;
-		console.log("This is the start step " + startStep);
-		console.log("This is the current step " + this._currentStep);
+		//console.log("This is the start step " + startStep);
+		//console.log("This is the current step " + this._currentStep);
+		this.props.setcurrentstep(startStep);
+		this.props.setkey(this._episode, this._convoID);
+
+		if(this._currentStep > startStep) {
+			console.log("CURRENT STEP IS GREATER")
+		} else {
+			console.log("CURRENT STEP ISN'T GREATER")
+			//set this._currentStep to startStep
+		}
 
 	},
 
@@ -302,6 +311,16 @@ module.exports = React.createClass({
 			);
 		});	
 
+		if(nextProps.episode !== this.props.episode) {
+			var Episode = nextProps.episode;
+			var Step = nextProps.step;
+			var convoID = nextProps.convoID;
+
+			this.startConvo(convoID);
+
+			this.props.setkey(Episode, convoID);
+		}
+
 
 		if(nextProps.convoID !== this.props.convoID) {
 			this.props.clearconversation();
@@ -311,6 +330,8 @@ module.exports = React.createClass({
 			var convoID = nextProps.convoID;
 
 			this.startConvo(convoID);
+
+			this.props.setkey(Episode, convoID);
 		} 
 		var _this = this;
 

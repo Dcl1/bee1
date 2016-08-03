@@ -1,9 +1,31 @@
 import * as types from '../actions/actionTypes';
 
+var simpleStore = require('react-native-simple-store');
+
 const initialState = {
 	currStep: 0,
 	messages: []
 };
+
+function workStore(Epi, Cid){
+	//console.log("THIS IS WORK STORE " + "E" + Epi + " " + "CID" + Cid);
+
+	var msgKey = String("E" + Epi + "CID" + Cid);
+	var msgVar = this[msgKey];
+
+	console.log("Work Message Key " + msgKey);
+	//console.log(typeof(msgVar));
+
+	simpleStore.save( msgKey, {
+		step: 3
+	})
+	.then(() => simpleStore.get(msgKey))
+	.then( msgVar => {
+		console.log( msgVar.step );
+	})
+
+}
+
 
 export default function conversationreducer(state = initialState, action = {}) {
 	switch(action.type) {
@@ -24,6 +46,9 @@ export default function conversationreducer(state = initialState, action = {}) {
 				]
 			};
 		case types.INCREASESTEP:
+			
+			workStore();
+
 			return {
 				...state,
 				currStep: state.currStep += 1
@@ -40,7 +65,31 @@ export default function conversationreducer(state = initialState, action = {}) {
 				...state,
 				currStep: action.stepp
 			};
+		case types.SETKEY:
+			workStore(action.Episode, action.Convoid);
 		default:
 			return state;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

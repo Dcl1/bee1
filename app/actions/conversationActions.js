@@ -18,7 +18,7 @@ export function clearconversation(){
 }
 
 export function setcurrentstep(stepp) {
-	console.log(" SOMETHINGS IS SETTING A STEP");
+	//console.log(" SOMETHINGS IS SETTING A STEP");
 	return {
 		type: types.SETCURRENTSTEP,
 		stepp
@@ -28,5 +28,13 @@ export function setcurrentstep(stepp) {
 export function increasestep(){
 	return {
 		type: types.INCREASESTEP,
+	}
+}
+
+export function setkey(Episode, Convoid){
+	return {
+		type: types.SETKEY,
+		Episode,
+		Convoid
 	}
 }
