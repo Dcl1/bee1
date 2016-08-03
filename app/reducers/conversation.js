@@ -10,9 +10,18 @@ var simpleStore = require('react-native-simple-store');
 
 function getStep(key, defaultStep){
 
+	console.log("TYPE OF CHECK: " + typeof key);
 
+	function checkStore(k){
+		return simpleStore.get(k) !== null
+	}
+
+	console.log( checkStore(key) );
+	console.log("Inside getStep: We are now playing this game " + key + " " + defaultStep);
 
 }
+
+
 
 
 export default function conversationreducer(state = initialState, action = {}) {
@@ -51,11 +60,13 @@ export default function conversationreducer(state = initialState, action = {}) {
 				currStep: action.stepp
 			};
 		case types.SETSTEP:
+
+			//console.log("We are now playing this game " + action.key + " " + action.defaultStep);
 			getStep(action.key, action.defaultStep);
 
-			return {
+			// return {
 
-			};
+			// };
 		default:
 			return state;
 	}

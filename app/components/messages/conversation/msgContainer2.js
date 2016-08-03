@@ -63,8 +63,8 @@ module.exports = React.createClass({
 		//console.log("This is the current step " + this._currentStep);
 
 		var thisKey = String("E" + this._episode + "CD" + this._convoID);
-		console.log("This is the KEY " + thisKey);
-		//this.props.setstep();
+		//console.log("This is the KEY " + thisKey);
+		this.props.setstep(thisKey, startStep);
 
 	},
 
