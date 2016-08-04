@@ -89,16 +89,21 @@ module.exports = React.createClass({
 	loadStartConvo: function(theStep) {
 		console.log("LOADSTARTCONVO " + theStep);
 
+		var _this = this;
 		var subArray = [];
 		var file = this.getConvoFile();
 
 		for(var i = 0; i <= theStep ; i++ ){
-			console.log(file.conversation[i].text);
-			// subArray.push(
-			// 	file.conversation[i].text
-			// );
+			//console.log(file.conversation[i].text);
+			subArray.push(
+				file.conversation[i]
+			);
 		}
 
+		subArray.map(function(obj){
+			let uni = Math.round(Math.random() * 10000);
+			_this.props.returnconversation(obj.option, obj.user, obj.text, obj.position, uni);
+		});
 
 	},
 
@@ -163,6 +168,7 @@ module.exports = React.createClass({
 
 				autoFocus={false}
 				//messages={this.state.messages}
+				messages={this.props.convoArray}
 				handleSend={this.handleSend}
 
 				maxHeight={Dimensions.get('window').height - Navigator.NavigationBar.Styles.General.NavBarHeight - STATUS_BAR_HEIGHT}
