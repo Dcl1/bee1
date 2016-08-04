@@ -25,6 +25,8 @@ class ConversationContainer extends Component {
 	render() {
 		const { state, actions } = this.props;
 		var cID = this.props.cid;
+
+		//console.log("In the container " + state.app.currStep);
 		
 		return (
 			
