@@ -17,16 +17,13 @@ class ConversationContainer extends Component {
 		super(props);
 	}
 
-	componentWillMount() {
-		//console.log(this.props.cid);
-	}
 
 
 	render() {
 		const { state, actions } = this.props;
 		var cID = this.props.cid;
 
-		//console.log("In the container " + state.app.currStep);
+		console.log("In the container " + state.conversation.currStep);
 		
 		return (
 			

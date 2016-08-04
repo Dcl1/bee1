@@ -18,7 +18,6 @@ export function clearconversation(){
 }
 
 export function setcurrentstep(stepp) {
-	console.log(" SOMETHINGS IS SETTING A STEP");
 	return {
 		type: types.SETCURRENTSTEP,
 		stepp

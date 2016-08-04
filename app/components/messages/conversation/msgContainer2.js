@@ -15,6 +15,8 @@ import GiftedMessenger  from 'react-native-gifted-messenger';
 
 import conversationOne from '../../../data/epiOne/conversations/conversations';
 
+var simpleStore = require('react-native-simple-store');
+
 import {Actions} from 'react-native-router-flux'
 
 var STATUS_BAR_HEIGHT = Navigator.NavigationBar.Styles.General.StatusBarHeight;
@@ -26,12 +28,13 @@ module.exports = React.createClass({
 
 	getInitialState: function(){
 
-		this._currentStep;
+		//this._currentStep;
 		this._episode;
 		this._convoID;
 		
 		this._isMounted = false;
 		this._messages = [];
+
 
 		return {
 			messages: this._messages,
@@ -40,33 +43,95 @@ module.exports = React.createClass({
 			allLoaded: false,
 			isPlayer: false,
 			responseUno: '',
-			responseDeuce: ''
+			responseDeuce: '',
+			currentStep: 0
 		};
 	},
 
 
 	componentWillMount: function(){
 
-		this._currentStep = this.props.step;
+		//this._currentStep = this.props.step;
+		var _this = this;
 
 		this._episode = this.props.episode;
 		//var Step = this.props.step;
 		this._convoID = this.props.convoID;
 
-		this.startConvo(this._convoID);
-
-
-		//console.log("THE EPISODE " + this._episode);
 		var thefile = this.getConvoFile(this._episode, this._convoID);
 		var startStep = thefile.startStep;
-		//console.log("This is the start step " + startStep);
-		//console.log("This is the current step " + this._currentStep);
-
 		var thisKey = String("E" + this._episode + "CD" + this._convoID);
-		//console.log("This is the KEY " + thisKey);
-		this.props.setstep(thisKey, startStep);
+
+
+		getStore(thisKey, start);
+
+		function getStore(key, callback) {
+			_this.maintainStore(key, startStep);
+			callback();
+		}
+
+		function start(){
+			_this.startConvo(_this._convoID);
+		}
 
 	},
+
+
+
+	maintainStore: function(key, defaultStep){
+
+		var msgVar = this[key];
+		var _this = this;
+
+		simpleStore.get(key).then((msgVar) => {
+			if(msgVar !== null) {
+				//key exists
+				console.log("THERE APPEARS TO BE A STORE");
+
+				var msgVar = this[key]
+
+				simpleStore.get( key )
+				.then( msgVar => {
+					var theStep = msgVar.step;
+					console.log("Yes store: APPARENTLY THE STEP IS " + theStep);
+					//_this._currentStep = theStep;
+					_this.props.setcurrentstep(4);
+					_this.setState({
+						currentStep: 4
+					});
+				
+				})
+				.catch(error => {
+					console.log(error.message)
+				});
+			} else {
+				//key does not exist
+
+				console.log("KEY DOESN'T EXIST");
+
+				simpleStore.save( key, {
+					step: defaultStep
+				})
+				.then(() => simpleStore.get( key ))
+				.then( msgVar => {
+					console.log("NO store: APPARENTLY THE STEP IS " + msgVar.step);
+					//_this._currentStep = msgVar.step;
+					_this.props.setcurrentstep(msgVar.step);
+					_this.setState({
+						currentStep: msgVar.step
+					});
+	
+				})
+				.catch(error => {
+					console.log(error.message)
+				});
+
+
+			}
+		});
+
+	},
+
 
 	getConvoFile: function(Episode, ConvoID){
 
@@ -91,12 +156,11 @@ module.exports = React.createClass({
 
 
 		var selectedConvo = this.getConvoFile(this._episode, convoID);
-		var startStep = selectedConvo.startStep;
 
-		//console.log("This is the start step "  + startStep);
+		console.log("You are inside of startConvo " + this.state.currentStep);
+		var startStep = this.state.currentStep;
 
-		this.props.setcurrentstep(startStep);
-		//var selectedConvo = convoArray[convoID].conversation;
+		
 		
 		for (var i = 0; i <= startStep ; i++){
 			subArray.push(
@@ -124,24 +188,23 @@ module.exports = React.createClass({
 
 
 	checkNextMessage: function(){
-		//console.log("The current step is "  + this.props.step);
-		var _this = this;
-		this._currentStep = this.props.step;
-		var nextStep = this._currentStep + 1;
-		//console.log("That means the next step is " + nextStep);
 
+		var _this = this;
+
+
+		this.setState({
+			currentStep: _this.props.step
+		});
+
+		var nextStep = this.state.currentStep + 1;
 
 		var convoArray = this.getConvoFile(this._episode, this._convoID);
-
-		//console.log("Before user " + convoArray[this._convoID].conversation[nextStep]);
 
 		if(nextStep < convoArray.conversation.length ) {
 
 			var user = convoArray.conversation[nextStep].user;
-			//console.log("Got the user of the next step " + user);
 
 			if(user.toUpperCase() !== 'PLAYER') {
-				//console.log("This is not a player, so here is the nextstep " + nextStep);
 				this.setState({
 					isPlayer: false,
 					responseUno: '',
@@ -156,12 +219,7 @@ module.exports = React.createClass({
 					isPlayer: true,
 					responseUno: convoArray.conversation[nextStep].text
 				});
-				//console.log("I guess it's a player");
 			}
-			// for (var i = nextStep; i <= convoArray.length; i ++) {
-
-			// } 
-
 		}
 
 
@@ -207,9 +265,6 @@ module.exports = React.createClass({
 
 
 	componentDidUpdate: function(prevProps, prevState){
-
-		//console.log("This is  " + prevProps.step);
-		//console.log("This is current Props " + this.props.step);
 
 		if(prevProps.step !== this.props.step ) {
 			this.checkNextMessage();
@@ -257,8 +312,6 @@ module.exports = React.createClass({
 	},
 
 	handleSend: function(message = {}) {
-		// Your logic here
-		// Send message.text to your server
 		var _this = this;
 
 		this.setState({
@@ -266,7 +319,6 @@ module.exports = React.createClass({
 		});
 
 		message.uniqueId = Math.round(Math.random() * 10000);
-		//this.setMessages(this._messages.concat(message));
 
 		this.props.returnconversation(message.option, message.user, message.text, message.position, message.uniqueId);
 
@@ -274,17 +326,17 @@ module.exports = React.createClass({
 			_this.props.increasestep();
 			this.setMessageStatus(message.uniqueId, 'Seen');
 		}, 1000);
-
-    	// if you couldn't send the message to your server :
-    	// this.setMessageStatus(message.uniqueId, 'ErrorButton');
-
 	},
 
-	//handleReceive(message = {}) {
-    	// make sure that your message contains :
-    	// text, name, image, position: 'left', date, uniqueId
-    //	this.setMessages(this._messages.concat(message));
-	//},
+	componentWillUpdate: function(nextProps, nextState){
+		if(nextState.currentStep !== this.state.currentStep){
+			this.setState({
+				currentStep: nextState.currentStep
+			});
+
+			this.startConvo(this._convoID);
+		}
+	},
 
 
 	componentWillReceiveProps: function(nextProps){

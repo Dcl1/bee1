@@ -13,6 +13,7 @@ import epiTwoMsgList from '../../data/epiTwo/messageList.json';
 
 import { Actions } from 'react-native-router-flux';
 
+
 import MsgRow from './msgRow';
 
 module.exports = React.createClass({
