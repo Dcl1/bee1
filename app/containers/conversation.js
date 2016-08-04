@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import SingleConversation from '../components/messages/singleConversation';
-import MessengerContainer from '../components/messages/conversation/msgContainer2';
+import MessengerContainer from '../components/messages/conversation/msgContainer3';
 
 import * as ConversationActions from '../actions/conversationActions';
 import * as AppActions from '../actions/appActions';
@@ -23,7 +23,7 @@ class ConversationContainer extends Component {
 		const { state, actions } = this.props;
 		var cID = this.props.cid;
 
-		console.log("In the container " + state.conversation.currStep);
+		//console.log("In the container " + state.conversation.currStep);
 		
 		return (
 			
