@@ -128,6 +128,9 @@ module.exports = React.createClass({
 	componentWillReceiveProps: function(nextProps){
 
 		if(nextProps.convoID !== this.props.convoID){
+
+			this.props.clearconversation();
+
 			this._Episode = nextProps.episode;
 			this._ConvoId = nextProps.convoID;
 			// Create Store
@@ -136,6 +139,11 @@ module.exports = React.createClass({
 			this.maintainStore(this._Key);
 		}
 
+
+	},
+
+	componentWillUnmount: function(){
+		this.props.clearconversation();
 	},
 
 
