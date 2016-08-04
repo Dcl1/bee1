@@ -89,7 +89,15 @@ module.exports = React.createClass({
 	loadStartConvo: function(theStep) {
 		console.log("LOADSTARTCONVO " + theStep);
 
+		var subArray = [];
+		var file = this.getConvoFile();
 
+		for(var i = 0; i <= theStep ; i++ ){
+			console.log(file.conversation[i].text);
+			// subArray.push(
+			// 	file.conversation[i].text
+			// );
+		}
 
 
 	},
