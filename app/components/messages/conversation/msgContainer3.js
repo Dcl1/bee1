@@ -208,6 +208,14 @@ module.exports = React.createClass({
 
 	},
 
+	componentDidUpdate: function(prevProps, prevState){
+
+		// if(prevProps.convoArray !== this.props.convoArray ){
+		// 	this.checkNextMessage();
+		// }
+
+
+	},
 
 
 	componentWillReceiveProps: function(nextProps){
@@ -223,6 +231,7 @@ module.exports = React.createClass({
 			// End of Create Store
 			this.maintainStore(this._Key);
 		}
+
 
 
 	},
