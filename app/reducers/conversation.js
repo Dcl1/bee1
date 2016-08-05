@@ -10,7 +10,7 @@ export default function conversationreducer(state = initialState, action = {}) {
 	switch(action.type) {
 		case types.RETURNCONVERSATION:
 
-			console.log("Inside reducer " + action.user + " & " + action.uniqueId);
+			//console.log("Inside reducer " + action.user + " & " + action.uniqueId);
 
 			return {
 				...state,

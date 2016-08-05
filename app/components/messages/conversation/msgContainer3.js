@@ -24,14 +24,17 @@ module.exports = React.createClass({
 		this._Key;
 		this._Episode;
 		this._ConvoId;
+		this._CurrentStep;
+		this._messages;
 
 		return {
-
+			isPlayer: false	
 		};
 	},
 
 	componentWillMount: function(){
 
+		this._messages = this.props.convoArray;
 		this._Episode = this.props.episode;
 		this._ConvoId = this.props.convoID;
 
@@ -40,6 +43,12 @@ module.exports = React.createClass({
 		// End of Create Store
 
 		this.maintainStore(this._Key);
+
+	},
+
+	componentDidMount: function(){
+
+		
 
 	},
 
@@ -86,9 +95,83 @@ module.exports = React.createClass({
 	},
 
 
+	checkNextMessage: function(){
+
+		console.log("THIS IS THE CURRENT STEP " + this._CurrentStep);
+		var nextStep = this._CurrentStep + 1;
+		console.log("THIS IS THE NEXT STEP " + nextStep);
+
+		var file = this.getConvoFile();
+
+		if(nextStep < file.conversation.length ) {
+
+			var user = file.conversation[nextStep].user;
+			if(user.toUpperCase() !== 'PLAYER') {
+				this.setState({
+					isPlayer: false
+				});
+
+				this.renderNextMessage(nextStep);
+			} else {
+				this.setState({
+					isPlayer: true
+				});
+			}	
+		}
+
+	},
+
+
+	renderNextMessage: function(next) {
+
+		var file = this.getConvoFile();
+		var obj = file.conversation[next];
+
+
+		setTimeout(() => {
+			if(this._isMounted == true) {
+
+				this.setState({
+					typingMessage: 'Typing a message...',
+				});
+			}
+		}, 400 );
+
+		setTimeout(() => {
+
+			if(this._isMounted == true) {
+				this.setState({
+					typingMessage: '',
+				});
+			}
+		}, 1500 );
+
+
+		setTimeout(() => {
+			let uni = Math.round(Math.random() * 10000);
+			this.props.returnconversation(obj.option, obj.user, obj.text, obj.position, uni);
+			setTimeout(() => {
+				this.props.increasestep();
+			}, 500);
+			
+		}, Math.random() * (4000 - 1200) + 1200 );
+
+
+		// Work with the simple store
+		var Key = this._Key;
+		var msgVar = this[Key];
+
+		simpleStore.update( Key, {
+			step: next
+		});
+		// End work with the simple store
+
+	},
+
 	loadStartConvo: function(theStep) {
 		console.log("LOADSTARTCONVO " + theStep);
 
+		this._CurrentStep = theStep;
 		var _this = this;
 		var subArray = [];
 		var file = this.getConvoFile();
@@ -104,6 +187,8 @@ module.exports = React.createClass({
 			let uni = Math.round(Math.random() * 10000);
 			_this.props.returnconversation(obj.option, obj.user, obj.text, obj.position, uni);
 		});
+
+		this.checkNextMessage();
 
 	},
 
@@ -147,16 +232,68 @@ module.exports = React.createClass({
 	},
 
 
-	handleSend: function(){
+	handleSend: function( message = {}){
 
+		// var Key = this._Key;
+		// var msgVar = this[Key];
+
+		// simpleStore.update( Key, {
+		// 	step: 8
+		// });
+		var _this = this;
 		var Key = this._Key;
-		var msgVar = this[Key];
+		var nextStep = this._CurrentStep + 1;
 
-		simpleStore.update( Key, {
-			step: 8
+		this.setState({
+			isPlayer: false
 		});
+
+		message.uniqueId = Math.round(Math.random() * 10000);
+		this.setMessages(this._messages.concat(message));
+
+		this.props.returnconversation(message.option, message.user, message.text, message.position, message.uniqueId);
+
+		setTimeout(() => {
+			_this.props.increasestep();
+			this.setMessageStatus(message.uniqueId, 'Seen');
+		}, 1000);
+
+		// store update
+		simpleStore.update( Key, {
+			step: nextStep
+		});
+		// end of store update
+
 	},
 
+	setMessageStatus: function(uniqueId, status) {
+		let messages = [];
+		let found = false;
+
+		for (let i = 0; i < this._messages.length; i ++) {
+			if (this._messages[i].uniqueId === uniqueId) {
+				let clone = Object.assign({}, this._messages[i]);
+				clone.status = status;
+				messages.push(clone);
+				found = true;
+			} else {
+				messages.push(this._messages[i]);
+			}
+		}
+
+		if (found === true) {
+			this.setMessages(messages);
+		}
+	},
+
+	setMessages(messages) {
+	    this._messages = messages;
+
+	    // append the message
+	    // this.setState({
+	    //   messages: messages,
+	    // });
+	},
 
 
 	render: function(){
@@ -188,8 +325,8 @@ module.exports = React.createClass({
 				parseText={true}
 
 				typingMessage={this.state.typingMessage}
-				//disabled={this.state.isPlayer ? false : true}
-				disabled={false}
+				disabled={this.state.isPlayer ? false : true}
+				//disabled={false}
 
 				//responseOne={this.state.responseUno}
 				//responseTwo={this.state.responseDeuce}

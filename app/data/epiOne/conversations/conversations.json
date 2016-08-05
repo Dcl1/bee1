@@ -7,7 +7,7 @@
 		},
 		{
 			"convoID" : 1,
-			"startStep" : 2,
+			"startStep" : 0,
 			"conversation" : [
 				{
 					"option" : false,
@@ -43,7 +43,7 @@
 
 		{
 			"convoID" : 2,
-			"startStep" : 3,
+			"startStep" : 0,
 			"conversation" : [
 				{
 					"option" : false,
