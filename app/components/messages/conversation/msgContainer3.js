@@ -25,10 +25,11 @@ module.exports = React.createClass({
 		this._Episode;
 		this._ConvoId;
 		this._CurrentStep;
-		this._messages;
+		this._messages = [];
 
 		return {
-			isPlayer: false	
+			isPlayer: false,
+			messages: this._messages
 		};
 	},
 
@@ -197,7 +198,7 @@ module.exports = React.createClass({
 
 		switch(this._Episode) {
 			case 1:
-				console.log(conversationOne.convo[this._ConvoId]);
+				//console.log(conversationOne.convo[this._ConvoId]);
 				return conversationOne.convo[this._ConvoId];
 			case 2:
 				return conversationTwo.convo[this._ConvoId];
@@ -222,7 +223,27 @@ module.exports = React.createClass({
 	componentWillReceiveProps: function(nextProps){
 
 
-		
+		var messages = [];
+		nextProps.convoArray.map(function(obj){
+
+			var imgURL = obj.position == 'left' ? {uri: 'https://facebook.github.io/react/img/logo_og.png'} : null; 
+
+			messages.push(
+				{
+					text: obj.text,
+					name: obj.user,
+					position: obj.position,
+					image: imgURL,
+					date: new Date(2016, 0 ,1, 20, 0),
+					uniqueId: obj.uniqueId
+				}
+			);
+
+		});
+
+		if(nextProps.convoArray !== this.props.convoArray ) {
+			this.setMessages(messages)
+		} 
 
 
 		if(nextProps.convoID !== this.props.convoID){
@@ -303,10 +324,10 @@ module.exports = React.createClass({
 	setMessages(messages) {
 	    this._messages = messages;
 
-	    // append the message
-	    // this.setState({
-	    //   messages: messages,
-	    // });
+	    //append the message
+	    this.setState({
+	      messages: messages,
+	    });
 	},
 
 
@@ -327,7 +348,7 @@ module.exports = React.createClass({
 
 				autoFocus={false}
 				//messages={this.state.messages}
-				messages={this.props.convoArray}
+				messages={this.state.messages}
 				handleSend={this.handleSend}
 
 				maxHeight={Dimensions.get('window').height - Navigator.NavigationBar.Styles.General.NavBarHeight - STATUS_BAR_HEIGHT}
