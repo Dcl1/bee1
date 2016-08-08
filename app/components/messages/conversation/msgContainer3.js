@@ -32,7 +32,9 @@ module.exports = React.createClass({
 		return {
 			isPlayer: false,
 			messages: this._messages,
-			typingMessage: ''
+			typingMessage: '',
+			responseUno: '',
+			responseDeuce: ''
 		};
 	},
 
@@ -121,25 +123,28 @@ module.exports = React.createClass({
 
 	checkNextMessage: function(){
 
-		console.log("THIS IS THE CURRENT STEP " + this._CurrentStep);
+		//console.log("THIS IS THE CURRENT STEP " + this._CurrentStep);
 		var nextStep = this._CurrentStep + 1;
-		console.log("THIS IS THE NEXT STEP " + nextStep);
+		//console.log("THIS IS THE NEXT STEP " + nextStep);
 
 		var file = this.getConvoFile();
 
 		if(nextStep < file.conversation.length ) {
 
 			var user = file.conversation[nextStep].user;
-			console.log("THIS IS THE NEXT STEP USER " + user);
-			if(user == 'player') {
+			//console.log("THIS IS THE NEXT STEP USER " + user);
+			if(user.toUpperCase() == 'PLAYER') {
 				this.setState({
-					isPlayer: true
+					isPlayer: true,
+					responseUno: file.conversation[nextStep].text
 				});
 
 				
 			} else {
 				this.setState({
-					isPlayer: false
+					isPlayer: false,
+					responseUno: '',
+					responseDeuce: ''
 				});
 				this.renderNextMessage(nextStep);
 			}	
@@ -195,7 +200,7 @@ module.exports = React.createClass({
 	},
 
 	loadStartConvo: function(theStep) {
-		console.log("LOADSTARTCONVO " + theStep);
+		//console.log("LOADSTARTCONVO " + theStep);
 
 		this._CurrentStep = theStep;
 		var _this = this;
@@ -394,10 +399,10 @@ module.exports = React.createClass({
 				disabled={this.state.isPlayer ? false : true}
 				//disabled={false}
 
-				//responseOne={this.state.responseUno}
-				//responseTwo={this.state.responseDeuce}
-				responseOne='Response Number One'
-				responseTwo='Repsonse Number Two'
+				responseOne={this.state.responseUno}
+				responseTwo={this.state.responseDeuce}
+				//responseOne='Response Number One'
+				//responseTwo='Repsonse Number Two'
 			/>
 		);
 	}
