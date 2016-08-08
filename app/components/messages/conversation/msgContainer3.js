@@ -27,9 +27,12 @@ module.exports = React.createClass({
 		this._CurrentStep;
 		this._messages = [];
 
+		this._isMounted = false;
+
 		return {
 			isPlayer: false,
-			messages: this._messages
+			messages: this._messages,
+			typingMessage: ''
 		};
 	},
 
@@ -49,7 +52,7 @@ module.exports = React.createClass({
 
 	componentDidMount: function(){
 
-		
+		this._isMounted = true;
 
 	},
 
@@ -96,6 +99,26 @@ module.exports = React.createClass({
 	},
 
 
+	callNextStep: function(key){
+
+		var msgVar = this[key];
+		var _this = this;
+
+		simpleStore.get(key)
+		.then( msgVar => {
+			_this._CurrentStep = msgVar.step
+		})
+		.then( () => {
+			_this.checkNextMessage()
+		})
+		.catch(error => {
+			console.log(error.message)
+		});
+
+
+	},
+
+
 	checkNextMessage: function(){
 
 		console.log("THIS IS THE CURRENT STEP " + this._CurrentStep);
@@ -107,16 +130,18 @@ module.exports = React.createClass({
 		if(nextStep < file.conversation.length ) {
 
 			var user = file.conversation[nextStep].user;
-			if(user.toUpperCase() !== 'PLAYER') {
-				this.setState({
-					isPlayer: false
-				});
-
-				this.renderNextMessage(nextStep);
-			} else {
+			console.log("THIS IS THE NEXT STEP USER " + user);
+			if(user == 'player') {
 				this.setState({
 					isPlayer: true
 				});
+
+				
+			} else {
+				this.setState({
+					isPlayer: false
+				});
+				this.renderNextMessage(nextStep);
 			}	
 		}
 
@@ -145,7 +170,7 @@ module.exports = React.createClass({
 					typingMessage: '',
 				});
 			}
-		}, 1500 );
+		}, 1200 );
 
 
 		setTimeout(() => {
@@ -155,7 +180,7 @@ module.exports = React.createClass({
 				this.props.increasestep();
 			}, 500);
 			
-		}, Math.random() * (4000 - 1200) + 1200 );
+		}, Math.random() * (4000 - 2200) + 2200 );
 
 
 		// Work with the simple store
@@ -212,10 +237,9 @@ module.exports = React.createClass({
 
 	componentDidUpdate: function(prevProps, prevState){
 
-		// if(prevProps.convoArray !== this.props.convoArray ){
-		// 	this.checkNextMessage();
-		// }
-
+		if(prevState.messages !== this.state.messages ){
+		 	this.callNextStep(this._Key);
+		}
 
 	},
 
@@ -263,6 +287,7 @@ module.exports = React.createClass({
 	},
 
 	componentWillUnmount: function(){
+		this._isMounted = false;
 		this.props.clearconversation();
 	},
 
@@ -322,12 +347,18 @@ module.exports = React.createClass({
 	},
 
 	setMessages(messages) {
-	    this._messages = messages;
 
-	    //append the message
-	    this.setState({
-	      messages: messages,
-	    });
+		if(this._isMounted == true) {
+
+		    this._messages = messages;
+
+		    //append the message
+		    this.setState({
+		      messages: messages,
+		    });
+
+		}
+
 	},
 
 
