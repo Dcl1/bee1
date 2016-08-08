@@ -197,6 +197,7 @@ module.exports = React.createClass({
 
 		switch(this._Episode) {
 			case 1:
+				console.log(conversationOne.convo[this._ConvoId]);
 				return conversationOne.convo[this._ConvoId];
 			case 2:
 				return conversationTwo.convo[this._ConvoId];
@@ -219,6 +220,10 @@ module.exports = React.createClass({
 
 
 	componentWillReceiveProps: function(nextProps){
+
+
+		
+
 
 		if(nextProps.convoID !== this.props.convoID){
 
