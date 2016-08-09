@@ -9,12 +9,13 @@ import * as reducers from '../reducers';
 
 /* import app */
 import BeeBabble from './beebabble';
+//import BeebabbleContainer from './beebabbleContainer';
 
 /* import app */
 
 
 import FBApp from '../firebase/fbApp';
-
+import * as firebase from 'firebase';
 
 
 const createStoreWithMiddleware = compose(applyMiddleware(thunk), devTools())(createStore);
@@ -26,15 +27,7 @@ module.exports = React.createClass({
 
 	componentWillMount: function(){
 
-	   firebase.auth().signInAnonymously().catch(function(error){
 
-	        var errorCode = error.code;
-	        var errorMessage = error.message;
-
-	        console.log(errorMessage);
-
-	        //this.se
-	    });
 
 	},
 
@@ -47,8 +40,6 @@ module.exports = React.createClass({
 
 		);
 	}
-
-
 
 });
 

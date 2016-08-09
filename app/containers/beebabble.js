@@ -6,7 +6,8 @@ import {
 	Text,
 	StyleSheet,
 	StatusBar,
-	Image
+	Image,
+	View
 } from 'react-native';
 
 import Feed from './feed';
@@ -16,11 +17,11 @@ import Profile from './profile';
 import Conversation from './conversation';
 
 import { Router, Scene, ActionConst, Actions } from 'react-native-router-flux';
-
+import * as AppActions from '../actions/appActions';
+ 
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-
-import firebase from 'firebase';
 
 
 const RouterWithRedux = connect()(Router);
@@ -29,15 +30,6 @@ const RouterWithRedux = connect()(Router);
 class HomeTabIcon extends React.Component {
 
 	componentWillMount(){
-
-	    firebase.auth().signInAnonymously().catch(function(error){
-
-	        var errorCode = error.code;
-	        var errorMessage = error.message;
-
-	        console.log(errorMessage);
-
-	    });
 
 		this.styles={
 			selected: {
@@ -118,13 +110,34 @@ module.exports = React.createClass({
 		};
 	},
 
+	componentWillMount: function(){
+
+		var _this = this;
+
+
+	   firebase.auth().signInAnonymously().catch(function(error){
+
+	   		console.log("Inside of app container, calling anonymous sign in ");
+
+	        var errorCode = error.code;
+	        var errorMessage = error.message;
+
+	        console.log(errorMessage);
+	        
+	    });
+
+
+
+	},
+
+
+
 	backCall: function(){
 		//console.log('I guess onBack has to be called from the router')
-		
-
-
 		Actions.pop()
 	},
+
+
 
 	render: function() {
 		return (
@@ -170,10 +183,6 @@ var styles = StyleSheet.create({
 	}
 
 });
-
-
-
-
 
 
 

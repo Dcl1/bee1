@@ -40,12 +40,40 @@ module.exports = React.createClass({
 
 	componentWillMount: function(){
 
+		var _this = this;
+
+	   	firebase.auth().onAuthStateChanged( function(user) {
+
+	   		if(user) {
+	   			_this.props.signin();
+
+	   		} else {
+	   			console.log("User is signed out");
+	   		}
+
+	   	});
+
+
+
 		this.checkData(this.props.episode);
+
+		
 		// this.setState({
 		// 	dataSource: this.state.dataSource.cloneWithRows(this.props.dataArray)
 		// });
 		
 	},
+
+	componentDidUpdate: function(prevProps, prevState){
+
+		var sign = this.props.signed;
+
+		if(prevProps.signed !== this.props.signed && this.props.signed == true ) {
+			this.checkData(this.props.episode);
+		}
+
+	},
+
 
 	checkData: function(epi) {
 
@@ -55,10 +83,9 @@ module.exports = React.createClass({
 			FeedOne.feed.map(function(obj){
 				var mediaRef = storageRef.child(obj.media);
 				mediaRef.getDownloadURL().then(function(url){
-					//console.log(obj.postId);
 					_this.props.callarray(obj.user, obj.type, obj.postId, obj.caption, url)
 				}).catch(function(error){
-
+					console.log(error.message)
 				});
 
 				
@@ -73,7 +100,15 @@ module.exports = React.createClass({
 
 	},
 
+	componentWillUnmount: function(){
+
+		console.log("Feed component will Unmount");
+
+	},
+
 	componentWillReceiveProps: function(nextProps){
+
+		//console.log("Signed in " + this.props.signed);
 
 		if(nextProps.dataArray !== this.props.dataArray) {
 			this.setState({
@@ -106,6 +141,9 @@ module.exports = React.createClass({
 
 
 	componentWillReceiveProps: function(nextProps){
+
+		console.log("Signed in " + this.props.signed);
+		
 		if(nextProps.dataArray !== this.props.dataArray){
 			this.setState({
 				dataSource: this.state.dataSource.cloneWithRows(nextProps.dataArray)

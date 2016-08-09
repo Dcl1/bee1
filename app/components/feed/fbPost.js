@@ -67,7 +67,7 @@ var styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		flexDirection: 'column',
-		marginBottom: 32
+		marginBottom: 16
 	},
 
 	userImage: {

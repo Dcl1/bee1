@@ -7,7 +7,10 @@ export const SETCURRENTSTEP = 'SETCURRENTSTEP';
 export const INCREASESTEP = 'INCREASESTEP';
 export const SETSTEP = 'SETSTEP';
 
+
 export const UPDATEEPISODE = 'UPDATEEPISODE';
+export const SIGNIN = 'SIGNIN';
+
 
 export const ASKQUESTION = 'ASKQUESTION';
 

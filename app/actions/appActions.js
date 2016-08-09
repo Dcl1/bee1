@@ -5,3 +5,9 @@ export function updateepisode() {
 		type: types.UPDATEEPISODE
 	}
 }
+
+export function signin() {
+	return {
+		type: types.SIGNIN
+	}
+}

@@ -17,6 +17,10 @@ class ConversationContainer extends Component {
 		super(props);
 	}
 
+	componentWillMount(){
+
+
+	}
 
 
 	render() {

@@ -29,11 +29,13 @@ class FeedContainer extends Component {
 
 	render() {
 		const { state, actions } = this.props;
+
 		return (
 
 			<Feed
 				dataArray={state.feed}
 				episode={state.app.episode}
+				signed={state.app.signed}
 				{...actions}
 			/>
 

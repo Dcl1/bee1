@@ -8,6 +8,6 @@ const firebaseConfig = {
 };
 
 const firebaseApp2 = firebase.initializeApp(firebaseConfig);
-
+console.log("FIRBBASE CONFIG SET");
 
 module.exports = firebaseApp2;
