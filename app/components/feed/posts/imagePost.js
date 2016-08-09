@@ -15,10 +15,7 @@ module.exports = React.createClass({
 
 
 					<View style={styles.card}>
-						<Image 
-							source={{uri: this.props.mediaurl}} 
-							style={styles.imgStyle}
-						/>
+
 						<View style={styles.caption}>
 							<View style={styles.nameContainer}>
 								<Image 
@@ -34,6 +31,12 @@ module.exports = React.createClass({
 							<Text style={this.props.caption !== "" ? styles.captionStyle : {}}> {this.props.caption} </Text>
 
 						</View>
+
+						<Image 
+							source={{uri: this.props.mediaurl}} 
+							style={styles.imgStyle}
+						/>
+
 
 					<View style={styles.actionArea} >
 						<TouchableHighlight style={[styles.actionButton, {borderColor: '#FFB000'}]} >
@@ -126,10 +129,10 @@ var styles = StyleSheet.create({
 	},
 
 	nameContainer: {
-		borderWidth: 2,
+		borderWidth: 0,
 		width: 130,
 		flexDirection: 'row',
-		justifyContent: 'center',
+		justifyContent: 'flex-start',
 		alignItems: 'center'
 	},
 
@@ -139,7 +142,7 @@ var styles = StyleSheet.create({
 		paddingTop: 6,
 		paddingBottom: 6,
 		fontWeight: 'bold',
-		fontSize: 10
+		fontSize: 12
 	},
 
 	imgStyle:{

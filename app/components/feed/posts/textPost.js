@@ -15,12 +15,7 @@ module.exports = React.createClass({
 
 				<View style={styles.card}>
 
-
-					<Text style={styles.captionStyle}>
-						{this.props.caption}
-					</Text>
-
-					<View style={styles.caption}>
+					<View style={styles.userArea}>
 						<View style={styles.nameContainer}>
 							<Image 
 								source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} 
@@ -32,8 +27,30 @@ module.exports = React.createClass({
 								{this.props.userName} 
 							</Text>
 						</View>
+					</View>				
+
+					<View style={styles.captionContainer} >
+						<Text style={styles.captionStyle}>
+							{this.props.caption}
+						</Text>
 					</View>
 
+
+					<View style={styles.actionArea} >
+						<TouchableHighlight style={[styles.actionButton, {borderColor: '#FFB000'}]} >
+							<Image 
+								source={require('image!yellowstar')}
+								style={styles.actionIcons}
+							/>
+						</TouchableHighlight>
+
+						<TouchableHighlight style={[styles.actionButton, {borderColor: '#EE4735'}]} >
+							<Image
+								source={require('image!redcomment')}
+								style={styles.actionIcons}
+							/>
+						</TouchableHighlight>
+					</View>
 
 				</View>
 
@@ -95,18 +112,27 @@ var styles = StyleSheet.create({
 		padding: 8
 	},
 
-	captionStyle: {
-		fontWeight: 'bold',
-		fontSize: 48,
-		marginTop: 16,
+	captionContainer: {
+		borderBottomWidth:1,
+		borderTopWidth: 1,
+		borderColor: '#cdcdcd',
 		marginBottom: 16
 	},
 
+	captionStyle: {
+		fontWeight: '600',
+		fontSize: 32,
+		marginTop: 16,
+		marginBottom: 16,
+		marginLeft: 16,
+		marginRight: 16
+	},
+
 	nameContainer: {
-		borderWidth: 2,
+		borderWidth: 0,
 		width: 130,
 		flexDirection: 'row',
-		justifyContent: 'center',
+		justifyContent: 'flex-start',
 		alignItems: 'center'
 	},
 
@@ -116,7 +142,7 @@ var styles = StyleSheet.create({
 		paddingTop: 6,
 		paddingBottom: 6,
 		fontWeight: 'bold',
-		fontSize: 10
+		fontSize: 12
 	}
 
 });
