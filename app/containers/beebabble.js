@@ -173,12 +173,13 @@ var styles = StyleSheet.create({
 		backgroundColor: 'pink'
 	},
 	navBar: {
-		backgroundColor: 'black',
+		backgroundColor: '#717AEF',
 		borderColor: 'black',
 		borderBottomWidth: 0
 	},
 	navTitle: {
-		color: '#717AEF',
+		//color: '#717AEF',
+		color: 'white',
 		fontWeight: 'bold'
 	}
 

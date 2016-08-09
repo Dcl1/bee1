@@ -183,7 +183,8 @@ var styles = StyleSheet.create({
 	},
 
 	sectionHeader: {
-		backgroundColor: 'black',
+		//backgroundColor: '#717AEF',
+		backgroundColor: '#F4F4F4',
 		marginBottom: 20,
 		borderBottomWidth: 3,
 		borderColor: '#FF978C',
