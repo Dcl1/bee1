@@ -85,7 +85,7 @@ module.exports = React.createClass({
 				mediaRef.getDownloadURL().then(function(url){
 					_this.props.callarray(obj.user, obj.type, obj.postId, obj.caption, url)
 				}).catch(function(error){
-					console.log(error.message)
+					//console.log(error.message)
 				});
 
 				
@@ -142,7 +142,7 @@ module.exports = React.createClass({
 
 	componentWillReceiveProps: function(nextProps){
 
-		console.log("Signed in " + this.props.signed);
+		//console.log("Signed in " + this.props.signed);
 		
 		if(nextProps.dataArray !== this.props.dataArray){
 			this.setState({
@@ -160,6 +160,7 @@ module.exports = React.createClass({
 					userName = {rowData.user}
 					caption = {rowData.caption}
 					mediaurl = {rowData.url}
+					type = {rowData.mediatype}
 				/>
 			</View>
 

@@ -91,7 +91,7 @@ module.exports = React.createClass({
 					_this.loadStartConvo(theStep);
 				})
 				.catch(error => {
-					console.log(error.message)
+					//console.log(error.message)
 				});
 
 			}
