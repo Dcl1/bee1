@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 
 import ImagePost from './posts/imagePost';
+import TextPost from './posts/textPost';
+
 
 module.exports = React.createClass({
 
@@ -42,8 +44,9 @@ module.exports = React.createClass({
 
 		} else {
 			return (
-				<ImagePost
-					caption = "This is not an image post"
+				<TextPost
+					caption = {this.props.caption}
+					userName = {this.props.userName}
 				/>
 			);
 
