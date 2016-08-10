@@ -7,7 +7,70 @@ import {
 	Image
 } from 'react-native';
 
+
+import firebase from 'firebase';
+
+var storage = firebase.storage();
+var storageRef = storage.ref();
+
+
 module.exports = React.createClass({
+
+	getInitialState: function(){
+
+		return {
+			theUrl: 'https://facebook.github.io/react/img/logo_og.png',
+			active: false
+		}
+	},
+
+	componentWillMount: function(){
+
+		var _this = this;
+
+		firebase.auth().onAuthStateChanged( function(user) {
+			if(user) {
+				_this.callUrl();
+			}
+		});
+
+	},
+
+	callUrl: function(){
+
+		var _this = this;
+
+		var mediaRef = storageRef.child(this.props.mediaurl);
+		mediaRef.getDownloadURL().then(function(url) {
+			_this.setState({
+				theUrl: url,
+				active: true
+			});
+		}).catch(function(error){
+		  switch (error.code) {
+		    case 'storage/object_not_found':
+		    	console.log("File doesn't exist");
+		      // File doesn't exist
+		      break;
+
+		    case 'storage/unauthorized':
+		    	console.log("User doesn't have permission to access the object");
+		      // User doesn't have permission to access the object
+		      break;
+
+		    case 'storage/canceled':
+		    	console.log("User canceled the upload");
+		      // User canceled the upload
+		      break;
+
+		    case 'storage/unknown':
+		    	console.log("Unknown error occurred, inspect the server response");
+		      // Unknown error occurred, inspect the server response
+		      break;
+		  }
+		});
+
+	},
 
 	render: function(){
 		return (
@@ -33,7 +96,7 @@ module.exports = React.createClass({
 						</View>
 
 						<Image 
-							source={{uri: this.props.mediaurl}} 
+							source={{uri: this.state.theUrl }}
 							style={styles.imgStyle}
 						/>
 

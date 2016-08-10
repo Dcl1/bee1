@@ -1,5 +1,7 @@
 import * as types from '../actions/actionTypes';
 
+import FB from '../firebase/fbApp';
+
 const initialState = {
 	signed: false,
 	episode: 1

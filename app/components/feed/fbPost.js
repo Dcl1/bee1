@@ -21,7 +21,7 @@ module.exports = React.createClass({
 	},
 
 	componentWillMount: function() {
-		console.log(this.props.type);
+		//console.log(this.props.type);
 	},
 
 	componentDidUpdate: function( prevProps, prevState){
@@ -45,7 +45,6 @@ module.exports = React.createClass({
 					userName = {this.props.userName}
 					caption = {this.props.caption}
 					mediaurl = {this.props.mediaurl}
-					type = {this.props.type}
 				/>
 			)
 
@@ -62,13 +61,14 @@ module.exports = React.createClass({
 			//console.log("VIDEO VIDEO");
 			return (
 				<VideoPost
-					
+					mediaurl = {this.props.mediaurl}
+					userName = {this.props.userName}
+					caption = {this.props.caption}
 				/>
 			);
 			
 
 		} else {
-			console.log("fbPost this stuff is rigged")
 			return (
 				<View>
 
@@ -89,7 +89,9 @@ module.exports = React.createClass({
 		return (
 			
 			this.callType()
-
+			//<View>
+			//	<Text> Hello {this.props.userName} </Text>
+			//</View>
 		);
 	}
 

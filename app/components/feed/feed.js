@@ -36,6 +36,7 @@ module.exports = React.createClass({
 		return {
 			dataSource: ds.cloneWithRows(theData),
 			dataArray: theData,
+			visible: []
 		};
 	},
 
@@ -67,11 +68,12 @@ module.exports = React.createClass({
 
 	componentDidUpdate: function(prevProps, prevState){
 
-		console.log("FEED componentDidUpdate " + this.props.signed);
+		//console.log("The prev " + this.prevProps.signed + " & " + "The current " + this.props.signed);
 
 		var sign = this.props.signed;
 
 		if(prevProps.signed !== this.props.signed && this.props.signed == true ) {
+	
 			this.checkData(this.props.episode);
 		}
 
@@ -84,13 +86,8 @@ module.exports = React.createClass({
 
 		if(epi === 1) {
 			FeedOne.feed.map(function(obj){
-				var mediaRef = storageRef.child(obj.media);
-				mediaRef.getDownloadURL().then(function(url){
-					_this.props.callarray(obj.user, obj.type, obj.postId, obj.caption, url)
-				}).catch(function(error){
-					//console.log(error.message)
-				});
 
+				_this.props.callarray(obj.user, obj.type, obj.postId, obj.caption, obj.media)
 				
 			});
 		} else if (epi === 2) {
@@ -105,13 +102,10 @@ module.exports = React.createClass({
 
 	componentWillUnmount: function(){
 
-		console.log("Feed component will Unmount");
 
 	},
 
 	componentWillReceiveProps: function(nextProps){
-
-		//console.log("Signed in " + this.props.signed);
 
 		if(nextProps.dataArray !== this.props.dataArray) {
 			this.setState({
@@ -130,8 +124,35 @@ module.exports = React.createClass({
 					renderSectionHeader= {this._renderSectionHeader}
 					enableEmptySections={true}
 					style={styles.listStyle}
+					onChangeVisibleRows = { this.isScroll }
 				/>
 		);
+	},
+
+	isScroll: function(visible, changed){
+
+		var visRow = Object.values(visible);
+
+		visRow.map(function(obj){
+			for( i in obj) {
+				//console.log("visible key " + i, "visible obj " + obj[i]);
+				//arr.push(i);
+			}
+
+		});
+
+
+		var chanRow = Object.values(changed);
+
+		chanRow.map(function(obj){
+			for( i in obj ) {
+				//console.log("changed " + i, obj[i])
+				if(obj[i] == false ) {
+					console.log("False Row: " + i);
+				}
+			}
+		});
+
 	},
 
 	_renderSectionHeader: function(){
@@ -144,8 +165,6 @@ module.exports = React.createClass({
 
 
 	componentWillReceiveProps: function(nextProps){
-
-		//console.log("Signed in " + this.props.signed);
 		
 		if(nextProps.dataArray !== this.props.dataArray){
 			this.setState({
@@ -159,6 +178,7 @@ module.exports = React.createClass({
 
 		return (
 			<View>
+				<Text> {rowID} </Text>
 				<FbPost 
 					userName = {rowData.user}
 					caption = {rowData.caption}
@@ -182,8 +202,7 @@ var styles = StyleSheet.create({
 	},	
 	listStyle: {
 		backgroundColor: '#F6F6F6',
-		marginTop: 64,
-		marginBottom: 110
+		marginTop: 64
 	},
 
 	sectionHeader: {

@@ -10,6 +10,7 @@ export default function feedreducer(state = [], action = {}) {
 				}
 			];
 		case types.CALLARRAY:
+
 			return [
 				...state,
 				{

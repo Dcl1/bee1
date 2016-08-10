@@ -23,10 +23,10 @@
 		},
 		{
 			"postId" : 4,
-			"type" : "image",
-			"user" : "Arnold",
-			"caption" : "",
-			"media" : "images/dresses@3x.png"
+			"type" : "video",
+			"user" : "Slim",
+			"caption" : "UGH!!! I Can't believe everybody already has a date to the prom!",
+			"media" : "videos/test2.mp4"
 		},
 		{
 			"postId" : 5,
@@ -65,10 +65,10 @@
 		},
 		{
 			"postId" : 10,
-			"type" : "video",
-			"user" : "Slim",
-			"caption" : "UGH!!! I Can't believe everybody already has a date to the prom!",
-			"media" : "videos/test2.mp4"
+			"type" : "image",
+			"user" : "Arnold",
+			"caption" : "",
+			"media" : "images/dresses@3x.png"
 		}
 
 	]
