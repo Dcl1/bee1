@@ -13,6 +13,7 @@ import {
 import Feed from './feed';
 import MsgList from './messages';
 import Profile from './profile';
+import Start from './start';
 //import SingleConversation from '../components/messages/singleConversation';
 import Conversation from './conversation';
 
@@ -147,7 +148,10 @@ module.exports = React.createClass({
 				titleStyle={styles.navTitle}
 			>
 			<Scene key="roots">
-				<Scene key="maintabs" tabs={true} tabBarStyle={styles.container} >
+				<Scene key="maintabs" tabs={true} tabBarStyle={styles.container} 
+
+				>
+					<Scene key="Start" component={Start} />
 					<Scene key="Home" title="Brookhaven Wall" icon={HomeTabIcon}  component={Feed}  initial={true} />
 					<Scene key="Messages" title="Messages" icon={MessagesTabIcon} >
 						<Scene key="MsgList" title="Messages" component={MsgList} passProps={true}  />
