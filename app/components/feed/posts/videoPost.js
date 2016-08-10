@@ -166,7 +166,7 @@ module.exports = React.createClass({
 						</TouchableHighlight>
 						:
 						<Image 
-							source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} 
+							source={{uri: 'https://firebasestorage.googleapis.com/v0/b/rnf-bee001.appspot.com/o/images%2Fgradients%403x.png?alt=media&token=f67968f3-d305-4786-93b2-41c5a5643c2d'}} 
 							style={styles.video}
 						/> 
 

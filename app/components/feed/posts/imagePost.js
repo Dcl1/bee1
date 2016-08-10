@@ -19,7 +19,7 @@ module.exports = React.createClass({
 	getInitialState: function(){
 
 		return {
-			theUrl: 'https://facebook.github.io/react/img/logo_og.png',
+			theUrl: 'https://firebasestorage.googleapis.com/v0/b/rnf-bee001.appspot.com/o/images%2Fgradients%403x.png?alt=media&token=f67968f3-d305-4786-93b2-41c5a5643c2d',
 			active: false
 		}
 	},
@@ -73,6 +73,9 @@ module.exports = React.createClass({
 	},
 
 	render: function(){
+
+		console.log(this.state.theUrl);
+
 		return (
 			<View style={styles.container}>
 

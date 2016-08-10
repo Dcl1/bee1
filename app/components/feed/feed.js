@@ -178,7 +178,6 @@ module.exports = React.createClass({
 
 		return (
 			<View>
-				<Text> {rowID} </Text>
 				<FbPost 
 					userName = {rowData.user}
 					caption = {rowData.caption}
