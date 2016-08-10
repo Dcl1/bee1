@@ -8,9 +8,10 @@ export const INCREASESTEP = 'INCREASESTEP';
 export const SETSTEP = 'SETSTEP';
 
 
+/* App Actions */
 export const UPDATEEPISODE = 'UPDATEEPISODE';
 export const SIGNIN = 'SIGNIN';
-
+export const NOTNEW = 'NOTNEW';
 
 export const ASKQUESTION = 'ASKQUESTION';
 

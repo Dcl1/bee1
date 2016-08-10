@@ -141,6 +141,9 @@ module.exports = React.createClass({
 
 
 	render: function() {
+
+		console.log("New: " + this.props.isNew);
+
 		return (
 
 			<RouterWithRedux
@@ -148,11 +151,14 @@ module.exports = React.createClass({
 				titleStyle={styles.navTitle}
 			>
 			<Scene key="roots">
-				<Scene key="maintabs" tabs={true} tabBarStyle={styles.container} 
-
+				<Scene 
+					key="maintabs" 
+					tabs={true} 
+					tabBarStyle={styles.container} 
+					selector={ this.props.isNew ? "Start" : "Home"}
 				>
-					<Scene key="Start" component={Start} />
-					<Scene key="Home" title="Brookhaven Wall" icon={HomeTabIcon}  component={Feed}  initial={true} />
+					<Scene key="Start" component={Start} hideTabBar={true} hideNavBar={true} />
+					<Scene key="Home" title="Brookhaven Wall" icon={HomeTabIcon}  component={Feed}   />
 					<Scene key="Messages" title="Messages" icon={MessagesTabIcon} >
 						<Scene key="MsgList" title="Messages" component={MsgList} passProps={true}  />
 						<Scene key="SingleConvo" title="" component={Conversation} hideTabBar={true} onBack={this.backCall} />

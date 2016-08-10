@@ -120,6 +120,8 @@ module.exports = React.createClass({
 		var pause = require('image!pauseBtn');
 		var play = require('image!playBtn');
 
+		console.log(this.state.theUrl);
+
 		return (
 			<View style={styles.container}
 				ref='myElement'
@@ -147,11 +149,13 @@ module.exports = React.createClass({
 						this.state.active == true ?
 						<TouchableHighlight
 							onPress={this.onPress}
+
 						>
 							<View>
 
 								<Video
 									style={styles.video}
+									rate={1}
 									source = {{uri: this.state.theUrl }}
 									repeat={true}
 									paused={this.state.play ? false : true}

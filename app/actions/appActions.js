@@ -11,3 +11,10 @@ export function signin() {
 		type: types.SIGNIN
 	}
 }
+
+
+export function notnew() {
+	return {
+		type: types.NOTNEW
+	}
+}

@@ -4,7 +4,8 @@ import FB from '../firebase/fbApp';
 
 const initialState = {
 	signed: false,
-	episode: 1
+	episode: 1,
+	new: true
 };
 
 export default function appreducer(state = initialState, action = {}) {
@@ -20,6 +21,11 @@ export default function appreducer(state = initialState, action = {}) {
 			return {
 				...state,
 				signed: true
+			}
+		case types.NOTNEW:
+			return {
+				...state,
+				new: false
 			}
 		default:
 			return state;

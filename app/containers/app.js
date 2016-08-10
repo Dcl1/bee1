@@ -8,9 +8,9 @@ import devTools from 'remote-redux-devtools';
 import * as reducers from '../reducers';
 
 /* import app */
-import BeeBabble from './beebabble';
+//import BeeBabble from './beebabble';
 //import BeebabbleContainer from './beebabbleContainer';
-
+import BeeContainer from './beeContainer';
 /* import app */
 
 
@@ -18,9 +18,13 @@ import FBApp from '../firebase/fbApp';
 import * as firebase from 'firebase';
 
 
+
+
 const createStoreWithMiddleware = compose(applyMiddleware(thunk), devTools())(createStore);
 const reducer = combineReducers(reducers);
 const store = createStoreWithMiddleware(reducer);
+
+
 
 
 module.exports = React.createClass({
@@ -35,13 +39,32 @@ module.exports = React.createClass({
 		return (
 
 			<Provider store={store}>
-				<BeeBabble />
+				<BeeContainer />
 			</Provider>
 
 		);
 	}
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
