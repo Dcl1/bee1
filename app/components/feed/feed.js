@@ -182,14 +182,15 @@ var styles = StyleSheet.create({
 	},	
 	listStyle: {
 		backgroundColor: '#F6F6F6',
-		marginTop: 64
+		marginTop: 64,
+		marginBottom: 110
 	},
 
 	sectionHeader: {
 		//backgroundColor: '#717AEF',
-		backgroundColor: '#F4F4F4',
+		backgroundColor: 'white',
 		marginBottom: 20,
-		borderBottomWidth: 3,
+		borderBottomWidth: 4,
 		borderColor: '#FF978C',
 	    shadowColor: "#000000",
 	    shadowOpacity: 0.2,

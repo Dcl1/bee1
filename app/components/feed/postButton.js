@@ -156,8 +156,8 @@ var styles = StyleSheet.create({
 
 	quoteButton: {
 		//backgroundColor: '#202AB2',
-		backgroundColor: '#717AEF',
-		marginTop: 12,
+		backgroundColor: 'white',
+		marginTop: 8,
 		marginBottom: 6,
 		marginLeft: 8,
 		marginRight: 8,
@@ -185,7 +185,7 @@ var styles = StyleSheet.create({
 	quoteText: {
 		flex: 4,
 		//color: '#BCC0FB',
-		color: 'white',
+		color: '#9B9B9B',
 		paddingTop: 10,
 		paddingBottom: 10,
 		paddingLeft: 8
