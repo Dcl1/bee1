@@ -18,7 +18,8 @@ import FbPost from './fbPost';
 import FeedOne from '../../data/epiOne/feed/feed.json';
 /* data */
 
-import firebase from 'firebase';
+import * as firebase from 'firebase';
+
 import FbApp from '../../firebase/fbApp';
 var storage = firebase.storage();
 
@@ -55,7 +56,7 @@ module.exports = React.createClass({
 
 
 
-		this.checkData(this.props.episode);
+		//this.checkData(this.props.episode);
 
 		
 		// this.setState({
@@ -65,6 +66,8 @@ module.exports = React.createClass({
 	},
 
 	componentDidUpdate: function(prevProps, prevState){
+
+		console.log("FEED componentDidUpdate " + this.props.signed);
 
 		var sign = this.props.signed;
 

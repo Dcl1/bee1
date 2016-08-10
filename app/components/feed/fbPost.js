@@ -9,6 +9,7 @@ import {
 
 import ImagePost from './posts/imagePost';
 import TextPost from './posts/textPost';
+import VideoPost from './posts/videoPost';
 
 
 module.exports = React.createClass({
@@ -29,8 +30,14 @@ module.exports = React.createClass({
 		// }
 	},
 
-	callType: function(typ){
+	componentWillUnmount: function(){
+		console.log("fbPost UNMOUNTED");
+	},
 
+	callType: function(){
+
+
+		var typ = this.props.type;
 
 		if (typ === 'image') {
 			return (
@@ -42,7 +49,7 @@ module.exports = React.createClass({
 				/>
 			)
 
-		} else {
+		} else if (typ === 'text') {
 			return (
 				<TextPost
 					caption = {this.props.caption}
@@ -50,8 +57,24 @@ module.exports = React.createClass({
 				/>
 			);
 
-		}
+		} else if (typ === 'video') {
+			
+			//console.log("VIDEO VIDEO");
+			return (
+				<VideoPost
+					
+				/>
+			);
+			
 
+		} else {
+			console.log("fbPost this stuff is rigged")
+			return (
+				<View>
+
+				</View>
+			);
+		}
 			
 
 
@@ -61,8 +84,12 @@ module.exports = React.createClass({
 
 	render: function(){
 
+		var pos = this.callType(this.props.type);
+
 		return (
-			this.callType(this.props.type)
+			
+			this.callType()
+
 		);
 	}
 

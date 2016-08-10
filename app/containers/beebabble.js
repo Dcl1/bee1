@@ -21,7 +21,7 @@ import * as AppActions from '../actions/appActions';
  
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import firebase from 'firebase';
 
 
 const RouterWithRedux = connect()(Router);
