@@ -14,6 +14,7 @@ import Feed from './feed';
 import MsgList from './messages';
 import Profile from './profile';
 import Start from './start';
+import Registration from './registration';
 //import SingleConversation from '../components/messages/singleConversation';
 import Conversation from './conversation';
 
@@ -157,7 +158,10 @@ module.exports = React.createClass({
 					tabBarStyle={styles.container} 
 					selector={ this.props.isNew ? "Start" : "Home"}
 				>
-					<Scene key="Start" component={Start} hideTabBar={true} hideNavBar={true} />
+					<Scene key="Start"  hideTabBar={true} hideNavBar={true} >
+						<Scene key="Registration" component={Registration}  />
+						<Scene key="BackStory" component={Start} />
+					</Scene>
 					<Scene key="Home" title="Brookhaven Wall" icon={HomeTabIcon}  component={Feed}   />
 					<Scene key="Messages" title="Messages" icon={MessagesTabIcon} >
 						<Scene key="MsgList" title="Messages" component={MsgList} passProps={true}  />
