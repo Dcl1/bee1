@@ -25,6 +25,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 
+import Sound from 'react-native-sound';
+
+var whoosh = new Sound('cMino.mp3', Sound.MAIN_BUNDLE, (error) => {
+	if (error) {
+		console.log('failed to load the sound', error );
+	} else {
+		console.log('duration in seconds: ' + whoosh.getDuration() + 
+			'number of channels: ' + whoosh.getNumberOfChannels());
+	}
+});
+
 
 const RouterWithRedux = connect()(Router);
 
@@ -32,6 +43,16 @@ const RouterWithRedux = connect()(Router);
 class HomeTabIcon extends React.Component {
 
 	componentWillMount(){
+
+		whoosh.play((success) => {
+			if (success) {
+				console.log('sucessfully finished playing');
+			} else {
+				console.log('playback failed due to audio decodings errors');
+			}
+		});
+
+		whoosh.setVolume(0.2);		
 
 		this.styles={
 			selected: {

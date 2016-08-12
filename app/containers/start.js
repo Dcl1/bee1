@@ -38,7 +38,7 @@ module.exports = React.createClass({
 				style={styles.container}
 			>
 				<Video
-					source={{uri: "https://firebasestorage.googleapis.com/v0/b/rnf-bee001.appspot.com/o/videos%2Fmotors_1.mp4?alt=media&token=062b729b-0262-46ac-a461-92eac3253b54"}}
+					source={{uri: "https://firebasestorage.googleapis.com/v0/b/rnf-bee001.appspot.com/o/videos%2Fwall.mp4?alt=media&token=70683c34-aab8-4d21-9838-ef2edcf9a0b5"}}
 					style={styles.backgroundVideo}
 					volume={0.2}
 					resizemode="cover"

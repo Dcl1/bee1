@@ -12,7 +12,16 @@ import {
 
 
 import { Actions } from 'react-native-router-flux';
+import Sound from 'react-native-sound';
 
+var whoosh = new Sound('cMino.mp3', Sound.MAIN_BUNDLE, (error) => {
+	if (error) {
+		console.log('failed to load the sound', error );
+	} else {
+		console.log('duration in seconds: ' + whoosh.getDuration() + 
+			'number of channels: ' + whoosh.getNumberOfChannels());
+	}
+});
 
 module.exports = React.createClass({
 
@@ -22,13 +31,35 @@ module.exports = React.createClass({
 		};
 	},
 
+	componentDidMount: function(){
+
+		whoosh.play((success) => {
+			if (success) {
+				console.log('sucessfully finished playing');
+			} else {
+				console.log('playback failed due to audio decodings errors');
+			}
+		});
+
+		whoosh.setVolume(0.5);
+
+
+		// setTimeout(() => {
+		// 	whoosh.stop();
+		// }, 3000);
+
+	},
+
 	selected: function(){
 
-		Actions.BackStory()
+		Actions.BackStory();
+		whoosh.stop();
 
 	},
 
 	render: function(){
+
+
 		return  (
 			<View
 				style={styles.container}
