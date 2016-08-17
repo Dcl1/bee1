@@ -33,27 +33,12 @@ module.exports = React.createClass({
 
 	componentDidMount: function(){
 
-		whoosh.play((success) => {
-			if (success) {
-				console.log('sucessfully finished playing');
-			} else {
-				console.log('playback failed due to audio decodings errors');
-			}
-		});
 
-		whoosh.setVolume(0.5);
-
-
-		// setTimeout(() => {
-		// 	whoosh.stop();
-		// }, 3000);
 
 	},
 
 	selected: function(){
 
-		Actions.BackStory();
-		whoosh.stop();
 
 	},
 
