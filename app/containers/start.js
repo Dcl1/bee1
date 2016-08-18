@@ -18,7 +18,7 @@ module.exports = React.createClass({
 	getInitialState: function(){
 
 		return {
-			ended: false
+			ended: true
 		};
 	},
 

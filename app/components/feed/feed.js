@@ -124,7 +124,7 @@ module.exports = React.createClass({
 					renderSectionHeader= {this._renderSectionHeader}
 					enableEmptySections={true}
 					style={styles.listStyle}
-					onChangeVisibleRows = { this.isScroll }
+					//onChangeVisibleRows = { this.isScroll }
 				/>
 		);
 	},
