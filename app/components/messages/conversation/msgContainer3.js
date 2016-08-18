@@ -136,7 +136,8 @@ module.exports = React.createClass({
 			if(user.toUpperCase() == 'PLAYER') {
 				this.setState({
 					isPlayer: true,
-					responseUno: file.conversation[nextStep].text
+					responseUno: file.conversation[nextStep].text,
+					responseDeuce: file.conversation[nextStep].text2
 				});
 
 				
@@ -179,11 +180,15 @@ module.exports = React.createClass({
 
 
 		setTimeout(() => {
-			let uni = Math.round(Math.random() * 10000);
-			this.props.returnconversation(obj.option, obj.user, obj.text, obj.position, uni);
-			setTimeout(() => {
-				this.props.increasestep();
-			}, 500);
+				if(this._isMounted == true) {
+					let uni = Math.round(Math.random() * 10000);
+					this.props.returnconversation(obj.option, obj.user, obj.text, obj.position, uni);
+					setTimeout(() => {
+						this.props.increasestep();
+					}, 500);
+				} else {
+					console.log("caught");
+				}
 			
 		}, Math.random() * (4000 - 2200) + 2200 );
 
@@ -243,6 +248,7 @@ module.exports = React.createClass({
 	componentDidUpdate: function(prevProps, prevState){
 
 		if(prevState.messages !== this.state.messages ){
+			console.log("I am calling this because a message was sent");
 		 	this.callNextStep(this._Key);
 		}
 
@@ -293,6 +299,7 @@ module.exports = React.createClass({
 
 	componentWillUnmount: function(){
 		this._isMounted = false;
+		console.log("UNMOUNTED UNMOUNTED")
 		this.props.clearconversation();
 	},
 

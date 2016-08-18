@@ -3,72 +3,33 @@
 		{
 			"postId" : 1,
 			"type" : "image",
-			"user" : "Arnold",
-			"caption" : "",
-			"media" : "images/prom@3x.png"
+			"user" : "Claire Ellis",
+			"caption" : "Celebrating six months with this guy! How cute are we? #wefoundlove",
+			"media" : "images/highCouple.jpg"
 		},
 		{
 			"postId" : 2,
 			"type" : "text",
-			"user" : "Slim",
-			"caption" : "UGH!!! I Can't believe everybody already has a date to the prom!",
-			"media" : "images/prom@3x.png"
+			"user" : "Matt Perkins",
+			"caption" : "Deadline for the inter-house soccer tournament is this Wednesday! You can’t win if you don’t even sign up, dudes.",
 		},
 		{
 			"postId" : 3,
-			"type" : "image",
-			"user" : "Jimmy",
-			"caption" : "Daaaammmmnnn I look good ",
-			"media" : "images/gradients@3x.png"
+			"type" : "text",
+			"user" : "Sam Jones",
+			"caption" : "Don’t think this new roommate is going to work out. PM me if you’re looking for a room swap. #transferstudentssuck",
 		},
 		{
 			"postId" : 4,
-			"type" : "video",
-			"user" : "Slim",
-			"caption" : "UGH!!! I Can't believe everybody already has a date to the prom!",
-			"media" : "videos/motors_1.mp4"
+			"type" : "text",
+			"user" : "Park Seung-ho",
+			"caption" : "Just ordered the biggest burrito bowl of my life—ate it in five minutes. #likeaboss",
 		},
 		{
 			"postId" : 5,
 			"type" : "text",
-			"user" : "Slim",
-			"caption" : "UGH!!! I Can't believe everybody already has a date to the prom!",
-			"media" : "images/prom@3x.png"
-		},
-		{
-			"postId" : 6,
-			"type" : "image",
-			"user" : "Jimmy",
-			"caption" : "Daaaammmmnnn I look good ",
-			"media" : "images/gradients@3x.png"
-		},
-		{
-			"postId" : 7,
-			"type" : "image",
-			"user" : "Arnold",
-			"caption" : "",
-			"media" : "images/dresses@3x.png"
-		},
-		{
-			"postId" : 8,
-			"type" : "text",
-			"user" : "Slim",
-			"caption" : "UGH!!! I Can't believe everybody already has a date to the prom!",
-			"media" : "images/prom@3x.png"
-		},
-		{
-			"postId" : 9,
-			"type" : "video",
-			"user" : "Slim",
-			"caption" : "UGH!!! I Can't believe everybody already has a date to the prom!",
-			"media" : "videos/football.mp4"
-		},
-		{
-			"postId" : 10,
-			"type" : "image",
-			"user" : "Arnold",
-			"caption" : "",
-			"media" : "images/dresses@3x.png"
+			"user" : "Emily Garcia",
+			"caption" : "Loving this weather! If anyone wants to join me for some outdoor yoga, I’ll be in Pearl Quad!",
 		}
 
 	]

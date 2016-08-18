@@ -12,30 +12,34 @@
 				{
 					"option" : false,
 					"step" : 1,
-					"user" : "counselor",
+					"user" : "Principal Coleman",
 					"position" : "left",
-					"text" : "How are you settling in to Brookhaven? Finding everything all right?"
+					"text" : "Hello. It is my genuine pleasure to welcome you to the Brookhaven Preparatory Acadamy. (Go Bees!) This “BeeBabble” application is a useful tool for interacting with classmates, alumni and faculty members. Here at Brookhaven, we pride ourselves on our robust offering of extracurricular activities (you are expected to participate in two student organizations per semester.) One of these can be a Brookhaven Society. These six societies offer closed membership and can influence your success beyond your time at Brookhaven.",
+					"text2": ""
 				},
 				{
 					"option" : false,
 					"step" : 2,
 					"user" : "player",
 					"position" : "right",
-					"text" : "Yeah, thanks. About my roommate.../Actually, how do roommate swaps work?"
+					"text" : "Thank you Principal Coleman. Any leeway on the extracurriculars?",
+					"text2" : "Thanks Principal Coleman. My Dad didn’t mention the students here are so… involved."
 				},
 				{
 					"option" : false,
 					"step" : 3,
-					"user" : "counselor",
+					"user" : "Principal Coleman",
 					"position" : "left",
-					"text" : "Let me stop you right there--roommate determinations are final, no matter what you may have seen on the home feed. I’m sorry, but you’ll have to tough it out. I hear it builds character."
+					"text" : "Let me stop you right there--roommate determinations are final, no matter what you may have seen on the home feed. I’m sorry, but you’ll have to tough it out. I hear it builds character.",
+					"text2" : ""
 				},
 				{
 					"option" : false,
 					"step" : 4,
 					"user" : "player",
 					"position" : "right",
-					"text" : "All right"
+					"text" : "All right",
+					"text2" : ""
 				}
 
 			] 
@@ -50,84 +54,32 @@
 					"step" : 1,
 					"user" : "Lexi",
 					"position" : "left",
-					"text" : "Great meeting you in class today!"
+					"text" : "Great meeting you in class today!",
+					"text2" : ""
 				},
 				{
 					"option" : false,
 					"step" : 2,
 					"user" : "player",
 					"position" : "right",
-					"text" : "I was wondering if you could help me find this book for my class?"
+					"text" : "I was wondering if you could help me find this book for my class?",
+					"text2" : ""
 				},
 				{
 					"option" : false,
 					"step" : 3,
 					"user" : "Lexi",
 					"position" : "left",
-					"text" : "Sure thing, how are you settling in?"
+					"text" : "Sure thing, how are you settling in?",
+					"text2" : ""
 				},
 				{
 					"option" : false,
 					"step" : 4,
 					"user" : "player",
 					"position" : "right",
-					"text" : "Things are okay, but I think my new roommate kind of hates me./My roommate is a real jerk./How soon can I put in for a roommate transfer. "
-				},
-				{
-					"option" : false,
-					"step" : 5,
-					"user" : "Lexi",
-					"position" : "left",
-					"text" : "Don’t worry, you can make plenty of friends without getting along with your roommate. In fact, let’s grab dinner later. I’ll introduce you to some people.  "
-				},
-				{
-					"option" : false,
-					"step" : 6,
-					"user" : "player",
-					"position" : "right",
-					"text" : "That’d be amazing, thank you"
-				},
-				{
-					"option" : false,
-					"step" : 7,
-					"user" : "Lexi",
-					"position" : "left",
-					"text" : "You could also join a Society. That’s where I’ve made a lot of my friends."
-				},
-				{
-					"option" : false,
-					"step" : 8,
-					"user" : "player",
-					"position" : "right",
-					"text" : "Not bad, although...do you know anything about the Societies?"
-				},
-				{
-					"option" : false,
-					"step" : 9,
-					"user" : "Lexi",
-					"position" : "left",
-					"text" : "Yeah, they’re great! That’s where I’ve made a lot of my friends, actually."
-				},
-				{
-					"option" : false,
-					"step" : 10,
-					"user" : "player",
-					"position" : "right",
-					"text" : "So you’d recommend joining one?"
-				},
-				{
-					"option" : false,
-					"step" : 11,
-					"user" : "Lexi",
-					"position" : "left",
-					"text" : " I’m in Leverage, but they each have a different focus. I might have a list somewhere I could dig up?"
-				},
-				{
-					"option" : false,
-					"step" : 12,
-					"user" : "player",
-					"position" : "right",
-					"text" : "Yes, send me the list."
+					"text" : "Things are okay, but I think my new roommate kind of hates me./My roommate is a real jerk./How soon can I put in for a roommate transfer. ",
+					"text2" : ""
 				}
 
 			] 

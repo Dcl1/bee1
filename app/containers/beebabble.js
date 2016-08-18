@@ -100,7 +100,7 @@ class MessagesTabIcon extends React.Component {
 }
 
 class ProfileTabIcon extends React.Component {
-
+ 
 	componentWillMount(){
 		this.styles={
 			selected: {
