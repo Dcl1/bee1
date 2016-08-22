@@ -54,14 +54,14 @@ class HomeTabIcon extends React.Component {
 
 		// whoosh.setVolume(0.2);		
 
-		// this.styles={
-		// 	selected: {
-		// 		opacity: 1
-		// 	},
-		// 	unselected: {
-		// 		opacity: 0.24
-		// 	}
-		// };
+		this.styles={
+			selected: {
+				opacity: 1
+			},
+			unselected: {
+				opacity: 0.24
+			}
+		};
 	}
 
 

@@ -25,8 +25,15 @@ module.exports = React.createClass({
 		};
 	},
 
+	componentDidMount: function(){
+		console.log(this.props.convoID);
+	},
 
-	componentWillMount: function(){
+	componentWillReceiveProps: function(nextProps){
+
+		if(nextProps.convoID !== this.props.convoID) {
+			console.log("That's a different conversation "  + nextProps.convoID);
+		}
 
 	},
 
