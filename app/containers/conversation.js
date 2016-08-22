@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import SingleConversation from '../components/messages/singleConversation';
-import MessengerContainer from '../components/messages/conversation/msgContainer3';
+import MessengerContainer from '../components/messages/conversation/msgContainer4';
 
 import * as ConversationActions from '../actions/conversationActions';
 import * as AppActions from '../actions/appActions';

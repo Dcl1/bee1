@@ -44,24 +44,24 @@ class HomeTabIcon extends React.Component {
 
 	componentWillMount(){
 
-		whoosh.play((success) => {
-			if (success) {
-				console.log('sucessfully finished playing');
-			} else {
-				console.log('playback failed due to audio decodings errors');
-			}
-		});
+		// whoosh.play((success) => {
+		// 	if (success) {
+		// 		console.log('sucessfully finished playing');
+		// 	} else {
+		// 		console.log('playback failed due to audio decodings errors');
+		// 	}
+		// });
 
-		whoosh.setVolume(0.2);		
+		// whoosh.setVolume(0.2);		
 
-		this.styles={
-			selected: {
-				opacity: 1
-			},
-			unselected: {
-				opacity: 0.24
-			}
-		};
+		// this.styles={
+		// 	selected: {
+		// 		opacity: 1
+		// 	},
+		// 	unselected: {
+		// 		opacity: 0.24
+		// 	}
+		// };
 	}
 
 
